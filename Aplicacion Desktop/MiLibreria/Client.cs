@@ -51,7 +51,7 @@ namespace MiLibreria
             }
             parametros.Add(parametro);
 
-            DataSet ds = DataBase.ObtenerUnDataSet("RJT.LISTAR_CLIENTES_EXISTENTES", DataBase.Tipos.StoredProcedure, parametros);
+            DataSet ds = DataBase.ObtenerUnDataSet("TROLLS.LISTAR_CLIENTES_EXISTENTES", DataBase.Tipos.StoredProcedure, parametros);
 
             return ds;
         }
@@ -86,7 +86,7 @@ namespace MiLibreria
             }
             parametros.Add(parametro);
 
-            DataSet ds = DataBase.ObtenerUnDataSet("RJT.LISTAR_CLIENTES_EXISTENTES_INICIO", DataBase.Tipos.StoredProcedure, parametros);
+            DataSet ds = DataBase.ObtenerUnDataSet("TROLLS.LISTAR_CLIENTES_EXISTENTES_INICIO", DataBase.Tipos.StoredProcedure, parametros);
 
             return ds;
         }
@@ -94,7 +94,7 @@ namespace MiLibreria
         public static Int32 ObtenerIDCliente(Int32 doc)
         {
             Int32 ID = -1;
-            String query = "SELECT CLI_ID FROM RJT.CLIENTE WHERE CLI_NRO_DOC = '" + doc + "'";
+            String query = "SELECT CLI_ID FROM TROLLS.CLIENTE WHERE CLI_NRO_DOC = '" + doc + "'";
             ID = DataBase.queryForInt(query);
 
             return ID;
@@ -103,7 +103,7 @@ namespace MiLibreria
         public static Int32 ObtenerIDClienteUser(Int32 idUser)
         {
             Int32 ID = -1;
-            String query = "SELECT CLI_ID FROM RJT.CLIENTE WHERE CLI_USU_ID = '" + idUser + "'";
+            String query = "SELECT CLI_ID FROM TROLLS.CLIENTE WHERE CLI_USU_ID = '" + idUser + "'";
             ID = DataBase.queryForInt(query);
 
             return ID;
@@ -112,7 +112,7 @@ namespace MiLibreria
         public static Int32 ObtenerIDDireccionCliente(Int32 id)
         {
             Int32 ID = -1;
-            String query = "SELECT CLI_DIRECCION FROM RJT.CLIENTE WHERE CLI_ID = '" + id + "'";
+            String query = "SELECT CLI_DIRECCION FROM TROLLS.CLIENTE WHERE CLI_ID = '" + id + "'";
             ID = DataBase.queryForInt(query);
 
             return ID;
@@ -125,7 +125,7 @@ namespace MiLibreria
             parametro = new SqlParameter("@ID", SqlDbType.Int, 100);
             parametro.Value = id_cliente;
             parametros.Add(parametro);
-            SqlDataReader reader = DataBase.ObtenerUnDataReader("RJT.OBTENER_PUNTOS_CLIENTE", DataBase.Tipos.StoredProcedure, parametros);
+            SqlDataReader reader = DataBase.ObtenerUnDataReader("TROLLS.OBTENER_PUNTOS_CLIENTE", DataBase.Tipos.StoredProcedure, parametros);
             return reader;
         }
 
@@ -136,7 +136,7 @@ namespace MiLibreria
             parametro = new SqlParameter("@ID", SqlDbType.Int, 100);
             parametro.Value = id_cliente;
             parametros.Add(parametro);
-            SqlDataReader reader = DataBase.ObtenerUnDataReader("RJT.OBTENER_CLIENTE", DataBase.Tipos.StoredProcedure, parametros);
+            SqlDataReader reader = DataBase.ObtenerUnDataReader("TROLLS.OBTENER_CLIENTE", DataBase.Tipos.StoredProcedure, parametros);
             return reader;
         }
 
@@ -152,14 +152,8 @@ namespace MiLibreria
                     cliente.Apellido = reader.GetString(0);
                     if (!reader.IsDBNull(1))
                     cliente.Nombre = reader.GetString(1);
-                    if (!reader.IsDBNull(2))
-                    cliente.TipoDoc = reader.GetString(2);
                     if (!reader.IsDBNull(3))
-                    cliente.NroDoc = reader.GetString(3);
-                    if (!reader.IsDBNull(4))
-                    cliente.Tarj = reader.GetString(4);
-                    if (!reader.IsDBNull(5))
-                    cliente.Cuil = reader.GetString(5);
+                        cliente.NroDoc = reader.GetString(3);
                     if (!reader.IsDBNull(6))
                     cliente.FechaNac = reader.GetDateTime(6);
                 }
@@ -171,7 +165,7 @@ namespace MiLibreria
 
         public static bool ValidaTarjeta(Int32 idCliente)
         {
-            SqlDataReader reader = DataBase.ObtenerUnDataReader("SELECT 1 FROM RJT.CLIENTE WHERE CLI_TARJ is not null and CLI_ID = '" + idCliente + "'");
+            SqlDataReader reader = DataBase.ObtenerUnDataReader("SELECT 1 FROM TROLLS.CLIENTE WHERE CLI_TARJ is not null and CLI_ID = '" + idCliente + "'");
             bool resultado;
             if (reader.HasRows)
             {
@@ -187,7 +181,7 @@ namespace MiLibreria
 
         public static bool EsValidoDoc(string nro_doc, string tipo)
         {
-            SqlDataReader reader = DataBase.ObtenerUnDataReader("SELECT 1 FROM RJT.CLIENTE WHERE CLI_NRO_DOC = '" + nro_doc + "' AND CLI_TIPO_DOC = '" + tipo + "'");
+            SqlDataReader reader = DataBase.ObtenerUnDataReader("SELECT 1 FROM TROLLS.CLIENTE WHERE CLI_NRO_DOC = '" + nro_doc + "' AND CLI_TIPO_DOC = '" + tipo + "'");
             bool resultado;
             if (reader.HasRows)
             {
@@ -202,7 +196,7 @@ namespace MiLibreria
         }
         public static bool EsValidoCuil(string cuil)
         {
-            SqlDataReader reader = DataBase.ObtenerUnDataReader("SELECT 1 FROM RJT.CLIENTE WHERE CLI_CUIL = '" + cuil + "'");
+            SqlDataReader reader = DataBase.ObtenerUnDataReader("SELECT 1 FROM TROLLS.CLIENTE WHERE CLI_CUIL = '" + cuil + "'");
             bool resultado;
             if (reader.HasRows)
             {
@@ -216,12 +210,12 @@ namespace MiLibreria
             return resultado;
         }
 
-        public static bool EsValidoDocModif(string nro_doc,string nro_doc_base, string tipo, string tipo_base)
+        public static bool EsValidoDocModif(string nro_doc,string nro_doc_base)
         {
             bool resultado;
-            if (!(String.Equals(nro_doc, nro_doc_base) && String.Equals(tipo, tipo_base)))
+            if (!(String.Equals(nro_doc, nro_doc_base)))
             {
-                SqlDataReader reader = DataBase.ObtenerUnDataReader("SELECT 1 FROM RJT.CLIENTE WHERE CLI_NRO_DOC = '" + nro_doc + "' AND CLI_TIPO_DOC = '" + tipo + "'");
+                SqlDataReader reader = DataBase.ObtenerUnDataReader("SELECT 1 FROM TROLLS.CLIENTE WHERE CLI_NRO_DOC = '" + nro_doc + "'");
                 
                 if (reader.HasRows)
                 {
@@ -236,27 +230,7 @@ namespace MiLibreria
             else
                 resultado = true;
             return resultado;
-        }
-        public static bool EsValidoCuilModif(string cuil, string cuil_base)
-        {
-            bool resultado;
-            if (!String.Equals(cuil, Utilidad.Truncate(cuil_base, 11)))
-            {
-                SqlDataReader reader = DataBase.ObtenerUnDataReader("SELECT 1 FROM RJT.CLIENTE WHERE CLI_CUIL = '" + cuil + "'");
-                if (reader.HasRows)
-                {
-                    resultado = false;
-                }
-                else
-                {
-                    resultado = true;
-                }
-                reader.Close();
-            }
-            else
-                resultado = true;
-            return resultado;
-        }     
+        }  
 
         public static void CrearTarjeta(Int32 idCliente,String txtTarj){
             List<SqlParameter> parametros = new List<SqlParameter>();
@@ -268,13 +242,13 @@ namespace MiLibreria
             parametro.Value = txtTarj;
             parametros.Add(parametro);
 
-            DataBase.EscribirEnLaBase("RJT.CREAR_TARJETA", DataBase.Tipos.StoredProcedure, parametros);
+            DataBase.EscribirEnLaBase("TROLLS.CREAR_TARJETA", DataBase.Tipos.StoredProcedure, parametros);
         }
 
         public static void ModificarCliente(Cliente cliente)
         {
             List<SqlParameter> parametros = PrepararParametrosModificar(cliente);
-            DataBase.EscribirEnLaBase("RJT.MODIFICAR_CLIENTE", DataBase.Tipos.StoredProcedure, parametros);
+            DataBase.EscribirEnLaBase("TROLLS.MODIFICAR_CLIENTE", DataBase.Tipos.StoredProcedure, parametros);
         }
 
         private static List<SqlParameter> PrepararParametrosModificar(Cliente cliente)
@@ -283,9 +257,6 @@ namespace MiLibreria
 
             SqlParameter parametro;
 
-            parametro = new SqlParameter("@CLI_ID", SqlDbType.Int, 100);
-            parametro.Value = cliente.Id;
-            parametros.Add(parametro);
 
             parametro = new SqlParameter("@CLI_NOMBRE", SqlDbType.VarChar, 30);
             parametro.Value = cliente.Nombre;
@@ -295,24 +266,13 @@ namespace MiLibreria
             parametro.Value = cliente.Apellido;
             parametros.Add(parametro);
 
-            parametro = new SqlParameter("@CLI_TIPO_DOC", SqlDbType.Char, 3);
-            parametro.Value = cliente.TipoDoc;
-            parametros.Add(parametro);
-
             parametro = new SqlParameter("@CLI_NRO_DOC", SqlDbType.Char, 10);
             parametro.Value = cliente.NroDoc;
             parametros.Add(parametro);
 
-            parametro = new SqlParameter("@CLI_CUIL", SqlDbType.Char, 11);
-            parametro.Value = cliente.Cuil;
-            parametros.Add(parametro);
 
             parametro = new SqlParameter("@CLI_FECHA_NAC", SqlDbType.DateTime, 100);
             parametro.Value = cliente.FechaNac;
-            parametros.Add(parametro);
-
-            parametro = new SqlParameter("@CLI_TARJ", SqlDbType.VarChar, 19);
-            parametro.Value = cliente.Tarj;
             parametros.Add(parametro);
 
             return parametros;
@@ -323,7 +283,7 @@ namespace MiLibreria
         {
             List<SqlParameter> parametros = PrepararParametros(cliente);
 
-            DataBase.EscribirEnLaBase("RJT.CREAR_CLIENTE", DataBase.Tipos.StoredProcedure, parametros);
+            DataBase.EscribirEnLaBase("TROLLS.CREAR_CLIENTE", DataBase.Tipos.StoredProcedure, parametros);
 
         }
 
@@ -345,33 +305,14 @@ namespace MiLibreria
             parametro.Value = cliente.Apellido;
             parametros.Add(parametro);
 
-            parametro = new SqlParameter("@CLI_TIPO_DOC", SqlDbType.Char, 3);
-            parametro.Value = cliente.TipoDoc;
-            parametros.Add(parametro);
-
             parametro = new SqlParameter("@CLI_NRO_DOC", SqlDbType.Char, 10);
             parametro.Value = cliente.NroDoc;
-            parametros.Add(parametro);
-
-            parametro = new SqlParameter("@CLI_CUIL", SqlDbType.Char, 11);
-            parametro.Value = cliente.Cuil;
             parametros.Add(parametro);
 
             parametro = new SqlParameter("@CLI_FECHA_NAC", SqlDbType.DateTime, 100);
             parametro.Value = cliente.FechaNac;
             parametros.Add(parametro);
             //Fecha creacion
-            parametro = new SqlParameter("@CLI_FECHA_CREACION", SqlDbType.DateTime, 100);
-            parametro.Value = DataBase.ObtenerFechaSistema();
-            parametros.Add(parametro);
-
-            parametro = new SqlParameter("@CLI_PTOS", SqlDbType.Int, 100);
-            parametro.Value = 0;
-            parametros.Add(parametro);
-
-            parametro = new SqlParameter("@CLI_TARJ", SqlDbType.VarChar, 19);
-            parametro.Value = cliente.Tarj;
-            parametros.Add(parametro);
 
             parametro = new SqlParameter("@CLI_DIRECCION", SqlDbType.Int, 100);
             parametro.Value = cliente.IdDireccion;

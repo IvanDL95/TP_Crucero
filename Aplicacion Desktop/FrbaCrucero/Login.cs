@@ -173,7 +173,7 @@ namespace FrbaCrucero
 
             List<SqlParameter> parametros = new List<SqlParameter>();
             parametros.Add(new SqlParameter("@ID", id));
-            SqlDataReader reader = DataBase.ObtenerUnDataReader("RJT.OBTENER_ROLES_ACTIVOS", DataBase.Tipos.StoredProcedure, parametros);
+            SqlDataReader reader = DataBase.ObtenerUnDataReader("TROLLS.OBTENER_ROLES_ACTIVOS", DataBase.Tipos.StoredProcedure, parametros);
 
             if (reader.HasRows)
             {
@@ -194,7 +194,7 @@ namespace FrbaCrucero
 
             List<SqlParameter> parametros = new List<SqlParameter>();
             parametros.Add(new SqlParameter("@ID", id));
-            SqlDataReader reader = DataBase.ObtenerUnDataReader("RJT.OBTENER_ROLES_ACTIVOS", DataBase.Tipos.StoredProcedure, parametros);
+            SqlDataReader reader = DataBase.ObtenerUnDataReader("TROLLS.OBTENER_ROLES_ACTIVOS", DataBase.Tipos.StoredProcedure, parametros);
 
             if (reader.HasRows)
             {

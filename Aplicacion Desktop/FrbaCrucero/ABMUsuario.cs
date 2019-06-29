@@ -41,16 +41,16 @@ namespace FrbaCrucero
                 MessageBox.Show("El Usuario ya está habilitado");
             else
             {                
-                DataBase.EscribirEnLaBase("UPDATE RJT.USUARIO SET USU_ESTADO = 1, USU_CANT_INT_FALLIDOS = 0 WHERE USU_ID = " + ID.ToString());
+                DataBase.EscribirEnLaBase("UPDATE TROLLS.USUARIO SET USU_ESTADO = 1, USU_CANT_INT_FALLIDOS = 0 WHERE USU_ID = " + ID.ToString());
                 if (User.EsUsuarioCliente(ID))
                 {
                     //Es Cliente
-                    DataBase.EscribirEnLaBase("UPDATE RJT.CLIENTE SET CLI_ESTADO = 1 WHERE CLI_USU_ID = (select usu_id from RJT.USUARIO where USU_ID = " + ID.ToString() + ")");
+                    DataBase.EscribirEnLaBase("UPDATE TROLLS.CLIENTE SET CLI_ESTADO = 1 WHERE CLI_USU_ID = (select usu_id from TROLLS.USUARIO where USU_ID = " + ID.ToString() + ")");
                 }
                 else
                 {
                     //Es empresa
-                    DataBase.EscribirEnLaBase("UPDATE RJT.EMPRESA SET EMP_ESTADO = 1 WHERE EMP_USU_ID = (select usu_id from RJT.USUARIO where USU_ID = " + ID.ToString() + ")");
+                    DataBase.EscribirEnLaBase("UPDATE TROLLS.EMPRESA SET EMP_ESTADO = 1 WHERE EMP_USU_ID = (select usu_id from TROLLS.USUARIO where USU_ID = " + ID.ToString() + ")");
                 }
                 MessageBox.Show("El Usuario ha sido habilitado correctamente.");
                 DataSet ds = User.ListarUsuariosExistentes();
@@ -70,16 +70,16 @@ namespace FrbaCrucero
             {
                 if (ConfirmarBaja())
                 {
-                    DataBase.EscribirEnLaBase("UPDATE RJT.USUARIO SET USU_ESTADO = 0 WHERE USU_ID = " + ID.ToString());
+                    DataBase.EscribirEnLaBase("UPDATE TROLLS.USUARIO SET USU_ESTADO = 0 WHERE USU_ID = " + ID.ToString());
                     if (User.EsUsuarioCliente(ID))
                     {
                         //Es Cliente
-                        DataBase.EscribirEnLaBase("UPDATE RJT.CLIENTE SET CLI_ESTADO = 0 WHERE CLI_USU_ID = (select usu_id from RJT.USUARIO where USU_ID = " + ID.ToString() + ")");
+                        DataBase.EscribirEnLaBase("UPDATE TROLLS.CLIENTE SET CLI_ESTADO = 0 WHERE CLI_USU_ID = (select usu_id from TROLLS.USUARIO where USU_ID = " + ID.ToString() + ")");
                     }
                     else
                     {
                         //Es empresa
-                        DataBase.EscribirEnLaBase("UPDATE RJT.EMPRESA SET EMP_ESTADO = 0 WHERE EMP_USU_ID = (select usu_id from RJT.USUARIO where USU_ID = " + ID.ToString() + ")");
+                        DataBase.EscribirEnLaBase("UPDATE TROLLS.EMPRESA SET EMP_ESTADO = 0 WHERE EMP_USU_ID = (select usu_id from TROLLS.USUARIO where USU_ID = " + ID.ToString() + ")");
                     }
                     MessageBox.Show("El Usuario ha sido eliminado correctamente.");
                     DataSet ds = User.ListarUsuariosExistentes();

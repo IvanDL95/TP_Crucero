@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FrbaCrucero.AbmCrucero;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,7 +18,8 @@ namespace FrbaCrucero
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Application.Run(new Login(null));
+            //Application.Run(new PantallaIncial(null, null));
+            Application.Run(new FormCrucero());
 
         }
         

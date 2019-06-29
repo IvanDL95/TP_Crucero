@@ -15,12 +15,12 @@ namespace MiLibreria
     {
         public static void LLenarDGV(DataGridView dgv)
         {
-            dgv.DataSource = DataBase.ObtenerUnDataSet("SELECT * FROM RJT.ROL").Tables[0];
+            dgv.DataSource = DataBase.ObtenerUnDataSet("SELECT * FROM TROLLS.ROL").Tables[0];
         }
 
         public static void BuscarRol(DataGridView dgv, string palabra)
         {
-            dgv.DataSource = DataBase.ObtenerUnDataSet("SELECT * FROM RJT.ROL WHERE ROL_NOMBRE LIKE '%" + palabra + "%'").Tables[0];
+            dgv.DataSource = DataBase.ObtenerUnDataSet("SELECT * FROM TROLLS.ROL WHERE ROL_NOMBRE LIKE '%" + palabra + "%'").Tables[0];
         }
 
         public static Int32 DameIdRol(String nombre)
@@ -28,7 +28,7 @@ namespace MiLibreria
             List<SqlParameter> parametros = new List<SqlParameter>();
 
             parametros.Add(new SqlParameter("@nombre", nombre));
-            int resultado = DataBase.queryForInt("RJT.OBTENER_ID_X_NOMBRE", DataBase.Tipos.StoredProcedure, parametros);
+            int resultado = DataBase.queryForInt("TROLLS.OBTENER_ID_X_NOMBRE", DataBase.Tipos.StoredProcedure, parametros);
 
             DataBase.CerrarConexion();
 
@@ -42,14 +42,14 @@ namespace MiLibreria
             SqlParameter parametro;
 
             parametro = new SqlParameter("@NOMBRE", SqlDbType.VarChar, 25);
-            parametro.Value = unRol.Nombre;
+            parametro.Value = unRol.nombre;
             parametros.Add(parametro);
 
             parametro = new SqlParameter("@ESTADO", SqlDbType.Bit);
-            parametro.Value = unRol.Estado;
+            parametro.Value = unRol.estado;
             parametros.Add(parametro);
 
-            DataBase.EscribirEnLaBase("RJT.GUARDAR_ROL", DataBase.Tipos.StoredProcedure, parametros);
+            DataBase.EscribirEnLaBase("TROLLS.GUARDAR_ROL", DataBase.Tipos.StoredProcedure, parametros);
             
         }
 
@@ -67,7 +67,7 @@ namespace MiLibreria
             parametro.Value = rol;
             parametros.Add(parametro);
 
-            DataBase.EscribirEnLaBase("RJT.CREAR_ROLXUSUARIO", DataBase.Tipos.StoredProcedure, parametros);
+            DataBase.EscribirEnLaBase("TROLLS.CREAR_ROLXUSUARIO", DataBase.Tipos.StoredProcedure, parametros);
 
         }
 
@@ -76,7 +76,7 @@ namespace MiLibreria
             List<SqlParameter> parametros = new List<SqlParameter>();
             parametros.Add(new SqlParameter("@ID", id));
 
-            DataBase.EscribirEnLaBase("RJT.ELIMINAR_ROL",DataBase.Tipos.StoredProcedure,parametros);
+            DataBase.EscribirEnLaBase("TROLLS.ELIMINAR_ROL",DataBase.Tipos.StoredProcedure,parametros);
         }
 
         public static void AgregarFuncionalidad(Rol unRol, Funcion funcion)
@@ -86,14 +86,14 @@ namespace MiLibreria
             SqlParameter parametro;
 
             parametro = new SqlParameter("@ID_Rol", SqlDbType.Int, 100);
-            parametro.Value = unRol.Id;
+            parametro.Value = unRol.id;
             parametros.Add(parametro);
 
             parametro = new SqlParameter("@ID_Funcionalidad", SqlDbType.Int, 100);
             parametro.Value = funcion.Id;
             parametros.Add(parametro);
 
-            DataBase.EscribirEnLaBase("RJT.AGREGAR_FUNCIONALIDAD_A_ROL", DataBase.Tipos.StoredProcedure, parametros);
+            DataBase.EscribirEnLaBase("TROLLS.AGREGAR_FUNCIONALIDAD_A_ROL", DataBase.Tipos.StoredProcedure, parametros);
         }
 
         public static void QuitarFuncionalidad(Rol unRol, Funcion funcion)
@@ -103,14 +103,14 @@ namespace MiLibreria
             SqlParameter parametro;
 
             parametro = new SqlParameter("@ID_Rol", SqlDbType.Int, 100);
-            parametro.Value = unRol.Id;
+            parametro.Value = unRol.id;
             parametros.Add(parametro);
 
             parametro = new SqlParameter("@ID_Funcionalidad", SqlDbType.Int, 100);
             parametro.Value = funcion.Id;
             parametros.Add(parametro);
 
-            DataBase.EscribirEnLaBase("RJT.ELIMINAR_FUNCIONALIDAD_A_ROL", DataBase.Tipos.StoredProcedure, parametros);
+            DataBase.EscribirEnLaBase("TROLLS.ELIMINAR_FUNCIONALIDAD_A_ROL", DataBase.Tipos.StoredProcedure, parametros);
 
         }
 
@@ -127,7 +127,7 @@ namespace MiLibreria
                 estado = 0;
             }
 
-            DataBase.EscribirEnLaBase("UPDATE RJT.ROL SET ROL_ESTADO = " + estado.ToString() + ", ROL_NOMBRE = '" + nuevoNombre + "' WHERE ROL_ID = " + id.ToString());
+            DataBase.EscribirEnLaBase("UPDATE TROLLS.ROL SET ROL_ESTADO = " + estado.ToString() + ", ROL_NOMBRE = '" + nuevoNombre + "' WHERE ROL_ID = " + id.ToString());
         }
     }
 }

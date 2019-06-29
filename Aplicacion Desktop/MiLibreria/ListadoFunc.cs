@@ -33,7 +33,7 @@ namespace MiLibreria
             }
 
             
-            DataSet ds = DataBase.ObtenerUnDataSet("RJT.sp_listado_estadistico_"+ listado.ToString(), DataBase.Tipos.StoredProcedure, parametros);
+            DataSet ds = DataBase.ObtenerUnDataSet("TROLLS.sp_listado_estadistico_"+ listado.ToString(), DataBase.Tipos.StoredProcedure, parametros);
 
             return ds;
         }

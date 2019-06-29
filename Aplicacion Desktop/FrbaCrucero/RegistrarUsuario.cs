@@ -130,10 +130,6 @@ namespace FrbaCrucero
                 this.Hide();
                 frCliente.ShowDialog();
                 this.Show();
-                if (frCliente.cliente.Valido)
-                    btCrear.Enabled = true;
-                else
-                    btCrear.Enabled = false;
             }
             else if (cmb_tipo.SelectedItem.ToString() == "Empresa")
             {

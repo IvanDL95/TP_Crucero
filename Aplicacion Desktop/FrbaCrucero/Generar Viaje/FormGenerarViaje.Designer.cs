@@ -1,6 +1,6 @@
-﻿namespace FrbaCrucero.Generar_Publicacion
+﻿namespace FrbaCrucero.Generar_publicacion
 {
-    partial class FormGenerarPublicacion
+    partial class FormGenerarViaje
     {
         /// <summary>
         /// Required designer variable.

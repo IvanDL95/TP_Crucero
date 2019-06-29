@@ -79,21 +79,21 @@ namespace FrbaCrucero.AbmRol
             {
                 Rol rol = new Rol();
                 
-                rol.Nombre = txt_nombre_agregar.Text.Trim();
+                rol.nombre = txt_nombre_agregar.Text.Trim();
                 if(chk_habilitado.Checked)
-                rol.Estado = true;
+                rol.estado = true;
                 else
-                    rol.Estado = false;
+                    rol.estado = false;
 
                 Role.GuardarRol(rol);
 
                 Int32 id = Role.DameIdRol(txt_nombre_agregar.Text.Trim());
-                rol.Id = id;
+                rol.id = id;
 
                 if(MessageBox.Show("¿Desea agregarle funcionalidades ahora?","Pregunta",MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     this.Hide();
-                    FormAMRol form = new FormAMRol(rol, true, rol.Estado);
+                    FormAMRol form = new FormAMRol(rol, true, rol.estado);
                     form.ShowDialog();
                     this.Show();
                     txt_nombre_agregar.Text = "";
@@ -154,8 +154,8 @@ namespace FrbaCrucero.AbmRol
             Boolean habilitado = Convert.ToBoolean(dg_rol.CurrentRow.Cells[2].Value);
 
             Rol rol = new Rol();
-            rol.Id = id;
-            rol.Nombre = nombre;
+            rol.id = id;
+            rol.nombre = nombre;
 
             this.Hide();
             FormAMRol form = new FormAMRol(rol, false, habilitado);

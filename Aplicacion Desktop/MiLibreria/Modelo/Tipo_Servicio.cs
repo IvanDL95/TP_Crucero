@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace MiLibreria.Modelo
 {
-    public class Rol
+    public class Tipo_Servicio
     {
         public Int32 id { get; set; }
-        public String nombre { get; set; }
-        public Boolean estado { get; set; }
+        public String desc { get; set; }
     }
 }

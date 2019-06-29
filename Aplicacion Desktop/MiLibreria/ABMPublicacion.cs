@@ -38,7 +38,7 @@ namespace MiLibreria
             }
             parametros.Add(parametro);
 
-            DataSet ds = DataBase.ObtenerUnDataSet("RJT.LISTAR_PUBLICACIONES_EXISTENTES", DataBase.Tipos.StoredProcedure, parametros);
+            DataSet ds = DataBase.ObtenerUnDataSet("TROLLS.LISTAR_PUBLICACIONES_EXISTENTES", DataBase.Tipos.StoredProcedure, parametros);
 
             return ds;
         }
@@ -75,7 +75,7 @@ namespace MiLibreria
             parametro.Value = dt;
             parametros.Add(parametro);          
 
-            DataSet ds = DataBase.ObtenerUnDataSet("RJT.LISTAR_PUBLICACIONES_PUBLICADAS", DataBase.Tipos.StoredProcedure, parametros);
+            DataSet ds = DataBase.ObtenerUnDataSet("TROLLS.LISTAR_PUBLICACIONES_PUBLICADAS", DataBase.Tipos.StoredProcedure, parametros);
 
             return ds;
         }
@@ -83,7 +83,7 @@ namespace MiLibreria
         public static Int32 ObtenerIDDireccionPublicacion(Int32 id)
         {
             Int32 ID = -1;
-            String query = "SELECT PUB_DIR FROM RJT.PUBLICACION WHERE PUB_ID = '" + id + "'";
+            String query = "SELECT PUB_DIR FROM TROLLS.PUBLICACION WHERE PUB_ID = '" + id + "'";
             ID = DataBase.queryForInt(query);
 
             return ID;
@@ -96,7 +96,7 @@ namespace MiLibreria
             parametro = new SqlParameter("@ID", SqlDbType.Int, 100);
             parametro.Value = id_publicacion;
             parametros.Add(parametro);
-            SqlDataReader reader = DataBase.ObtenerUnDataReader("RJT.OBTENER_PUBLICACION", DataBase.Tipos.StoredProcedure, parametros);
+            SqlDataReader reader = DataBase.ObtenerUnDataReader("TROLLS.OBTENER_PUBLICACION", DataBase.Tipos.StoredProcedure, parametros);
             return reader;
         }
 
@@ -145,7 +145,7 @@ namespace MiLibreria
             parametro.Value = fechaHora;
             parametros.Add(parametro);
 
-            SqlDataReader reader = DataBase.ObtenerUnDataReader("RJT.VALIDAR_PUBLICACION", DataBase.Tipos.StoredProcedure, parametros);
+            SqlDataReader reader = DataBase.ObtenerUnDataReader("TROLLS.VALIDAR_PUBLICACION", DataBase.Tipos.StoredProcedure, parametros);
 
             if (reader.HasRows)
             {
@@ -177,7 +177,7 @@ namespace MiLibreria
                     parametro.Value = fechaHora;
                     parametros.Add(parametro);
 
-                    SqlDataReader reader = DataBase.ObtenerUnDataReader("RJT.VALIDAR_PUBLICACION", DataBase.Tipos.StoredProcedure, parametros);
+                    SqlDataReader reader = DataBase.ObtenerUnDataReader("TROLLS.VALIDAR_PUBLICACION", DataBase.Tipos.StoredProcedure, parametros);
 
                     if (reader.HasRows)
                     {
@@ -196,13 +196,13 @@ namespace MiLibreria
         public static void CrearPublicacion(Publicacion publicacion)
         {
             List<SqlParameter> parametros = PrepararParametros(publicacion);
-            DataBase.EscribirEnLaBase("RJT.CREAR_PUBLICACION", DataBase.Tipos.StoredProcedure, parametros);
+            DataBase.EscribirEnLaBase("TROLLS.CREAR_PUBLICACION", DataBase.Tipos.StoredProcedure, parametros);
         }
 
         public static void ModificarPublicacion(Publicacion publicacion)
         {
             List<SqlParameter> parametros = PrepararParametrosModificar(publicacion);
-            DataBase.EscribirEnLaBase("RJT.MODIFICAR_PUBLICACION", DataBase.Tipos.StoredProcedure, parametros);
+            DataBase.EscribirEnLaBase("TROLLS.MODIFICAR_PUBLICACION", DataBase.Tipos.StoredProcedure, parametros);
         }
 
         public static void ModificarEstadoPublicacion(int id_publicacion, string pub_estado, DateTime fechaPub)
@@ -224,7 +224,7 @@ namespace MiLibreria
             else
                 parametro.Value = fechaPub;
             parametros.Add(parametro);
-            DataBase.EscribirEnLaBase("RJT.MODIFICAR_ESTADO_PUBLICACION", DataBase.Tipos.StoredProcedure, parametros);
+            DataBase.EscribirEnLaBase("TROLLS.MODIFICAR_ESTADO_PUBLICACION", DataBase.Tipos.StoredProcedure, parametros);
 
         }
 
@@ -322,7 +322,7 @@ namespace MiLibreria
             parametros.Add(new SqlParameter("@pub_usu", publicacion.pub_usu));
             parametros.Add(new SqlParameter("@pub_fecha_espec", publicacion.pub_fecha_espec));
 
-            int id = DataBase.queryForInt("RJT.OBTENER_ID_PUBLICACION", DataBase.Tipos.StoredProcedure, parametros);
+            int id = DataBase.queryForInt("TROLLS.OBTENER_ID_PUBLICACION", DataBase.Tipos.StoredProcedure, parametros);
 
             return id;
         }

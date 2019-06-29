@@ -12,6 +12,7 @@ using System.Data.SqlClient;
 using MiLibreria;
 using FrbaCrucero.Generar_Rendicion_Comisiones;
 using FrbaCrucero.Listados;
+using FrbaCrucero.AbmCrucero;
 
 namespace FrbaCrucero
 {
@@ -41,24 +42,24 @@ namespace FrbaCrucero
             this.id_rol = rol;
             this.usuario = usuario;
             this.primerInicio = primerInicio;
+            this.cerrarSesionToolStripMenuItem.Available = false;
+            this.cambiarClienteToolStripMenuItem.Available = false;
             this.aBMToolStripMenuItem.Available = false;
             this.aBMRolToolStripMenuItem.Available = false;
-            this.aBMClienteToolStripMenuItem.Available = false;
-            this.verToolStripMenuItem.Available = false;
-            this.historialClienteToolStripMenuItem.Available = false;
             this.accionesToolStripMenuItem.Available = false;
-            this.comprarEntradaToolStripMenuItem.Available = false;
-            this.canjearPuntosToolStripMenuItem.Available = false;
+            this.comprarReservarViajeToolStripMenuItem.Available = false;
+            this.pagoReservaToolStripMenuItem.Available = false;
             this.registroToolStripMenuItem.Available = false;
-            this.generarPublicacionToolStripMenuItem.Available = false;
-            this.editarPublicacionToolStripMenuItem.Available = false;
+            this.generarViajeToolStripMenuItem.Available = false;
             this.listadoToolStripMenuItem.Available = false;
             this.estadísticoToolStripMenuItem.Available = false;
-            this.aBMEmpresaToolStripMenuItem.Available = false;
-            this.aBMGradoToolStripMenuItem.Available = false;
-            this.rendiciónToolStripMenuItem.Available = false;
-            this.generarComisiónToolStripMenuItem.Available = false;
-            this.cambiarPasswordToolStripMenuItem.Available = true;
+            this.aBMPuertoToolStripMenuItem.Available = false;
+            this.aBMRecorridoToolStripMenuItem.Available = false;
+
+            if (id == 2) //Cliente
+                this.cambiarClienteToolStripMenuItem.Available = true;
+            else
+                this.cerrarSesionToolStripMenuItem.Available = true;
 
             if (iniciado)
             //Cambiar pass
@@ -83,7 +84,7 @@ namespace FrbaCrucero
         {
             List<SqlParameter> parametros = new List<SqlParameter>();
             parametros.Add(new SqlParameter("@ID_ROL", rol));
-            SqlDataReader reader = DataBase.ObtenerUnDataReader("RJT.OBTENER_FUNCIONALIDADES_ROL", DataBase.Tipos.StoredProcedure, parametros);
+            SqlDataReader reader = DataBase.ObtenerUnDataReader("TROLLS.OBTENER_FUNCIONALIDADES_ROL", DataBase.Tipos.StoredProcedure, parametros);
 
             if (reader.HasRows)
             {
@@ -118,57 +119,37 @@ namespace FrbaCrucero
                         this.aBMRolToolStripMenuItem.Available = true;
                         break;
 
+                    case 4:
+                        this.aBMToolStripMenuItem.Available = true;
+                        this.aBMCruceroToolStripMenuItem.Available = true;
+                        break;
+
                     case 2:
                         this.aBMToolStripMenuItem.Available = true;
-                        this.aBMUsuarioToolStripMenuItem.Available = true;
+                        this.aBMPuertoToolStripMenuItem.Available = true;
                         break;
 
                     case 3:
                         this.aBMToolStripMenuItem.Available = true;
-                        this.aBMClienteToolStripMenuItem.Available = true;
-                        break;
-
-                    case 4:
-                        this.aBMToolStripMenuItem.Available = true;
-                        this.aBMEmpresaToolStripMenuItem.Available = true;
+                        this.aBMRecorridoToolStripMenuItem.Available = true;
                         break;
 
                     case 5:
-                        this.aBMToolStripMenuItem.Available = true;
-                        this.aBMGradoToolStripMenuItem.Available = true;
+                        this.registroToolStripMenuItem.Available = true;
+                        this.generarViajeToolStripMenuItem.Available = true;
                         break;
 
                     case 6:
-                        this.registroToolStripMenuItem.Available = true;
-                        this.generarPublicacionToolStripMenuItem.Available = true;
+                        this.accionesToolStripMenuItem.Available = true;
+                        this.comprarReservarViajeToolStripMenuItem.Available = true;
                         break;
 
                     case 7:
-                        this.registroToolStripMenuItem.Available = true;
-                        this.editarPublicacionToolStripMenuItem.Available = true;
+                        this.accionesToolStripMenuItem.Available = true;
+                        this.pagoReservaToolStripMenuItem.Available = true;
                         break;
 
                     case 8:
-                        this.accionesToolStripMenuItem.Available = true;
-                        this.comprarEntradaToolStripMenuItem.Available = true;
-                        break;
-
-                    case 9:
-                        this.verToolStripMenuItem.Available = true;
-                        this.historialClienteToolStripMenuItem.Available = true;
-                        break;
-
-                    case 10:
-                        this.accionesToolStripMenuItem.Available = true;
-                        this.canjearPuntosToolStripMenuItem.Available = true;
-                        break;
-
-                    case 11:
-                        this.rendiciónToolStripMenuItem.Available = true;
-                        this.generarComisiónToolStripMenuItem.Available = true;
-                        break;
-
-                    case 12:
                         this.listadoToolStripMenuItem.Available = true;
                         this.estadísticoToolStripMenuItem.Available = true;
                         break;
@@ -179,51 +160,10 @@ namespace FrbaCrucero
             }
         }
 
-        private void ShowNewForm(object sender, EventArgs e)
-        {
-            Form childForm = new Form();
-            childForm.MdiParent = this;
-            childForm.Text = "Ventana " + childFormNumber++;
-            childForm.Show();
-        }
-
-        private void OpenFile(object sender, EventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            openFileDialog.Filter = "Archivos de texto (*.txt)|*.txt|Todos los archivos (*.*)|*.*";
-            if (openFileDialog.ShowDialog(this) == DialogResult.OK)
-            {
-                string FileName = openFileDialog.FileName;
-            }
-        }
-
-        private void SaveAsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            saveFileDialog.Filter = "Archivos de texto (*.txt)|*.txt|Todos los archivos (*.*)|*.*";
-            if (saveFileDialog.ShowDialog(this) == DialogResult.OK)
-            {
-                string FileName = saveFileDialog.FileName;
-            }
-        }
 
         private void ExitToolsStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void CutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void CopyToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void PasteToolStripMenuItem_Click(object sender, EventArgs e)
-        {
         }
 
         private void CascadeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -262,37 +202,9 @@ namespace FrbaCrucero
             this.Show();
         }
 
-        private void aBMClienteToolStripMenuItem_Click(object sender, EventArgs e)
+        private void comprarReservarViajeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AbmCliente.FormCliente fr = new AbmCliente.FormCliente();
-            this.Hide();
-            fr.ShowDialog();
-            this.Show();
-        }
-
-        private void historialClienteToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (String.Compare(this.usuario, "admin") == 0)
-            {
-                Historial_Cliente.FormHistorialCliente fr = new Historial_Cliente.FormHistorialCliente(true, this.usuario);
-                this.Hide();
-                if (!fr.IsDisposed)
-                fr.ShowDialog();
-                this.Show();
-            }
-            else
-            {
-                Historial_Cliente.FormHistorialCliente fr = new Historial_Cliente.FormHistorialCliente(false, this.usuario);
-                this.Hide();
-                if (!fr.IsDisposed)
-                fr.ShowDialog();
-                this.Show();
-            }  
-        }
-
-        private void comprarEntradaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (String.Compare(this.usuario, "admin") == 0)
+            if (this.id_rol == 1)//Admin
             {
                 Compra_Entrada.FormCompraEntradas fr = new Compra_Entrada.FormCompraEntradas(true, this.usuario);
                 this.Hide();
@@ -310,9 +222,9 @@ namespace FrbaCrucero
             }
         }
 
-        private void canjearPuntosToolStripMenuItem_Click(object sender, EventArgs e)
+        private void pagoReservaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (String.Compare(this.usuario, "admin") == 0)
+            if (this.id_rol == 1)//Admin
             {
                 Canjear_Puntos.FormCanjearPuntos fr = new Canjear_Puntos.FormCanjearPuntos(this.usuario,true);
                 this.Hide();
@@ -330,44 +242,13 @@ namespace FrbaCrucero
             }
         }
 
-        private void generarPublicacionToolStripMenuItem_Click(object sender, EventArgs e)
+        private void generarViajeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (String.Compare(this.usuario, "admin") == 0)
-            {
-                Generar_Publicacion.FormGenerarPublicacion fr = new Generar_Publicacion.FormGenerarPublicacion(this.usuario,true);
+            FormCrucero fr = new FormCrucero();
                 this.Hide();
                 if (!fr.IsDisposed)
                     fr.ShowDialog();
-                this.Show();
-            }
-            else
-            {
-                Generar_Publicacion.FormGenerarPublicacion fr = new Generar_Publicacion.FormGenerarPublicacion(this.usuario,false);
-                this.Hide();
-                if (!fr.IsDisposed)
-                    fr.ShowDialog();
-                this.Show();
-            }
-        }
-
-        private void editarPublicacionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (String.Compare(this.usuario, "admin") == 0)
-            {
-                Editar_Publicacion.FormListarPublicacion fr = new Editar_Publicacion.FormListarPublicacion(this.usuario,true);
-                this.Hide();
-                if (!fr.IsDisposed)
-                    fr.ShowDialog();
-                this.Show();
-            }
-            else
-            {
-                Editar_Publicacion.FormListarPublicacion fr = new Editar_Publicacion.FormListarPublicacion(this.usuario,false);
-                this.Hide();
-                if (!fr.IsDisposed)
-                    fr.ShowDialog();
-                this.Show();
-            }
+                this.Show();            
         }
 
         private void estadísticoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -385,15 +266,15 @@ namespace FrbaCrucero
             fr.Show();
         }
 
-        private void aBMEmpresaToolStripMenuItem_Click(object sender, EventArgs e)
+        private void aBMPuertoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AbmEmpresa.FormEmpresa fr = new AbmEmpresa.FormEmpresa();
+            AbmCrucero.FormCrucero fr = new AbmCrucero.FormCrucero();
             this.Hide();
             fr.ShowDialog();
             this.Show();
         }
 
-        private void aBMGradoToolStripMenuItem_Click(object sender, EventArgs e)
+        private void aBMRecorridoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Abm_Grado.ABMGrado fr = new Abm_Grado.ABMGrado();
             this.Hide();
@@ -401,29 +282,11 @@ namespace FrbaCrucero
             this.Show();
         }
 
-        private void aBMUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
+        private void aBMCruceroToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ABMUsuario fr = new ABMUsuario();
+            FormCrucero fr = new FormCrucero();
             this.Hide();
             fr.ShowDialog();
-            this.Show();
-        }
-
-        private void generarComisiónToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FormGenerarRendicion fr = new FormGenerarRendicion(this);
-            this.Hide();
-            if (!fr.IsDisposed)
-            fr.ShowDialog();
-            this.Show();
-        }
-
-        private void cambiarPasswordToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            CambiarPass fr = new CambiarPass(this.usuario,false);
-            this.Hide();
-            if (!fr.IsDisposed)
-                fr.ShowDialog();
             this.Show();
         }
 
@@ -440,6 +303,12 @@ namespace FrbaCrucero
                 this.Show();
             }
             this.primerInicio = false;
+        }
+
+        private void cambiarClienteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            InicioCliente fr = new InicioCliente(this);
+            fr.Show();
         }
 
     }

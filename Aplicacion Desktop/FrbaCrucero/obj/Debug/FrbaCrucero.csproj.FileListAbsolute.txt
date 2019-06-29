@@ -1,8 +1,3 @@
-C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\bin\Debug\PalcoNet.exe.config
-C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\obj\Debug\PalcoNet.exe
-C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\obj\Debug\PalcoNet.pdb
-C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\bin\Debug\PalcoNet.exe
-C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\bin\Debug\PalcoNet.pdb
 C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\bin\Debug\MiLibreria.dll
 C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\bin\Debug\MiLibreria.pdb
 C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\obj\Debug\FrbaCrucero.csprojResolveAssemblyReference.cache
@@ -11,8 +6,6 @@ C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\obj\Debu
 C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\obj\Debug\FrbaCrucero.AbmCliente.FormCliente.resources
 C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\obj\Debug\FrbaCrucero.AbmCliente.FormMCliente.resources
 C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\obj\Debug\FrbaCrucero.AbmCliente.FormAbmEmpresaLogin.resources
-C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\obj\Debug\FrbaCrucero.AbmEmpresa.FormEmpresa.resources
-C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\obj\Debug\FrbaCrucero.AbmEmpresa.FormAMEmpresa.resources
 C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\obj\Debug\FrbaCrucero.Abm_Grado.ABMGrado.resources
 C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\obj\Debug\FrbaCrucero.Abm_Grado.AMGrado.resources
 C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\obj\Debug\FrbaCrucero.AbmRol.FormAMRol.resources
@@ -27,7 +20,6 @@ C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\obj\Debu
 C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\obj\Debug\FrbaCrucero.PantallaIncial.resources
 C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\obj\Debug\FrbaCrucero.Editar_Publicacion.FormEditarPublicacion.resources
 C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\obj\Debug\FrbaCrucero.Editar_Publicacion.FormListarPublicacion.resources
-C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\obj\Debug\FrbaCrucero.Generar_Publicacion.FormGenerarPublicacion.resources
 C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\obj\Debug\FrbaCrucero.Generar_Rendicion_Comisiones.FormGenerarRendicion.resources
 C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\obj\Debug\FrbaCrucero.Historial_Cliente.FormHistorialCliente.resources
 C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\obj\Debug\FrbaCrucero.Listados.FormListadoEstadistico.resources
@@ -35,3 +27,12 @@ C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\obj\Debu
 C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\obj\Debug\FrbaCrucero.Properties.Resources.resources
 C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\obj\Debug\FrbaCrucero.RegistrarUsuario.resources
 C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\obj\Debug\FrbaCrucero.InicioCliente.resources
+C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\bin\Debug\FrbaCrucero.exe.config
+C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\bin\Debug\FrbaCrucero.exe
+C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\bin\Debug\FrbaCrucero.pdb
+C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\obj\Debug\FrbaCrucero.exe
+C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\obj\Debug\FrbaCrucero.pdb
+C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\obj\Debug\FrbaCrucero.ABMCrucero.FormAmCrucero.resources
+C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\obj\Debug\FrbaCrucero.Generar_publicacion.FormGenerarViaje.resources
+C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\obj\Debug\FrbaCrucero.AbmCrucero.FormCrucero.resources
+C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\obj\Debug\FrbaCrucero.AbmCrucero.FormAMEmpresa.resources

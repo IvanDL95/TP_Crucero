@@ -16,18 +16,27 @@ namespace FrbaCrucero
 {
     public partial class InicioCliente : Form
     {
-        public InicioCliente()
+        int id;
+        string user;
+        ContenedorPrincipal cpal;
+
+        public InicioCliente(ContenedorPrincipal cpal)
         {
             InitializeComponent();
 
             IniciarFormulario();
+
+            if (cpal == null)
+                this.cpal = null;
+            else
+                this.cpal = cpal;
             
         }
 
         private void IniciarFormulario()
         {
-            dgv_listado.DataSource = Client.ListarClientesExistentes(null, null, null, null).Tables[0];
-            dgv_listado.Columns["id"].Visible = false;
+            dgv_listado.DataSource = Client.ListarClientesExistentesInicio(null, null, null).Tables[0];
+            //dgv_listado.Columns["id"].Visible = false;
         }
 
         private void ValidacionesIniciales()
@@ -57,15 +66,37 @@ namespace FrbaCrucero
 
         private void btSeleccionar_Click(object sender, EventArgs e)
         {
-            //Ir al menu principal con el id cliente
+            //Ir al menu principal con el id (nro_doc) cliente
             Int32 IDCliente = Convert.ToInt32(dgv_listado.CurrentRow.Cells[0].Value);
 
-            //FormMCliente form = new FormMCliente(IDCliente, this);
-            this.Hide();
-            //form.ShowDialog();
-            this.Show();
+            Rol rol = new Rol();
+            rol.id = 2; //Cliente
+
+            if (this.cpal == null)
+            {
+                ContenedorPrincipal cppal = new ContenedorPrincipal(this.id, this.user, rol.id, false, false);
+                this.Hide();
+                if (!cppal.IsDisposed)
+                    cppal.ShowDialog();
+                this.Close();
+            }
+            else
+            {
+                this.Hide();
+                this.cpal.id = this.id;
+                this.cpal.usuario = this.user;
+                this.cpal.id_rol = rol.id;
+                this.cpal.inicializar(this.id, this.user, rol.id, false, true);
+                this.cpal.Show();
+                this.Close();
+            }
 
             IniciarFormulario();
+        }
+
+        private void bt_nuevo_Click(object sender, EventArgs e)
+        {
+            //Crear cliente
         }
 
     }

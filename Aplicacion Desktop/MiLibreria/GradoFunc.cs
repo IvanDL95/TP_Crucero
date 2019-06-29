@@ -15,7 +15,7 @@ namespace MiLibreria
         public static SqlDataReader ObtenerGrados()
         {
             List<SqlParameter> parametros = new List<SqlParameter>();
-            SqlDataReader reader = DataBase.ObtenerUnDataReader("RJT.OBTENERGRADOS", DataBase.Tipos.StoredProcedure, parametros);
+            SqlDataReader reader = DataBase.ObtenerUnDataReader("TROLLS.OBTENERGRADOS", DataBase.Tipos.StoredProcedure, parametros);
 
             return reader;
         }
@@ -23,7 +23,7 @@ namespace MiLibreria
         public static DataSet ListarGradosExistentes()
         {
             List<SqlParameter> parametros = new List<SqlParameter>();
-            DataSet ds = DataBase.ObtenerUnDataSet("RJT.LISTAR_GRADOS_EXISTENTES", DataBase.Tipos.StoredProcedure, parametros);
+            DataSet ds = DataBase.ObtenerUnDataSet("TROLLS.LISTAR_GRADOS_EXISTENTES", DataBase.Tipos.StoredProcedure, parametros);
             return ds;
         }
 
@@ -34,7 +34,7 @@ namespace MiLibreria
             parametro = new SqlParameter("@ID", SqlDbType.Int, 100);
             parametro.Value = id_grado;
             parametros.Add(parametro);
-            SqlDataReader reader = DataBase.ObtenerUnDataReader("RJT.OBTENER_GRADO", DataBase.Tipos.StoredProcedure, parametros);
+            SqlDataReader reader = DataBase.ObtenerUnDataReader("TROLLS.OBTENER_GRADO", DataBase.Tipos.StoredProcedure, parametros);
             return reader;
         }
 
@@ -65,7 +65,7 @@ namespace MiLibreria
         {
             List<SqlParameter> parametros = PrepararParametros(grado);
 
-            DataBase.EscribirEnLaBase("RJT.CREAR_GRADO", DataBase.Tipos.StoredProcedure, parametros);
+            DataBase.EscribirEnLaBase("TROLLS.CREAR_GRADO", DataBase.Tipos.StoredProcedure, parametros);
 
         }
 
@@ -101,7 +101,7 @@ namespace MiLibreria
             parametro.Value = grado.gra_id;
             parametros.Add(parametro);
 
-            DataBase.EscribirEnLaBase("RJT.MODIFICAR_GRADO", DataBase.Tipos.StoredProcedure, parametros);
+            DataBase.EscribirEnLaBase("TROLLS.MODIFICAR_GRADO", DataBase.Tipos.StoredProcedure, parametros);
 
         }
 

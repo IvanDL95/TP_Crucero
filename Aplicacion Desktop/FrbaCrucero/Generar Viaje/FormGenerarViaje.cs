@@ -13,13 +13,13 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FrbaCrucero.Generar_Publicacion
+namespace FrbaCrucero.Generar_publicacion
 {
-    public partial class FormGenerarPublicacion : Form
+    public partial class FormGenerarViaje : Form
     {
         String user;
         Int32 IdUsuario;
-        public FormGenerarPublicacion(String user, bool esAdm)
+        public FormGenerarViaje(String user, bool esAdm)
         {
             InitializeComponent();
 
@@ -421,7 +421,6 @@ namespace FrbaCrucero.Generar_Publicacion
                     Publicacion publicacion = new Publicacion();
                     Grado grado = new Grado();
                     Rubro rubro = new Rubro();
-                    ComboboxItem item = new ComboboxItem();
                     String fecha;
                     String hora;
                     DateTime fechaHora;
@@ -439,7 +438,7 @@ namespace FrbaCrucero.Generar_Publicacion
                     //Fecha de publicación sólo si se publica
                     if (string.Compare(estado, "Publicada") == 0)
                         publicacion.pub_fecha_pub = fechaSistema;
-
+                    ComboboxItem item = new ComboboxItem();
                     item = (ComboboxItem)cmb_grado.SelectedItem;
                     grado = (Grado)item.Value;
                     publicacion.pub_grado = grado.gra_id;

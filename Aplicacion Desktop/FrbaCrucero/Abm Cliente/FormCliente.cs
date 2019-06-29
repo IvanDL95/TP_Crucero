@@ -71,8 +71,8 @@ namespace FrbaCrucero.AbmCliente
             else
             {
                 Int32 IDCliente = Convert.ToInt32(dgv_listado.CurrentRow.Cells[0].Value);
-                DataBase.EscribirEnLaBase("UPDATE RJT.CLIENTE SET CLI_ESTADO = 1 WHERE CLI_ID = " + IDCliente.ToString());
-                DataBase.EscribirEnLaBase("UPDATE RJT.USUARIO SET USU_ESTADO = 1 WHERE USU_ID = (select cli_usu_id from RJT.CLIENTE where CLI_ID = " + IDCliente.ToString() + ")");
+                DataBase.EscribirEnLaBase("UPDATE TROLLS.CLIENTE SET CLI_ESTADO = 1 WHERE CLI_ID = " + IDCliente.ToString());
+                DataBase.EscribirEnLaBase("UPDATE TROLLS.USUARIO SET USU_ESTADO = 1 WHERE USU_ID = (select cli_usu_id from TROLLS.CLIENTE where CLI_ID = " + IDCliente.ToString() + ")");
                 MessageBox.Show("El Cliente ha sido hbilitado correctamente.");
                 IniciarFormulario();
             }
@@ -110,8 +110,8 @@ namespace FrbaCrucero.AbmCliente
                 if (ConfirmarBaja())
                 {
                     Int32 IDCliente = Convert.ToInt32(dgv_listado.CurrentRow.Cells[0].Value);
-                    DataBase.EscribirEnLaBase("UPDATE RJT.CLIENTE SET CLI_ESTADO = 0 WHERE CLI_ID = " + IDCliente.ToString());
-                    DataBase.EscribirEnLaBase("UPDATE RJT.USUARIO SET USU_ESTADO = 0 WHERE USU_ID = (select cli_usu_id from RJT.CLIENTE where CLI_ID = " + IDCliente.ToString() + ")");
+                    DataBase.EscribirEnLaBase("UPDATE TROLLS.CLIENTE SET CLI_ESTADO = 0 WHERE CLI_ID = " + IDCliente.ToString());
+                    DataBase.EscribirEnLaBase("UPDATE TROLLS.USUARIO SET USU_ESTADO = 0 WHERE USU_ID = (select cli_usu_id from TROLLS.CLIENTE where CLI_ID = " + IDCliente.ToString() + ")");
                     MessageBox.Show("El Cliente ha sido dado de baja correctamente.");
                     IniciarFormulario();
                 }

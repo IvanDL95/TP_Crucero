@@ -20,7 +20,7 @@ namespace MiLibreria
 
             parametros.Add(new SqlParameter("@Usuario", usuario));
             parametros.Add(new SqlParameter("@Password", password));
-            int resultado = DataBase.queryForInt("RJT.BUSCAR_USUARIO", DataBase.Tipos.StoredProcedure, parametros);
+            int resultado = DataBase.queryForInt("TROLLS.BUSCAR_USUARIO", DataBase.Tipos.StoredProcedure, parametros);
 
             return resultado;
 
@@ -29,7 +29,7 @@ namespace MiLibreria
         public static DataSet ListarUsuariosExistentes()
         {
             List<SqlParameter> parametros = new List<SqlParameter>();
-            DataSet ds = DataBase.ObtenerUnDataSet("RJT.LISTAR_USUARIOS_EXISTENTES", DataBase.Tipos.StoredProcedure, parametros);
+            DataSet ds = DataBase.ObtenerUnDataSet("TROLLS.LISTAR_USUARIOS_EXISTENTES", DataBase.Tipos.StoredProcedure, parametros);
             return ds;
         }
 
@@ -37,7 +37,7 @@ namespace MiLibreria
         {
             List<SqlParameter> parametros = new List<SqlParameter>();
             parametros.Add(new SqlParameter("@Usuario", user));
-            DataBase.EscribirEnLaBase("RJT.REG_INTENTO_FALLIDO",DataBase.Tipos.StoredProcedure,parametros);
+            DataBase.EscribirEnLaBase("TROLLS.REG_INTENTO_FALLIDO",DataBase.Tipos.StoredProcedure,parametros);
         }
 
         public static int CantidadDeRoles(string user)
@@ -45,7 +45,7 @@ namespace MiLibreria
             int id = ObtenerIDUsuario(user);
             List<SqlParameter> parametros = new List<SqlParameter>();
             parametros.Add(new SqlParameter("@ID_USU",id));
-            return DataBase.queryForInt("RJT.OBTENER_CANT_ROLES", DataBase.Tipos.StoredProcedure, parametros);
+            return DataBase.queryForInt("TROLLS.OBTENER_CANT_ROLES", DataBase.Tipos.StoredProcedure, parametros);
         }
 
         public static int ObtenerIDUsuario(string user)
@@ -53,7 +53,7 @@ namespace MiLibreria
             List<SqlParameter> parametros = new List<SqlParameter>();
             parametros.Add(new SqlParameter("@Usuario", user));
 
-            int id = DataBase.queryForInt("RJT.OBTENER_ID_USUARIO", DataBase.Tipos.StoredProcedure, parametros);
+            int id = DataBase.queryForInt("TROLLS.OBTENER_ID_USUARIO", DataBase.Tipos.StoredProcedure, parametros);
 
             return id;
         }
@@ -62,7 +62,7 @@ namespace MiLibreria
         {
             List<SqlParameter> parametros = PrepararParametros(usuario);
 
-            DataBase.EscribirEnLaBase("RJT.CREAR_USUARIO", DataBase.Tipos.StoredProcedure, parametros);
+            DataBase.EscribirEnLaBase("TROLLS.CREAR_USUARIO", DataBase.Tipos.StoredProcedure, parametros);
 
         }
 
@@ -81,7 +81,7 @@ namespace MiLibreria
             parametro.Value = txt_pass;
             parametros.Add(parametro);
 
-            DataBase.EscribirEnLaBase("RJT.MODIFICAR_CLAVE", DataBase.Tipos.StoredProcedure, parametros);
+            DataBase.EscribirEnLaBase("TROLLS.MODIFICAR_CLAVE", DataBase.Tipos.StoredProcedure, parametros);
 
         }
 
@@ -114,7 +114,7 @@ namespace MiLibreria
 
         public static bool EsValidoUserName(string username)
         {
-            SqlDataReader reader = DataBase.ObtenerUnDataReader("SELECT 1 FROM RJT.USUARIO WHERE USU_USUARIO = '" + username + "'");
+            SqlDataReader reader = DataBase.ObtenerUnDataReader("SELECT 1 FROM TROLLS.USUARIO WHERE USU_USUARIO = '" + username + "'");
             bool resultado;
             if (reader.HasRows)
             {
@@ -131,7 +131,7 @@ namespace MiLibreria
 
         public static bool EsUsuarioCliente(Int32 id)
         {
-            SqlDataReader reader = DataBase.ObtenerUnDataReader("SELECT 1 FROM RJT.USUARIO u join RJT.ROL_USUARIO rxu ON u.USU_ID = rxu.USU_ID where rxu.rol_id=3 and u.USU_ID = '" + id + "'");
+            SqlDataReader reader = DataBase.ObtenerUnDataReader("SELECT 1 FROM TROLLS.USUARIO u join TROLLS.ROL_USUARIO rxu ON u.USU_ID = rxu.USU_ID where rxu.rol_id=3 and u.USU_ID = '" + id + "'");
             bool resultado;
             if (reader.HasRows)
             {

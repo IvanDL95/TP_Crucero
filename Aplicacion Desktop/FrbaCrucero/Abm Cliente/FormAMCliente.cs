@@ -47,14 +47,9 @@ namespace FrbaCrucero.AbmCliente
                 //Llenar textos
                 txt_nombre.Text = cliente.Nombre.Trim();
                 txt_apellido.Text = cliente.Apellido.Trim();
-                txt_nro_doc.Text = cliente.NroDoc.Trim();
-                if (!String.IsNullOrEmpty(cliente.Cuil))
-                    txt_cuil.Text = cliente.Cuil.Trim();
-                if (!String.IsNullOrEmpty(cliente.Tarj))
-                    txt_tarj.Text = cliente.Tarj.Trim();
+                txt_nro_doc.Text = cliente.NroDoc.ToString();
                 fechaNac.Value = cliente.FechaNac;
-                cmb_tipo_doc.SelectedIndex = cmb_tipo_doc.FindStringExact(cliente.TipoDoc.Trim());
-                this.clienteModificado.Id = this.IDCliente;
+                this.clienteModificado.NroDoc = this.IDCliente.ToString();
                 this.direccionModificado.Id = Client.ObtenerIDDireccionCliente(this.IDCliente);
                 this.clienteBase = cliente;
 
@@ -125,20 +120,15 @@ namespace FrbaCrucero.AbmCliente
                 {
                     //Modificar
                     //Validar DNI duplicado
-                    if (!Client.EsValidoDocModif(txt_nro_doc.Text, this.clienteBase.NroDoc.Trim(), cmb_tipo_doc.SelectedItem.ToString(), this.clienteBase.TipoDoc))
-                        MessageBox.Show("El Tipo y Numero de Documento ya existe");
-                    else if (!Client.EsValidoCuilModif(txt_cuil.Text, this.clienteBase.Cuil.Trim()))
-                        MessageBox.Show("El CUIL ya existe");
+                    if (!Client.EsValidoDocModif(txt_nro_doc.Text, this.clienteBase.NroDoc.Trim()))
+                        MessageBox.Show("El Numero de Documento ya existe");
                     else
                     {
 
                         this.clienteModificado.Apellido = txt_apellido.Text;
                         this.clienteModificado.Nombre = txt_nombre.Text;
-                        this.clienteModificado.TipoDoc = cmb_tipo_doc.SelectedItem.ToString();
                         this.clienteModificado.NroDoc = txt_nro_doc.Text;
-                        this.clienteModificado.Cuil = txt_cuil.Text;
                         this.clienteModificado.FechaNac = fechaNac.Value;
-                        this.clienteModificado.Tarj = txt_tarj.Text;
 
                         Client.ModificarCliente(this.clienteModificado);
 
@@ -196,11 +186,8 @@ namespace FrbaCrucero.AbmCliente
                         Cliente cliente = new Cliente();
                         cliente.Apellido = txt_apellido.Text;
                         cliente.Nombre = txt_nombre.Text;
-                        cliente.TipoDoc = cmb_tipo_doc.SelectedItem.ToString();
                         cliente.NroDoc = txt_nro_doc.Text;
-                        cliente.Cuil = txt_cuil.Text;
                         cliente.FechaNac = fechaNac.Value;
-                        cliente.Tarj = txt_tarj.Text;
                         cliente.IdUsuario = idUser;
                         cliente.IdDireccion = idDireccion;
                         Client.CrearCliente(cliente);

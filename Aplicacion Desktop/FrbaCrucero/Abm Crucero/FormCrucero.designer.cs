@@ -1,6 +1,6 @@
-﻿namespace FrbaCrucero.AbmEmpresa
+﻿namespace FrbaCrucero.AbmCrucero
 {
-    partial class FormEmpresa
+    partial class FormCrucero
     {
         /// <summary>
         /// Required designer variable.
@@ -31,12 +31,14 @@
             this.components = new System.ComponentModel.Container();
             this.dgv_listado = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cmb_fabricante = new System.Windows.Forms.ComboBox();
+            this.cmb_servicio = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.txt_razon = new System.Windows.Forms.TextBox();
-            this.txt_mail = new System.Windows.Forms.TextBox();
-            this.txt_cuit = new FrbaCrucero.NumericTextBox();
+            this.txt_id = new System.Windows.Forms.TextBox();
+            this.txt_modelo = new FrbaCrucero.NumericTextBox();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.btn_limpiar = new System.Windows.Forms.Button();
             this.btn_buscar = new System.Windows.Forms.Button();
@@ -68,12 +70,14 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cmb_fabricante);
+            this.groupBox1.Controls.Add(this.cmb_servicio);
+            this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.txt_razon);
-            this.groupBox1.Controls.Add(this.txt_mail);
-            this.groupBox1.Controls.Add(this.txt_cuit);
+            this.groupBox1.Controls.Add(this.txt_id);
+            this.groupBox1.Controls.Add(this.txt_modelo);
             this.groupBox1.Location = new System.Drawing.Point(59, 40);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(548, 107);
@@ -81,53 +85,73 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtros de búsqueda";
             // 
+            // cmb_fabricante
+            // 
+            this.cmb_fabricante.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb_fabricante.FormattingEnabled = true;
+            this.cmb_fabricante.Location = new System.Drawing.Point(282, 64);
+            this.cmb_fabricante.Name = "cmb_fabricante";
+            this.cmb_fabricante.Size = new System.Drawing.Size(121, 21);
+            this.cmb_fabricante.TabIndex = 14;
+            // 
+            // cmb_servicio
+            // 
+            this.cmb_servicio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb_servicio.FormattingEnabled = true;
+            this.cmb_servicio.Location = new System.Drawing.Point(84, 64);
+            this.cmb_servicio.Name = "cmb_servicio";
+            this.cmb_servicio.Size = new System.Drawing.Size(121, 21);
+            this.cmb_servicio.TabIndex = 13;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 67);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(72, 13);
+            this.label2.TabIndex = 12;
+            this.label2.Text = "Tipo Servicio:";
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 67);
+            this.label5.Location = new System.Drawing.Point(266, 30);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(35, 13);
+            this.label5.Size = new System.Drawing.Size(45, 13);
             this.label5.TabIndex = 9;
-            this.label5.Text = "CUIT:";
+            this.label5.Text = "Modelo:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(218, 67);
+            this.label3.Location = new System.Drawing.Point(236, 67);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(29, 13);
+            this.label3.Size = new System.Drawing.Size(40, 13);
             this.label3.TabIndex = 6;
-            this.label3.Text = "Mail:";
+            this.label3.Text = "Marca:";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(6, 30);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 13);
+            this.label1.Size = new System.Drawing.Size(68, 13);
             this.label1.TabIndex = 4;
-            this.label1.Text = "Razón social:";
+            this.label1.Text = "Identificador:";
             // 
-            // txt_razon
+            // txt_id
             // 
-            this.txt_razon.Location = new System.Drawing.Point(83, 27);
-            this.txt_razon.Name = "txt_razon";
-            this.txt_razon.Size = new System.Drawing.Size(319, 20);
-            this.txt_razon.TabIndex = 10;
+            this.txt_id.Location = new System.Drawing.Point(83, 27);
+            this.txt_id.Name = "txt_id";
+            this.txt_id.Size = new System.Drawing.Size(154, 20);
+            this.txt_id.TabIndex = 10;
             // 
-            // txt_mail
+            // txt_modelo
             // 
-            this.txt_mail.Location = new System.Drawing.Point(253, 64);
-            this.txt_mail.Name = "txt_mail";
-            this.txt_mail.Size = new System.Drawing.Size(149, 20);
-            this.txt_mail.TabIndex = 2;
-            // 
-            // txt_cuit
-            // 
-            this.txt_cuit.Location = new System.Drawing.Point(47, 64);
-            this.txt_cuit.Name = "txt_cuit";
-            this.txt_cuit.Size = new System.Drawing.Size(149, 20);
-            this.txt_cuit.TabIndex = 1;
+            this.txt_modelo.Location = new System.Drawing.Point(317, 27);
+            this.txt_modelo.Name = "txt_modelo";
+            this.txt_modelo.Size = new System.Drawing.Size(149, 20);
+            this.txt_modelo.TabIndex = 1;
             // 
             // errorProvider
             // 
@@ -169,7 +193,7 @@
             this.btEliminar.Name = "btEliminar";
             this.btEliminar.Size = new System.Drawing.Size(75, 23);
             this.btEliminar.TabIndex = 35;
-            this.btEliminar.Text = "Eliminar";
+            this.btEliminar.Text = "Dar de baja";
             this.btEliminar.UseVisualStyleBackColor = true;
             this.btEliminar.Click += new System.EventHandler(this.btEliminar_Click);
             // 
@@ -199,11 +223,11 @@
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(233, 6);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(198, 31);
+            this.label4.Size = new System.Drawing.Size(187, 31);
             this.label4.TabIndex = 123;
-            this.label4.Text = "ABM Empresa";
+            this.label4.Text = "ABM Crucero";
             // 
-            // FormEmpresa
+            // FormCrucero
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -217,9 +241,9 @@
             this.Controls.Add(this.btn_limpiar);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dgv_listado);
-            this.Name = "FormEmpresa";
+            this.Name = "FormCrucero";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ABM Empresa";
+            this.Text = "ABM Crucero";
             ((System.ComponentModel.ISupportInitialize)(this.dgv_listado)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -233,9 +257,8 @@
 
         public System.Windows.Forms.DataGridView dgv_listado;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox txt_razon;
-        private System.Windows.Forms.TextBox txt_mail;
-        private NumericTextBox txt_cuit;
+        private System.Windows.Forms.TextBox txt_id;
+        private NumericTextBox txt_modelo;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
@@ -247,5 +270,8 @@
         private System.Windows.Forms.Button btModificar;
         private System.Windows.Forms.Button btNuevo;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox cmb_fabricante;
+        private System.Windows.Forms.ComboBox cmb_servicio;
+        private System.Windows.Forms.Label label2;
     }
 }

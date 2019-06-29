@@ -15,7 +15,7 @@ namespace MiLibreria
         {
             List<SqlParameter> parametros = PrepararParametros(direccion);
 
-            DataBase.EscribirEnLaBase("RJT.CREAR_DIRECCION", DataBase.Tipos.StoredProcedure, parametros);
+            DataBase.EscribirEnLaBase("TROLLS.CREAR_DIRECCION", DataBase.Tipos.StoredProcedure, parametros);
 
         }
 
@@ -31,14 +31,14 @@ namespace MiLibreria
             parametros.Add(new SqlParameter("@DIR_MAIL", mail));
             parametros.Add(new SqlParameter("@DIR_LOCALIDAD", localidad));
 
-            int id = DataBase.queryForInt("RJT.OBTENER_ID_DIRECCION", DataBase.Tipos.StoredProcedure, parametros);
+            int id = DataBase.queryForInt("TROLLS.OBTENER_ID_DIRECCION", DataBase.Tipos.StoredProcedure, parametros);
 
             return id;
         }
 
         public static bool ValidaDireccion(string calle, string num, string piso, string dpto, string cp, string tel, string mail, string localidad)
         {
-            SqlDataReader reader = DataBase.ObtenerUnDataReader(String.Concat("SELECT 1 FROM RJT.DIRECCION WHERE DIR_CALLE = '",calle,"' AND DIR_NUM = '",num,"' AND DIR_PISO = '",piso,"'AND DIR_DTO = '",dpto,"' AND DIR_CP = '",cp,"' AND DIR_TELEFONO = '",tel,"' AND DIR_MAIL = '",mail,"' AND DIR_LOCALIDAD = '",localidad,"'"));
+            SqlDataReader reader = DataBase.ObtenerUnDataReader(String.Concat("SELECT 1 FROM TROLLS.DIRECCION WHERE DIR_CALLE = '",calle,"' AND DIR_NUM = '",num,"' AND DIR_PISO = '",piso,"'AND DIR_DTO = '",dpto,"' AND DIR_CP = '",cp,"' AND DIR_TELEFONO = '",tel,"' AND DIR_MAIL = '",mail,"' AND DIR_LOCALIDAD = '",localidad,"'"));
             bool resultado;
             if (reader.HasRows)
             {
@@ -56,7 +56,7 @@ namespace MiLibreria
         {
             List<SqlParameter> parametros = new List<SqlParameter>();
             parametros.Add(new SqlParameter("@ID", id_dir));
-            SqlDataReader reader = DataBase.ObtenerUnDataReader("RJT.OBTENER_DIRECCION", DataBase.Tipos.StoredProcedure, parametros);
+            SqlDataReader reader = DataBase.ObtenerUnDataReader("TROLLS.OBTENER_DIRECCION", DataBase.Tipos.StoredProcedure, parametros);
             return reader;
         }
 
@@ -181,7 +181,7 @@ namespace MiLibreria
         public static void ModificarDireccion(Direccion direccion)
         {
             List<SqlParameter> parametros = PrepararParametrosModif(direccion);
-            DataBase.EscribirEnLaBase("RJT.MODIFICAR_DIRECCION", DataBase.Tipos.StoredProcedure, parametros);
+            DataBase.EscribirEnLaBase("TROLLS.MODIFICAR_DIRECCION", DataBase.Tipos.StoredProcedure, parametros);
         }
     }
 }

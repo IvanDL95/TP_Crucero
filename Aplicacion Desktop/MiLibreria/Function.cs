@@ -25,7 +25,7 @@ namespace MiLibreria
         {
             List<Funcion> funciones = new List<Funcion>();
 
-            SqlDataReader reader = DataBase.ObtenerUnDataReader("SELECT * FROM RJT.FUNCIONALIDAD");
+            SqlDataReader reader = DataBase.ObtenerUnDataReader("SELECT * FROM TROLLS.FUNCIONALIDAD");
 
             if(reader.HasRows)
             {
@@ -49,7 +49,7 @@ namespace MiLibreria
 
             parametros.Add(new SqlParameter("@ID_Rol", id));
 
-            SqlDataReader reader = DataBase.ObtenerUnDataReader("RJT.LISTAR_FUNCIONES_X_ROL",DataBase.Tipos.StoredProcedure,parametros);
+            SqlDataReader reader = DataBase.ObtenerUnDataReader("TROLLS.LISTAR_FUNCIONES_X_ROL",DataBase.Tipos.StoredProcedure,parametros);
 
             if (reader.HasRows)
             {
@@ -73,7 +73,7 @@ namespace MiLibreria
 
             parametros.Add(new SqlParameter("@ID_Rol", id));
 
-            SqlDataReader reader = DataBase.ObtenerUnDataReader("RJT.LISTAR_FUNCIONES_X_ROL_NO_ASIGNADAS", DataBase.Tipos.StoredProcedure, parametros);
+            SqlDataReader reader = DataBase.ObtenerUnDataReader("TROLLS.LISTAR_FUNCIONES_X_ROL_NO_ASIGNADAS", DataBase.Tipos.StoredProcedure, parametros);
 
             if (reader.HasRows)
             {

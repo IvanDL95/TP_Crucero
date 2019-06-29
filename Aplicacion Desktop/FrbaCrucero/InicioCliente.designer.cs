@@ -42,6 +42,7 @@
             this.btn_buscar = new System.Windows.Forms.Button();
             this.btModificar = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
+            this.bt_nuevo = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_listado)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
@@ -170,18 +171,29 @@
             this.label4.TabIndex = 122;
             this.label4.Text = "Inicio Cliente";
             // 
-            // FormCliente
+            // bt_nuevo
+            // 
+            this.bt_nuevo.Location = new System.Drawing.Point(290, 171);
+            this.bt_nuevo.Name = "bt_nuevo";
+            this.bt_nuevo.Size = new System.Drawing.Size(75, 23);
+            this.bt_nuevo.TabIndex = 123;
+            this.bt_nuevo.Text = "Nuevo";
+            this.bt_nuevo.UseVisualStyleBackColor = true;
+            this.bt_nuevo.Click += new System.EventHandler(this.bt_nuevo_Click);
+            // 
+            // InicioCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(696, 486);
+            this.Controls.Add(this.bt_nuevo);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btModificar);
             this.Controls.Add(this.btn_buscar);
             this.Controls.Add(this.btn_limpiar);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dgv_listado);
-            this.Name = "FormCliente";
+            this.Name = "InicioCliente";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ABM Cliente";
             ((System.ComponentModel.ISupportInitialize)(this.dgv_listado)).EndInit();
@@ -208,5 +220,6 @@
         private System.Windows.Forms.ErrorProvider errorProvider;
         private System.Windows.Forms.Button btModificar;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button bt_nuevo;
     }
 }

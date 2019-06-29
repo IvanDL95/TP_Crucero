@@ -20,7 +20,7 @@ namespace MiLibreria
             parametro.Value = id_publicacion;
             parametros.Add(parametro);
 
-            DataSet ds = DataBase.ObtenerUnDataSet("RJT.OBTENER_UBICACIONES", DataBase.Tipos.StoredProcedure, parametros);
+            DataSet ds = DataBase.ObtenerUnDataSet("TROLLS.OBTENER_UBICACIONES", DataBase.Tipos.StoredProcedure, parametros);
 
             return ds.Tables[0];
         }
@@ -28,7 +28,7 @@ namespace MiLibreria
         public static Int32 ObtenerIDTipo(String desc)
         {
             Int32 ID = -1;
-            String query = "SELECT TU_ID FROM RJT.TIPOUBICACION WHERE TU_DESC = '" + desc + "'";
+            String query = "SELECT TU_ID FROM TROLLS.TIPOUBICACION WHERE TU_DESC = '" + desc + "'";
             ID = DataBase.queryForInt(query);
 
             return ID;
@@ -41,7 +41,7 @@ namespace MiLibreria
             parametro = new SqlParameter("@ID", SqlDbType.Int, 100);
             parametro.Value = id;
             parametros.Add(parametro);
-            SqlDataReader reader = DataBase.ObtenerUnDataReader("RJT.OBTENERDESCTIPOUBICACION", DataBase.Tipos.StoredProcedure, parametros);
+            SqlDataReader reader = DataBase.ObtenerUnDataReader("TROLLS.OBTENERDESCTIPOUBICACION", DataBase.Tipos.StoredProcedure, parametros);
 
             return reader;
         }
@@ -49,7 +49,7 @@ namespace MiLibreria
         public static SqlDataReader ObtenerTipos()
         {
             List<SqlParameter> parametros = new List<SqlParameter>();
-            SqlDataReader reader = DataBase.ObtenerUnDataReader("RJT.OBTENERTIPOSUBICACION", DataBase.Tipos.StoredProcedure, parametros);
+            SqlDataReader reader = DataBase.ObtenerUnDataReader("TROLLS.OBTENERTIPOSUBICACION", DataBase.Tipos.StoredProcedure, parametros);
 
             return reader;
         }
@@ -65,7 +65,7 @@ namespace MiLibreria
             parametro.Value = idTipo;
             parametros.Add(parametro);
 
-            DataSet ds = DataBase.ObtenerUnDataSet("RJT.OBTENER_UBICACIONES_SIN_COMPRA", DataBase.Tipos.StoredProcedure, parametros);
+            DataSet ds = DataBase.ObtenerUnDataSet("TROLLS.OBTENER_UBICACIONES_SIN_COMPRA", DataBase.Tipos.StoredProcedure, parametros);
 
             return ds.Tables[0];
         }
@@ -73,14 +73,14 @@ namespace MiLibreria
         public static void CrearUbicacion(Ubicacion ubicacion)
         {
             List<SqlParameter> parametros = PrepararParametros(ubicacion);
-            DataBase.EscribirEnLaBase("RJT.CREAR_UBICACION", DataBase.Tipos.StoredProcedure, parametros);
+            DataBase.EscribirEnLaBase("TROLLS.CREAR_UBICACION", DataBase.Tipos.StoredProcedure, parametros);
 
         }
 
         public static void ModificarUbicacion(Ubicacion ubicacion)
         {
             List<SqlParameter> parametros = PrepararParametrosModificar(ubicacion);
-            DataBase.EscribirEnLaBase("RJT.MODIFICAR_UBICACION", DataBase.Tipos.StoredProcedure, parametros);
+            DataBase.EscribirEnLaBase("TROLLS.MODIFICAR_UBICACION", DataBase.Tipos.StoredProcedure, parametros);
 
         }
 
@@ -164,7 +164,7 @@ namespace MiLibreria
         {
             List<SqlParameter> parametros = PrepararParametrosSinNumerar(ubicacion);
 
-            DataBase.EscribirEnLaBase("RJT.CREAR_UBICACION_SIN_NUMERAR", DataBase.Tipos.StoredProcedure, parametros);
+            DataBase.EscribirEnLaBase("TROLLS.CREAR_UBICACION_SIN_NUMERAR", DataBase.Tipos.StoredProcedure, parametros);
 
         }
 
@@ -172,7 +172,7 @@ namespace MiLibreria
         {
             List<SqlParameter> parametros = PrepararParametrosSinNumerarModificar(ubicacion);
 
-            DataBase.EscribirEnLaBase("RJT.MODIFICAR_UBICACION_SIN_NUMERAR", DataBase.Tipos.StoredProcedure, parametros);
+            DataBase.EscribirEnLaBase("TROLLS.MODIFICAR_UBICACION_SIN_NUMERAR", DataBase.Tipos.StoredProcedure, parametros);
 
         }
 

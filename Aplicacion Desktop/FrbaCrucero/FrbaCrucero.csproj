@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>FrbaCrucero</RootNamespace>
-    <AssemblyName>PalcoNet</AssemblyName>
+    <AssemblyName>FrbaCrucero</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <PublishUrl>publicar\</PublishUrl>
@@ -79,23 +79,29 @@
     <Compile Include="Abm Cliente\FormAMCliente.Designer.cs">
       <DependentUpon>FormAMCliente.cs</DependentUpon>
     </Compile>
-    <Compile Include="Abm Empresa Espectaculo\FormAEmpresaLogin.cs">
+    <Compile Include="Abm Crucero\FormAEmpresaLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Abm Empresa Espectaculo\FormAEmpresaLogin.Designer.cs">
+    <Compile Include="Abm Crucero\FormAEmpresaLogin.Designer.cs">
       <DependentUpon>FormAEmpresaLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Abm Empresa Espectaculo\FormEmpresa.cs">
+    <Compile Include="Abm Crucero\FormCrucero.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Abm Empresa Espectaculo\FormEmpresa.designer.cs">
-      <DependentUpon>FormEmpresa.cs</DependentUpon>
+    <Compile Include="Abm Crucero\FormCrucero.designer.cs">
+      <DependentUpon>FormCrucero.cs</DependentUpon>
     </Compile>
-    <Compile Include="Abm Empresa Espectaculo\FormAMEmpresa.cs">
+    <Compile Include="Abm Crucero\FormACrucero.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Abm Empresa Espectaculo\FormAMEmpresa.Designer.cs">
-      <DependentUpon>FormAMEmpresa.cs</DependentUpon>
+    <Compile Include="Abm Crucero\FormACrucero.Designer.cs">
+      <DependentUpon>FormACrucero.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Crucero\FormAMCrucero.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Crucero\FormAMCrucero.Designer.cs">
+      <DependentUpon>FormAMCrucero.cs</DependentUpon>
     </Compile>
     <Compile Include="Abm Grado\ABMGrado.cs">
       <SubType>Form</SubType>
@@ -193,11 +199,11 @@
     <Compile Include="Editar Publicacion\FormListarPublicacion.designer.cs">
       <DependentUpon>FormListarPublicacion.cs</DependentUpon>
     </Compile>
-    <Compile Include="Generar Publicacion\FormGenerarPublicacion.cs">
+    <Compile Include="Generar Viaje\FormGenerarViaje.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Generar Publicacion\FormGenerarPublicacion.Designer.cs">
-      <DependentUpon>FormGenerarPublicacion.cs</DependentUpon>
+    <Compile Include="Generar Viaje\FormGenerarViaje.Designer.cs">
+      <DependentUpon>FormGenerarViaje.cs</DependentUpon>
     </Compile>
     <Compile Include="Generar Rendicion Comisiones\FormGenerarRendicion.cs">
       <SubType>Form</SubType>
@@ -247,14 +253,17 @@
     <EmbeddedResource Include="Abm Cliente\FormAMCliente.resx">
       <DependentUpon>FormAMCliente.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Abm Empresa Espectaculo\FormAEmpresaLogin.resx">
+    <EmbeddedResource Include="Abm Crucero\FormAEmpresaLogin.resx">
       <DependentUpon>FormAEmpresaLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Abm Empresa Espectaculo\FormEmpresa.resx">
-      <DependentUpon>FormEmpresa.cs</DependentUpon>
+    <EmbeddedResource Include="Abm Crucero\FormCrucero.resx">
+      <DependentUpon>FormCrucero.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Abm Empresa Espectaculo\FormAMEmpresa.resx">
-      <DependentUpon>FormAMEmpresa.cs</DependentUpon>
+    <EmbeddedResource Include="Abm Crucero\FormACrucero.resx">
+      <DependentUpon>FormACrucero.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Crucero\FormAMCrucero.resx">
+      <DependentUpon>FormAMCrucero.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Abm Grado\ABMGrado.resx">
       <DependentUpon>ABMGrado.cs</DependentUpon>
@@ -301,8 +310,8 @@
     <EmbeddedResource Include="Editar Publicacion\FormListarPublicacion.resx">
       <DependentUpon>FormListarPublicacion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Generar Publicacion\FormGenerarPublicacion.resx">
-      <DependentUpon>FormGenerarPublicacion.cs</DependentUpon>
+    <EmbeddedResource Include="Generar Viaje\FormGenerarViaje.resx">
+      <DependentUpon>FormGenerarViaje.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Generar Rendicion Comisiones\FormGenerarRendicion.resx">
       <DependentUpon>FormGenerarRendicion.cs</DependentUpon>

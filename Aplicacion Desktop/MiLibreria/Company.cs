@@ -41,7 +41,7 @@ namespace MiLibreria
             }
             parametros.Add(parametro);
 
-            DataSet ds = DataBase.ObtenerUnDataSet("RJT.LISTAR_EMPRESAS_EXISTENTES", DataBase.Tipos.StoredProcedure, parametros);
+            DataSet ds = DataBase.ObtenerUnDataSet("TROLLS.LISTAR_EMPRESAS_EXISTENTES", DataBase.Tipos.StoredProcedure, parametros);
 
             return ds;
         }
@@ -49,7 +49,7 @@ namespace MiLibreria
         public static Int32 ObtenerIDEmpresa(string cuit)
         {
             Int32 ID = -1;
-            String query = "SELECT EMP_ID FROM RJT.EMPRESA WHERE EMP_CUIT = '" + cuit + "'";
+            String query = "SELECT EMP_ID FROM TROLLS.EMPRESA WHERE EMP_CUIT = '" + cuit + "'";
             ID = DataBase.queryForInt(query);
 
             return ID;
@@ -58,7 +58,7 @@ namespace MiLibreria
         public static Int32 ObtenerIDDireccionEmpresa(Int32 id)
         {
             Int32 ID = -1;
-            String query = "SELECT EMP_DIRECCION FROM RJT.EMPRESA WHERE EMP_ID = '" + id + "'";
+            String query = "SELECT EMP_DIRECCION FROM TROLLS.EMPRESA WHERE EMP_ID = '" + id + "'";
             ID = DataBase.queryForInt(query);
 
             return ID;
@@ -71,7 +71,7 @@ namespace MiLibreria
             parametro = new SqlParameter("@ID", SqlDbType.Int, 100);
             parametro.Value = id_empresa;
             parametros.Add(parametro);
-            SqlDataReader reader = DataBase.ObtenerUnDataReader("RJT.OBTENER_EMPRESA", DataBase.Tipos.StoredProcedure, parametros);
+            SqlDataReader reader = DataBase.ObtenerUnDataReader("TROLLS.OBTENER_EMPRESA", DataBase.Tipos.StoredProcedure, parametros);
             return reader;
         }
 
@@ -98,7 +98,7 @@ namespace MiLibreria
             bool resultado;
             if (!String.Equals(cuit, cuit_base))
             {
-                SqlDataReader reader = DataBase.ObtenerUnDataReader("SELECT 1 FROM RJT.EMPRESA WHERE EMP_CUIT = '" + cuit + "'");
+                SqlDataReader reader = DataBase.ObtenerUnDataReader("SELECT 1 FROM TROLLS.EMPRESA WHERE EMP_CUIT = '" + cuit + "'");
                 if (reader.HasRows)
                 {
                     resultado = false;
@@ -120,7 +120,7 @@ namespace MiLibreria
             bool resultado;
             if (!String.Equals(rs, rs_base))
             {
-                SqlDataReader reader = DataBase.ObtenerUnDataReader("SELECT 1 FROM RJT.EMPRESA WHERE EMP_RAZON_SOCIAL = '" + rs + "'");
+                SqlDataReader reader = DataBase.ObtenerUnDataReader("SELECT 1 FROM TROLLS.EMPRESA WHERE EMP_RAZON_SOCIAL = '" + rs + "'");
                 if (reader.HasRows)
                 {
                     resultado = false;
@@ -138,7 +138,7 @@ namespace MiLibreria
 
         public static bool EsValidoCuit(string cuit)
         {
-            SqlDataReader reader = DataBase.ObtenerUnDataReader("SELECT 1 FROM RJT.EMPRESA WHERE EMP_CUIT = '" + cuit + "'");
+            SqlDataReader reader = DataBase.ObtenerUnDataReader("SELECT 1 FROM TROLLS.EMPRESA WHERE EMP_CUIT = '" + cuit + "'");
             bool resultado;
             if (reader.HasRows)
             {
@@ -154,7 +154,7 @@ namespace MiLibreria
 
         public static bool EsValidoRazonSocial(string rs)
         {
-            SqlDataReader reader = DataBase.ObtenerUnDataReader("SELECT 1 FROM RJT.EMPRESA WHERE EMP_RAZON_SOCIAL = '" + rs + "'");
+            SqlDataReader reader = DataBase.ObtenerUnDataReader("SELECT 1 FROM TROLLS.EMPRESA WHERE EMP_RAZON_SOCIAL = '" + rs + "'");
             bool resultado;
             if (reader.HasRows)
             {
@@ -172,7 +172,7 @@ namespace MiLibreria
         {
             List<SqlParameter> parametros = PrepararParametros(empresa);
 
-            DataBase.EscribirEnLaBase("RJT.CREAR_EMPRESA", DataBase.Tipos.StoredProcedure, parametros);
+            DataBase.EscribirEnLaBase("TROLLS.CREAR_EMPRESA", DataBase.Tipos.StoredProcedure, parametros);
 
         }
 
@@ -226,7 +226,7 @@ namespace MiLibreria
         public static void ModificarEmpresa(Empresa empresa)
         {
             List<SqlParameter> parametros = PrepararParametrosModif(empresa);
-            DataBase.EscribirEnLaBase("RJT.MODIFICAR_EMPRESA", DataBase.Tipos.StoredProcedure, parametros);
+            DataBase.EscribirEnLaBase("TROLLS.MODIFICAR_EMPRESA", DataBase.Tipos.StoredProcedure, parametros);
         }
     }
 }

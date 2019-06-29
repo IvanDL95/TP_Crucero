@@ -61,7 +61,7 @@ namespace FrbaCrucero.Abm_Grado
             if (ConfirmarBaja())
             {
                 Int32 ID = Convert.ToInt32(dgv_grado.CurrentRow.Cells["id"].Value);
-                DataBase.EscribirEnLaBase("UPDATE RJT.GRADOPUBLICACION SET GRA_ESTADO = 0 WHERE GRA_ID = " + ID.ToString());
+                DataBase.EscribirEnLaBase("UPDATE TROLLS.GRADOPUBLICACION SET GRA_ESTADO = 0 WHERE GRA_ID = " + ID.ToString());
                 MessageBox.Show("El Grado de publicacion ha sido dado de baja correctamente.");
                 DataSet ds = GradoFunc.ListarGradosExistentes();
                 //Set the source table.

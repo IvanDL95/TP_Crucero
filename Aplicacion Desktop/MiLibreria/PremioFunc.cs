@@ -15,7 +15,7 @@ namespace MiLibreria
         public static DataSet ListarPremiosExistentes()
         {
             List<SqlParameter> parametros = new List<SqlParameter>();
-            DataSet ds = DataBase.ObtenerUnDataSet("RJT.LISTAR_PREMIOS_EXISTENTES", DataBase.Tipos.StoredProcedure, parametros);
+            DataSet ds = DataBase.ObtenerUnDataSet("TROLLS.LISTAR_PREMIOS_EXISTENTES", DataBase.Tipos.StoredProcedure, parametros);
             return ds;
         }
 
@@ -32,7 +32,7 @@ namespace MiLibreria
             parametro.Value = tipoPremio;
             parametros.Add(parametro);
 
-            DataBase.EscribirEnLaBase("RJT.CANJEAR_PUNTOS", DataBase.Tipos.StoredProcedure, parametros);
+            DataBase.EscribirEnLaBase("TROLLS.CANJEAR_PUNTOS", DataBase.Tipos.StoredProcedure, parametros);
         }
     }
 }

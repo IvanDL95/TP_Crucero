@@ -23,7 +23,7 @@ namespace MiLibreria
             parametro.Value = idCliente;
             parametros.Add(parametro);
 
-            DataSet ds = DataBase.ObtenerUnDataSet("RJT.LISTAR_COMPRAS_REALIZADAS", DataBase.Tipos.StoredProcedure, parametros);
+            DataSet ds = DataBase.ObtenerUnDataSet("TROLLS.LISTAR_COMPRAS_REALIZADAS", DataBase.Tipos.StoredProcedure, parametros);
 
             return ds;
         }
@@ -31,7 +31,7 @@ namespace MiLibreria
         public static void CrearCompra(Compra compra)
         {
             List<SqlParameter> parametros = PrepararParametros(compra);
-            DataBase.EscribirEnLaBase("RJT.CREAR_COMPRA", DataBase.Tipos.StoredProcedure, parametros);
+            DataBase.EscribirEnLaBase("TROLLS.CREAR_COMPRA", DataBase.Tipos.StoredProcedure, parametros);
         }
 
         private static List<SqlParameter> PrepararParametros(Compra compra)
@@ -69,14 +69,14 @@ namespace MiLibreria
             parametro.Value = fechaSistema;
             parametros.Add(parametro);           
             
-            DataBase.EscribirEnLaBase("RJT.RENDIR_COMPRA", DataBase.Tipos.StoredProcedure, parametros);
+            DataBase.EscribirEnLaBase("TROLLS.RENDIR_COMPRA", DataBase.Tipos.StoredProcedure, parametros);
         }
 
         public static DataSet ListarComprasRendir()
         {
             List<SqlParameter> parametros = new List<SqlParameter>();
 
-            DataSet ds = DataBase.ObtenerUnDataSet("RJT.LISTAR_COMPRAS_A_RENDIR", DataBase.Tipos.StoredProcedure, parametros);
+            DataSet ds = DataBase.ObtenerUnDataSet("TROLLS.LISTAR_COMPRAS_A_RENDIR", DataBase.Tipos.StoredProcedure, parametros);
 
             return ds;
         }

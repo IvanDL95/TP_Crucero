@@ -15,7 +15,7 @@ namespace MiLibreria
         public static SqlDataReader ObtenerRubros()
         {
             List<SqlParameter> parametros = new List<SqlParameter>();
-            SqlDataReader reader = DataBase.ObtenerUnDataReader("RJT.OBTENERRUBROS", DataBase.Tipos.StoredProcedure, parametros);
+            SqlDataReader reader = DataBase.ObtenerUnDataReader("TROLLS.OBTENERRUBROS", DataBase.Tipos.StoredProcedure, parametros);
 
             return reader;
         }
@@ -23,7 +23,7 @@ namespace MiLibreria
         public static DataTable ObtenerRubrosList()
         {
             List<SqlParameter> parametros = new List<SqlParameter>();
-            DataSet ds = DataBase.ObtenerUnDataSet("RJT.OBTENERRUBROS", DataBase.Tipos.StoredProcedure, parametros);
+            DataSet ds = DataBase.ObtenerUnDataSet("TROLLS.OBTENERRUBROS", DataBase.Tipos.StoredProcedure, parametros);
 
             return ds.Tables[0];
         }

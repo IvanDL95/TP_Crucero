@@ -18,28 +18,60 @@ namespace FrbaCrucero
 
     public partial class PantallaIncial : Form
     {
-
-        ContenedorPrincipal cpal;
+        Login login;
         InicioCliente icliente;
 
-        public PantallaIncial(ContenedorPrincipal cpal)
+        public PantallaIncial(Login login, InicioCliente icliente)
         {
             InitializeComponent();
-            if (cpal == null)
-                this.cpal = null;
+            if (login == null)
+                this.login = null;
             else
-                this.cpal = cpal;
+                this.login = login;
+
+            if (icliente == null)
+                this.icliente = null;
+            else
+                this.icliente = icliente;
+
         }
 
 
         private void btCliente_Click(object sender, EventArgs e)
         {
+            if (this.icliente == null)
+            {
 
+                InicioCliente icliente = new InicioCliente(null);
+                this.Hide();
+                if (!icliente.IsDisposed)
+                    icliente.ShowDialog();
+                this.Close();
+            }
+            else
+            {
+                this.Hide();
+                this.icliente.Show();
+                this.Close();
+            }
         }
 
         private void btAdmin_Click(object sender, EventArgs e)
         {
-
+            if (this.login == null)
+            {             
+                Login login = new Login(null);
+                this.Hide();
+                if (!login.IsDisposed)
+                    login.ShowDialog();
+                this.Close();
+            }
+            else
+            {
+                this.Hide();
+                this.login.Show();
+                this.Close();
+            }
         }
 
     }

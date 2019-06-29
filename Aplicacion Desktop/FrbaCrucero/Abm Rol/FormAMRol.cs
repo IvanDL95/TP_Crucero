@@ -28,7 +28,7 @@ namespace FrbaCrucero.AbmRol
 
             rol = unRol;
 
-            txt_nombre.Text = rol.Nombre;
+            txt_nombre.Text = rol.nombre;
             txt_nombre.Enabled = false;
             
 
@@ -56,7 +56,7 @@ namespace FrbaCrucero.AbmRol
                 else chk_habilitado.Checked = false;
 
 
-                List<Funcion> fadd = Function.ObtenerFuncionesPorRol(rol.Id);
+                List<Funcion> fadd = Function.ObtenerFuncionesPorRol(rol.id);
 
                 foreach (Funcion item in fadd)
                 {
@@ -66,7 +66,7 @@ namespace FrbaCrucero.AbmRol
                 lst_funciones_agregadas.DataSource = funcionesAgregadas;
                 lst_funciones_agregadas.DisplayMember = "Nombre";
 
-                List<Funcion> fNotadd = Function.ObtenerFuncionesNoAsignadasPorRol(rol.Id);
+                List<Funcion> fNotadd = Function.ObtenerFuncionesNoAsignadasPorRol(rol.id);
 
                 foreach (Funcion item in fNotadd)
                 {
@@ -119,7 +119,7 @@ namespace FrbaCrucero.AbmRol
             Boolean habilitado = chk_habilitado.Checked;
 
             String nuevoNombre = txt_nombre.Text.Trim();
-            Role.ActualizarNombre(rol.Id, nuevoNombre, habilitado);
+            Role.ActualizarNombre(rol.id, nuevoNombre, habilitado);
 
             this.Close();
         }

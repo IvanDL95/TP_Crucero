@@ -12,17 +12,17 @@ using MiLibreria;
 using System.Data.SqlClient;
 using System.Configuration;
 
-namespace FrbaCrucero.AbmEmpresa
+namespace FrbaCrucero.AbmCrucero
 {
     public partial class FormAMEmpresa : Form
     {
         Int32 IDEmpresa;
-        FormEmpresa fr = new FormEmpresa();
+        FormCrucero fr = new FormCrucero();
         Empresa empresaModificado = new Empresa();
         Direccion direccionModificado = new Direccion();
         Empresa empresaBase = new Empresa();
 
-        public FormAMEmpresa(Int32 IDEmpresa, FormEmpresa fr)
+        public FormAMEmpresa(Int32 IDEmpresa, FormCrucero fr)
         {
             InitializeComponent();
             ValidacionesIniciales();

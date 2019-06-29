@@ -55,12 +55,8 @@ namespace FrbaCrucero.AbmCliente
             //Guarda los datos del cliente
             this.cliente.Apellido = txt_apellido.Text;
             this.cliente.Nombre = txt_nombre.Text;
-            this.cliente.TipoDoc = cmb_tipo_doc.SelectedItem.ToString();
             this.cliente.NroDoc = txt_nro_doc.Text;
-            this.cliente.Cuil = txt_cuil.Text;
             this.cliente.FechaNac = fechaNac.Value;
-            this.cliente.Tarj = txt_tarj.Text;
-            this.cliente.Valido = true;
             this.Close();
             this.frRegistroUsuario.Show();
 
@@ -82,7 +78,6 @@ namespace FrbaCrucero.AbmCliente
 
         private void button2_Click(object sender, EventArgs e)
         {
-            this.cliente.Valido = false;
             this.Close();
             this.frRegistroUsuario.Show();
         }
