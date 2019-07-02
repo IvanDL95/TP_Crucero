@@ -26,49 +26,52 @@ namespace FrbaCrucero.AbmRecorrido
             
         }
 
-        private void CargarComboPuertoSalida(SqlDataReader reader)
+        private void CargarComboPuertoSalida()
         {
+            SqlDataReader reader = PuertoFunc.ObtenerPuerto();
 
-            while (reader.Read())
+            if (reader.HasRows)
             {
-                Puerto puerto = new Puerto();
-                puerto.id = Convert.ToInt32(reader.GetDecimal(0));
-                puerto.nombre = reader.GetString(1);
-                ComboboxItem item = new ComboboxItem();
-                item.Text = puerto.nombre;
-                item.Value = puerto;
-                cmb_puertoSalida.Items.Add(item);
+                while (reader.Read())
+                {
+                    Puerto puerto = new Puerto();
+                    puerto.id = Convert.ToInt32(reader.GetDecimal(0));
+                    puerto.nombre = reader.GetString(1);
+                    ComboboxItem item = new ComboboxItem();
+                    item.Text = puerto.nombre;
+                    item.Value = puerto;
+                    cmb_puertoSalida.Items.Add(item);
+                }
             }
             reader.Close();
         }
 
-        private void CargarComboPuertoDestino(SqlDataReader reader)
+        private void CargarComboPuertoDestino()
         {
-            while (reader.Read())
+            SqlDataReader reader = PuertoFunc.ObtenerPuerto();
+
+            if (reader.HasRows)
             {
-                Puerto puerto = new Puerto();
-                puerto.id = Convert.ToInt32(reader.GetDecimal(0));
-                puerto.nombre = reader.GetString(1);
-                ComboboxItem item = new ComboboxItem();
-                item.Text = puerto.nombre;
-                item.Value = puerto;
-                cmb_puertoDestino.Items.Add(item);
+                while (reader.Read())
+                {
+                    Puerto puerto = new Puerto();
+                    puerto.id = Convert.ToInt32(reader.GetDecimal(0));
+                    puerto.nombre = reader.GetString(1);
+                    ComboboxItem item = new ComboboxItem();
+                    item.Text = puerto.nombre;
+                    item.Value = puerto;
+                    cmb_puertoDestino.Items.Add(item);
+                }
+                reader.Close();
             }
-            reader.Close();
         }
 
         private void IniciarFormulario()
         {
             dgv_listado.DataSource = RecorridoFunc.ListarRecorridosExistentes(null, null, null).Tables[0];
 
-            SqlDataReader reader = PuertoFunc.ObtenerPuerto();
-            SqlDataReader reader2 = reader;
-
-            if (reader.HasRows)
-            {
-                CargarComboPuertoSalida(reader);
-                CargarComboPuertoDestino(reader2);
-            }
+            CargarComboPuertoSalida();
+            CargarComboPuertoDestino();
             //dgv_listado.Columns["id"].Visible = false;
         }
 
@@ -105,8 +108,13 @@ namespace FrbaCrucero.AbmRecorrido
                 pue_hasta = (Puerto)item.Value;
             }
 
+            int idd;
+            if (!String.IsNullOrEmpty(txt_id.Text))
+                idd = Int32.Parse(txt_id.Text);
+            else
+                idd = 0;
 
-            dgv_listado.DataSource = RecorridoFunc.ListarRecorridosExistentes(Int32.Parse(txt_id.Text)
+            dgv_listado.DataSource = RecorridoFunc.ListarRecorridosExistentes(idd
                                                                                 , pue_desde.id
                                                                                 , pue_hasta.id).Tables[0];
         }

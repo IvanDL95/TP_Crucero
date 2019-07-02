@@ -10,7 +10,7 @@ using System.Data;
 
 namespace MiLibreria
 {
-    class PuertoFunc
+    public class PuertoFunc
     {
         public static SqlDataReader ObtenerPuerto()
         {
@@ -27,5 +27,18 @@ namespace MiLibreria
 
             return ds.Tables[0];
         }
+
+        public static String ObtenerNombre(int pue_id)
+        {
+            List<SqlParameter> parametros = new List<SqlParameter>();
+            SqlParameter parametro;
+            parametro = new SqlParameter("@ID", SqlDbType.Int, 30);
+            parametro.Value = pue_id;
+            parametros.Add(parametro);
+            SqlDataReader reader = DataBase.ObtenerUnDataReader("TROLLS.OBTENER_NOMBRE_PUERTO", DataBase.Tipos.StoredProcedure, parametros);
+
+            return reader.GetString(0);
+        }
+
     }
 }
