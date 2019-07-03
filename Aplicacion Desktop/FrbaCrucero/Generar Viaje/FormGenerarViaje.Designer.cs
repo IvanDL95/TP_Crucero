@@ -1,4 +1,4 @@
-﻿namespace FrbaCrucero.Generar_publicacion
+﻿namespace FrbaCrucero.Generar_viaje
 {
     partial class FormGenerarViaje
     {
@@ -29,387 +29,256 @@
         private void InitializeComponent()
         {
             this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txt_desc = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.dgv_ubicacion = new System.Windows.Forms.DataGridView();
-            this.label4 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.btBorrador = new System.Windows.Forms.Button();
-            this.dgv_fecha = new System.Windows.Forms.DataGridView();
-            this.colFecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colHora = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label5 = new System.Windows.Forms.Label();
-            this.cmb_rubro = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.cmb_grado = new System.Windows.Forms.ComboBox();
-            this.txt_localidad = new System.Windows.Forms.TextBox();
-            this.txt_mail = new System.Windows.Forms.TextBox();
-            this.txt_cp = new System.Windows.Forms.TextBox();
-            this.txt_departamento = new System.Windows.Forms.TextBox();
-            this.txt_calle = new System.Windows.Forms.TextBox();
+            this.btGenerar = new System.Windows.Forms.Button();
+            this.txt_hlleg = new System.Windows.Forms.TextBox();
+            this.txt_flleg = new System.Windows.Forms.TextBox();
+            this.txt_hsal = new System.Windows.Forms.TextBox();
+            this.txt_fsal = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.btPublicar = new System.Windows.Forms.Button();
-            this.txt_tel = new FrbaCrucero.NumericTextBox();
-            this.txt_piso = new FrbaCrucero.NumericTextBox();
-            this.txt_numero = new FrbaCrucero.NumericTextBox();
-            this.colFila = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colAsiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTipoUbicacion = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_ubicacion)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_fecha)).BeginInit();
+            this.btCancelar = new System.Windows.Forms.Button();
+            this.btBuscar = new System.Windows.Forms.Button();
+            this.dgv_listado = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dgv_listado2 = new System.Windows.Forms.DataGridView();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txt_puerto_desde = new System.Windows.Forms.TextBox();
+            this.txt_puerto_hasta = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.btBuscarRecorrido = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_listado)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_listado2)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(238, 9);
+            this.label2.Location = new System.Drawing.Point(320, 9);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(278, 31);
+            this.label2.Size = new System.Drawing.Size(193, 31);
             this.label2.TabIndex = 101;
-            this.label2.Text = "Generar Publicación";
+            this.label2.Text = "Generar Viaje";
             // 
-            // label1
+            // btGenerar
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(61, 81);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(66, 13);
-            this.label1.TabIndex = 102;
-            this.label1.Text = "Descripcion:";
+            this.btGenerar.Location = new System.Drawing.Point(297, 653);
+            this.btGenerar.Name = "btGenerar";
+            this.btGenerar.Size = new System.Drawing.Size(75, 23);
+            this.btGenerar.TabIndex = 109;
+            this.btGenerar.Text = "Generar";
+            this.btGenerar.UseVisualStyleBackColor = true;
+            this.btGenerar.Click += new System.EventHandler(this.btGenerar_Viaje_Click);
             // 
-            // txt_desc
+            // txt_hlleg
             // 
-            this.txt_desc.Location = new System.Drawing.Point(130, 78);
-            this.txt_desc.Name = "txt_desc";
-            this.txt_desc.Size = new System.Drawing.Size(232, 20);
-            this.txt_desc.TabIndex = 104;
+            this.txt_hlleg.Location = new System.Drawing.Point(469, 91);
+            this.txt_hlleg.Name = "txt_hlleg";
+            this.txt_hlleg.Size = new System.Drawing.Size(185, 20);
+            this.txt_hlleg.TabIndex = 130;
             // 
-            // label3
+            // txt_flleg
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(61, 117);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(161, 13);
-            this.label3.TabIndex = 105;
-            this.label3.Text = "Fechas y horas del Espectaculo:";
+            this.txt_flleg.Location = new System.Drawing.Point(154, 91);
+            this.txt_flleg.Name = "txt_flleg";
+            this.txt_flleg.Size = new System.Drawing.Size(185, 20);
+            this.txt_flleg.TabIndex = 129;
             // 
-            // dgv_ubicacion
+            // txt_hsal
             // 
-            this.dgv_ubicacion.AllowUserToDeleteRows = false;
-            this.dgv_ubicacion.AllowUserToResizeColumns = false;
-            this.dgv_ubicacion.AllowUserToResizeRows = false;
-            this.dgv_ubicacion.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgv_ubicacion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_ubicacion.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colFila,
-            this.colAsiento,
-            this.colPrecio,
-            this.colTipoUbicacion});
-            this.dgv_ubicacion.Location = new System.Drawing.Point(64, 359);
-            this.dgv_ubicacion.Name = "dgv_ubicacion";
-            this.dgv_ubicacion.Size = new System.Drawing.Size(614, 249);
-            this.dgv_ubicacion.TabIndex = 106;
-            this.dgv_ubicacion.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_ubicacion_CellContentClick);
+            this.txt_hsal.Location = new System.Drawing.Point(469, 65);
+            this.txt_hsal.Name = "txt_hsal";
+            this.txt_hsal.Size = new System.Drawing.Size(185, 20);
+            this.txt_hsal.TabIndex = 126;
             // 
-            // label4
+            // txt_fsal
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(61, 334);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(69, 13);
-            this.label4.TabIndex = 107;
-            this.label4.Text = "Ubicaciones:";
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(148, 333);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(142, 17);
-            this.checkBox1.TabIndex = 108;
-            this.checkBox1.Text = "Ubicaciones sin numerar";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-            // 
-            // btBorrador
-            // 
-            this.btBorrador.Location = new System.Drawing.Point(264, 617);
-            this.btBorrador.Name = "btBorrador";
-            this.btBorrador.Size = new System.Drawing.Size(75, 23);
-            this.btBorrador.TabIndex = 109;
-            this.btBorrador.Text = "Borrador";
-            this.btBorrador.UseVisualStyleBackColor = true;
-            this.btBorrador.Click += new System.EventHandler(this.btBorrador_Click);
-            // 
-            // dgv_fecha
-            // 
-            this.dgv_fecha.AllowUserToDeleteRows = false;
-            this.dgv_fecha.AllowUserToResizeColumns = false;
-            this.dgv_fecha.AllowUserToResizeRows = false;
-            this.dgv_fecha.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgv_fecha.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_fecha.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colFecha,
-            this.colHora});
-            this.dgv_fecha.Location = new System.Drawing.Point(64, 142);
-            this.dgv_fecha.Name = "dgv_fecha";
-            this.dgv_fecha.Size = new System.Drawing.Size(298, 176);
-            this.dgv_fecha.TabIndex = 110;
-            // 
-            // colFecha
-            // 
-            this.colFecha.HeaderText = "Fecha";
-            this.colFecha.Name = "colFecha";
-            // 
-            // colHora
-            // 
-            this.colHora.HeaderText = "Hora";
-            this.colHora.Name = "colHora";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(392, 81);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(39, 13);
-            this.label5.TabIndex = 111;
-            this.label5.Text = "Rubro:";
-            // 
-            // cmb_rubro
-            // 
-            this.cmb_rubro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmb_rubro.FormattingEnabled = true;
-            this.cmb_rubro.Location = new System.Drawing.Point(493, 78);
-            this.cmb_rubro.Name = "cmb_rubro";
-            this.cmb_rubro.Size = new System.Drawing.Size(185, 21);
-            this.cmb_rubro.TabIndex = 112;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(392, 116);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(39, 13);
-            this.label6.TabIndex = 113;
-            this.label6.Text = "Grado:";
-            // 
-            // cmb_grado
-            // 
-            this.cmb_grado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmb_grado.FormattingEnabled = true;
-            this.cmb_grado.Location = new System.Drawing.Point(493, 113);
-            this.cmb_grado.Name = "cmb_grado";
-            this.cmb_grado.Size = new System.Drawing.Size(185, 21);
-            this.cmb_grado.TabIndex = 114;
-            // 
-            // txt_localidad
-            // 
-            this.txt_localidad.Location = new System.Drawing.Point(493, 324);
-            this.txt_localidad.Name = "txt_localidad";
-            this.txt_localidad.Size = new System.Drawing.Size(185, 20);
-            this.txt_localidad.TabIndex = 130;
-            // 
-            // txt_mail
-            // 
-            this.txt_mail.Location = new System.Drawing.Point(493, 298);
-            this.txt_mail.Name = "txt_mail";
-            this.txt_mail.Size = new System.Drawing.Size(185, 20);
-            this.txt_mail.TabIndex = 129;
-            // 
-            // txt_cp
-            // 
-            this.txt_cp.Location = new System.Drawing.Point(493, 246);
-            this.txt_cp.Name = "txt_cp";
-            this.txt_cp.Size = new System.Drawing.Size(185, 20);
-            this.txt_cp.TabIndex = 127;
-            // 
-            // txt_departamento
-            // 
-            this.txt_departamento.Location = new System.Drawing.Point(493, 220);
-            this.txt_departamento.Name = "txt_departamento";
-            this.txt_departamento.Size = new System.Drawing.Size(185, 20);
-            this.txt_departamento.TabIndex = 126;
-            // 
-            // txt_calle
-            // 
-            this.txt_calle.Location = new System.Drawing.Point(493, 142);
-            this.txt_calle.Name = "txt_calle";
-            this.txt_calle.Size = new System.Drawing.Size(185, 20);
-            this.txt_calle.TabIndex = 123;
+            this.txt_fsal.Location = new System.Drawing.Point(154, 65);
+            this.txt_fsal.Name = "txt_fsal";
+            this.txt_fsal.Size = new System.Drawing.Size(185, 20);
+            this.txt_fsal.TabIndex = 123;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(392, 331);
+            this.label10.Location = new System.Drawing.Point(368, 98);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(56, 13);
+            this.label10.Size = new System.Drawing.Size(70, 13);
             this.label10.TabIndex = 122;
-            this.label10.Text = "Localidad:";
+            this.label10.Text = "Hora llegada:";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(392, 305);
+            this.label9.Location = new System.Drawing.Point(53, 98);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(38, 13);
+            this.label9.Size = new System.Drawing.Size(77, 13);
             this.label9.TabIndex = 121;
-            this.label9.Text = "E-mail:";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(392, 279);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(52, 13);
-            this.label8.TabIndex = 120;
-            this.label8.Text = "Teléfono:";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(392, 253);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(75, 13);
-            this.label7.TabIndex = 119;
-            this.label7.Text = "Codigo Postal:";
+            this.label9.Text = "Fecha llegada:";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(392, 227);
+            this.label11.Location = new System.Drawing.Point(368, 72);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(77, 13);
+            this.label11.Size = new System.Drawing.Size(63, 13);
             this.label11.TabIndex = 118;
-            this.label11.Text = "Departamento:";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(392, 201);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(30, 13);
-            this.label12.TabIndex = 117;
-            this.label12.Text = "Piso:";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(392, 175);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(47, 13);
-            this.label13.TabIndex = 116;
-            this.label13.Text = "Numero:";
+            this.label11.Text = "Hora salida:";
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(392, 149);
+            this.label14.Location = new System.Drawing.Point(53, 72);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(33, 13);
+            this.label14.Size = new System.Drawing.Size(70, 13);
             this.label14.TabIndex = 115;
-            this.label14.Text = "Calle:";
+            this.label14.Text = "Fecha salida:";
             // 
-            // btPublicar
+            // btCancelar
             // 
-            this.btPublicar.Location = new System.Drawing.Point(407, 617);
-            this.btPublicar.Name = "btPublicar";
-            this.btPublicar.Size = new System.Drawing.Size(75, 23);
-            this.btPublicar.TabIndex = 131;
-            this.btPublicar.Text = "Publicar";
-            this.btPublicar.UseVisualStyleBackColor = true;
-            this.btPublicar.Click += new System.EventHandler(this.button1_Click);
+            this.btCancelar.Location = new System.Drawing.Point(451, 653);
+            this.btCancelar.Name = "btCancelar";
+            this.btCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btCancelar.TabIndex = 131;
+            this.btCancelar.Text = "Cancelar";
+            this.btCancelar.UseVisualStyleBackColor = true;
+            this.btCancelar.Click += new System.EventHandler(this.button1_Click);
             // 
-            // txt_tel
+            // btBuscar
             // 
-            this.txt_tel.Location = new System.Drawing.Point(493, 272);
-            this.txt_tel.Name = "txt_tel";
-            this.txt_tel.Size = new System.Drawing.Size(185, 20);
-            this.txt_tel.TabIndex = 128;
+            this.btBuscar.Location = new System.Drawing.Point(690, 65);
+            this.btBuscar.Name = "btBuscar";
+            this.btBuscar.Size = new System.Drawing.Size(80, 46);
+            this.btBuscar.TabIndex = 132;
+            this.btBuscar.Text = "Buscar crucero";
+            this.btBuscar.UseVisualStyleBackColor = true;
+            this.btBuscar.Click += new System.EventHandler(this.btBuscar_Click);
             // 
-            // txt_piso
+            // dgv_listado
             // 
-            this.txt_piso.Location = new System.Drawing.Point(493, 194);
-            this.txt_piso.Name = "txt_piso";
-            this.txt_piso.Size = new System.Drawing.Size(185, 20);
-            this.txt_piso.TabIndex = 125;
+            this.dgv_listado.AllowUserToAddRows = false;
+            this.dgv_listado.AllowUserToDeleteRows = false;
+            this.dgv_listado.AllowUserToResizeColumns = false;
+            this.dgv_listado.AllowUserToResizeRows = false;
+            this.dgv_listado.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgv_listado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_listado.Location = new System.Drawing.Point(56, 156);
+            this.dgv_listado.Name = "dgv_listado";
+            this.dgv_listado.ReadOnly = true;
+            this.dgv_listado.RowHeadersVisible = false;
+            this.dgv_listado.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgv_listado.Size = new System.Drawing.Size(714, 197);
+            this.dgv_listado.TabIndex = 133;
             // 
-            // txt_numero
+            // label1
             // 
-            this.txt_numero.Location = new System.Drawing.Point(493, 168);
-            this.txt_numero.Name = "txt_numero";
-            this.txt_numero.Size = new System.Drawing.Size(185, 20);
-            this.txt_numero.TabIndex = 124;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(56, 370);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(85, 13);
+            this.label1.TabIndex = 134;
+            this.label1.Text = "Elegir Recorrido:";
             // 
-            // colFila
+            // dgv_listado2
             // 
-            this.colFila.HeaderText = "Fila";
-            this.colFila.Name = "colFila";
+            this.dgv_listado2.AllowUserToAddRows = false;
+            this.dgv_listado2.AllowUserToDeleteRows = false;
+            this.dgv_listado2.AllowUserToResizeColumns = false;
+            this.dgv_listado2.AllowUserToResizeRows = false;
+            this.dgv_listado2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgv_listado2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_listado2.Location = new System.Drawing.Point(56, 434);
+            this.dgv_listado2.Name = "dgv_listado2";
+            this.dgv_listado2.ReadOnly = true;
+            this.dgv_listado2.RowHeadersVisible = false;
+            this.dgv_listado2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgv_listado2.Size = new System.Drawing.Size(714, 197);
+            this.dgv_listado2.TabIndex = 135;
             // 
-            // colAsiento
+            // label3
             // 
-            this.colAsiento.HeaderText = "Asiento";
-            this.colAsiento.Name = "colAsiento";
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(56, 128);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(76, 13);
+            this.label3.TabIndex = 136;
+            this.label3.Text = "Elegir Crucero:";
             // 
-            // colPrecio
+            // label4
             // 
-            this.colPrecio.HeaderText = "Precio";
-            this.colPrecio.Name = "colPrecio";
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(58, 402);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(75, 13);
+            this.label4.TabIndex = 137;
+            this.label4.Text = "Puerto Desde:";
             // 
-            // colTipoUbicacion
+            // txt_puerto_desde
             // 
-            this.colTipoUbicacion.HeaderText = "TipoUbicacion";
-            this.colTipoUbicacion.Name = "colTipoUbicacion";
-            this.colTipoUbicacion.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.txt_puerto_desde.Location = new System.Drawing.Point(154, 399);
+            this.txt_puerto_desde.Name = "txt_puerto_desde";
+            this.txt_puerto_desde.Size = new System.Drawing.Size(185, 20);
+            this.txt_puerto_desde.TabIndex = 138;
             // 
-            // FormGenerarPublicacion
+            // txt_puerto_hasta
+            // 
+            this.txt_puerto_hasta.Location = new System.Drawing.Point(449, 399);
+            this.txt_puerto_hasta.Name = "txt_puerto_hasta";
+            this.txt_puerto_hasta.Size = new System.Drawing.Size(205, 20);
+            this.txt_puerto_hasta.TabIndex = 140;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(368, 402);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(72, 13);
+            this.label5.TabIndex = 139;
+            this.label5.Text = "Puerto Hasta:";
+            // 
+            // btBuscarRecorrido
+            // 
+            this.btBuscarRecorrido.Location = new System.Drawing.Point(690, 373);
+            this.btBuscarRecorrido.Name = "btBuscarRecorrido";
+            this.btBuscarRecorrido.Size = new System.Drawing.Size(80, 46);
+            this.btBuscarRecorrido.TabIndex = 141;
+            this.btBuscarRecorrido.Text = "Buscar recorrido";
+            this.btBuscarRecorrido.UseVisualStyleBackColor = true;
+            this.btBuscarRecorrido.Click += new System.EventHandler(this.btBuscarRecorrido_Click);
+            // 
+            // FormGenerarViaje
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(746, 652);
-            this.Controls.Add(this.btPublicar);
-            this.Controls.Add(this.txt_localidad);
-            this.Controls.Add(this.txt_mail);
-            this.Controls.Add(this.txt_tel);
-            this.Controls.Add(this.txt_cp);
-            this.Controls.Add(this.txt_departamento);
-            this.Controls.Add(this.txt_piso);
-            this.Controls.Add(this.txt_numero);
-            this.Controls.Add(this.txt_calle);
+            this.ClientSize = new System.Drawing.Size(825, 688);
+            this.Controls.Add(this.btBuscarRecorrido);
+            this.Controls.Add(this.txt_puerto_hasta);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.txt_puerto_desde);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.dgv_listado2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.dgv_listado);
+            this.Controls.Add(this.btBuscar);
+            this.Controls.Add(this.btCancelar);
+            this.Controls.Add(this.txt_hlleg);
+            this.Controls.Add(this.txt_flleg);
+            this.Controls.Add(this.txt_hsal);
+            this.Controls.Add(this.txt_fsal);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this.label13);
             this.Controls.Add(this.label14);
-            this.Controls.Add(this.cmb_grado);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.cmb_rubro);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.dgv_fecha);
-            this.Controls.Add(this.btBorrador);
-            this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.dgv_ubicacion);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.txt_desc);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.btGenerar);
             this.Controls.Add(this.label2);
-            this.Name = "FormGenerarPublicacion";
-            this.Text = "Generar Publicación";
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_ubicacion)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_fecha)).EndInit();
+            this.Name = "FormGenerarViaje";
+            this.Text = "Generar Viaje";
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_listado)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_listado2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -418,40 +287,25 @@
         #endregion
 
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txt_desc;
-        private System.Windows.Forms.Label label3;
-        public System.Windows.Forms.DataGridView dgv_ubicacion;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.Button btBorrador;
-        public System.Windows.Forms.DataGridView dgv_fecha;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colFecha;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colHora;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox cmb_rubro;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox cmb_grado;
-        private System.Windows.Forms.TextBox txt_localidad;
-        private System.Windows.Forms.TextBox txt_mail;
-        private NumericTextBox txt_tel;
-        private System.Windows.Forms.TextBox txt_cp;
-        private System.Windows.Forms.TextBox txt_departamento;
-        private NumericTextBox txt_piso;
-        private NumericTextBox txt_numero;
-        private System.Windows.Forms.TextBox txt_calle;
+        private System.Windows.Forms.Button btGenerar;
+        private System.Windows.Forms.TextBox txt_hlleg;
+        private System.Windows.Forms.TextBox txt_flleg;
+        private System.Windows.Forms.TextBox txt_hsal;
+        private System.Windows.Forms.TextBox txt_fsal;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Button btPublicar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colFila;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colAsiento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colPrecio;
-        private System.Windows.Forms.DataGridViewComboBoxColumn colTipoUbicacion;
+        private System.Windows.Forms.Button btCancelar;
+        private System.Windows.Forms.Button btBuscar;
+        public System.Windows.Forms.DataGridView dgv_listado;
+        private System.Windows.Forms.Label label1;
+        public System.Windows.Forms.DataGridView dgv_listado2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txt_puerto_desde;
+        private System.Windows.Forms.TextBox txt_puerto_hasta;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btBuscarRecorrido;
     }
 }

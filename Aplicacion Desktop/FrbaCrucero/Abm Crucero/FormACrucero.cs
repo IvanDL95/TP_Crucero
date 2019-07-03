@@ -12,7 +12,7 @@ using MiLibreria;
 using System.Data.SqlClient;
 using System.Configuration;
 
-namespace FrbaCrucero.AbmCrucero
+namespace FrbaCrucero.ABMCrucero
 {
     public partial class FormAMEmpresa : Form
     {

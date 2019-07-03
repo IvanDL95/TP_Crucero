@@ -33,6 +33,9 @@ C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\bin\Debu
 C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\obj\Debug\FrbaCrucero.exe
 C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\obj\Debug\FrbaCrucero.pdb
 C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\obj\Debug\FrbaCrucero.ABMCrucero.FormAmCrucero.resources
-C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\obj\Debug\FrbaCrucero.Generar_publicacion.FormGenerarViaje.resources
 C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\obj\Debug\FrbaCrucero.AbmCrucero.FormCrucero.resources
 C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\obj\Debug\FrbaCrucero.AbmCrucero.FormAMEmpresa.resources
+C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\obj\Debug\FrbaCrucero.AbmCrucero.FormBajaServicioCrucero.resources
+C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\obj\Debug\FrbaCrucero.ABMCrucero.FormBajaDefinitivaCrucero.resources
+C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\obj\Debug\FrbaCrucero.ABMCrucero.BajaDefinitivaBuscarCrucero.resources
+C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\obj\Debug\FrbaCrucero.Generar_viaje.FormGenerarViaje.resources

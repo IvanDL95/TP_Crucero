@@ -44,6 +44,7 @@
     <Compile Include="ABMCrucero.cs" />
     <Compile Include="ABMPublicacion.cs" />
     <Compile Include="ABMUbicacion.cs" />
+    <Compile Include="ABMViaje.cs" />
     <Compile Include="Adress.cs" />
     <Compile Include="Cabina_crucerofunc.cs" />
     <Compile Include="Client.cs" />
@@ -65,12 +66,15 @@
     <Compile Include="Modelo\Funcion.cs" />
     <Compile Include="Modelo\Grado.cs" />
     <Compile Include="Modelo\Publicacion.cs" />
+    <Compile Include="Modelo\Puerto.cs" />
+    <Compile Include="Modelo\Recorrido.cs" />
     <Compile Include="Modelo\Rol.cs" />
     <Compile Include="Modelo\Rubro.cs" />
     <Compile Include="Modelo\TipoUbicacion.cs" />
     <Compile Include="Modelo\Tipo_Servicio.cs" />
     <Compile Include="Modelo\Ubicacion.cs" />
     <Compile Include="Modelo\Usuario.cs" />
+    <Compile Include="Modelo\Viaje.cs" />
     <Compile Include="PremioFunc.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Role.cs" />

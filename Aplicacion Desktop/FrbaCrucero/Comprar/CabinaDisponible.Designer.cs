@@ -32,11 +32,11 @@
             this.label7 = new System.Windows.Forms.Label();
             this.dgv_ubicacion = new System.Windows.Forms.DataGridView();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colFila = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colAsiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPiso = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colNumero = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTipoUbicacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ubi_pub = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTipoCabina = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cab_via_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btComprar = new System.Windows.Forms.Button();
             this.btAgregarUbicacion = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
@@ -58,9 +58,9 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(49, 32);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(82, 13);
+            this.label7.Size = new System.Drawing.Size(67, 13);
             this.label7.TabIndex = 124;
-            this.label7.Text = "Tipo Ubicacion:";
+            this.label7.Text = "Tipo Cabina:";
             // 
             // dgv_ubicacion
             // 
@@ -71,11 +71,11 @@
             this.dgv_ubicacion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_ubicacion.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id,
-            this.colFila,
-            this.colAsiento,
+            this.colPiso,
+            this.colNumero,
             this.colPrecio,
-            this.colTipoUbicacion,
-            this.ubi_pub});
+            this.colTipoCabina,
+            this.cab_via_id});
             this.dgv_ubicacion.Location = new System.Drawing.Point(22, 102);
             this.dgv_ubicacion.MultiSelect = false;
             this.dgv_ubicacion.Name = "dgv_ubicacion";
@@ -91,17 +91,17 @@
             this.id.ReadOnly = true;
             this.id.Visible = false;
             // 
-            // colFila
+            // colPiso
             // 
-            this.colFila.HeaderText = "Fila";
-            this.colFila.Name = "colFila";
-            this.colFila.ReadOnly = true;
+            this.colPiso.HeaderText = "Piso";
+            this.colPiso.Name = "colPiso";
+            this.colPiso.ReadOnly = true;
             // 
-            // colAsiento
+            // colNumero
             // 
-            this.colAsiento.HeaderText = "Asiento";
-            this.colAsiento.Name = "colAsiento";
-            this.colAsiento.ReadOnly = true;
+            this.colNumero.HeaderText = "Numero";
+            this.colNumero.Name = "colNumero";
+            this.colNumero.ReadOnly = true;
             // 
             // colPrecio
             // 
@@ -109,39 +109,39 @@
             this.colPrecio.Name = "colPrecio";
             this.colPrecio.ReadOnly = true;
             // 
-            // colTipoUbicacion
+            // colTipoCabina
             // 
-            this.colTipoUbicacion.HeaderText = "TipoUbicacion";
-            this.colTipoUbicacion.Name = "colTipoUbicacion";
-            this.colTipoUbicacion.ReadOnly = true;
-            this.colTipoUbicacion.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.colTipoUbicacion.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colTipoUbicacion.Visible = false;
+            this.colTipoCabina.HeaderText = "TipoCabina";
+            this.colTipoCabina.Name = "colTipoCabina";
+            this.colTipoCabina.ReadOnly = true;
+            this.colTipoCabina.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.colTipoCabina.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colTipoCabina.Visible = false;
             // 
-            // ubi_pub
+            // cab_via_id
             // 
-            this.ubi_pub.HeaderText = "ubi_pub";
-            this.ubi_pub.Name = "ubi_pub";
-            this.ubi_pub.ReadOnly = true;
-            this.ubi_pub.Visible = false;
+            this.cab_via_id.HeaderText = "cab_via_id";
+            this.cab_via_id.Name = "cab_via_id";
+            this.cab_via_id.ReadOnly = true;
+            this.cab_via_id.Visible = false;
             // 
             // btComprar
             // 
-            this.btComprar.Location = new System.Drawing.Point(230, 504);
+            this.btComprar.Location = new System.Drawing.Point(193, 511);
             this.btComprar.Name = "btComprar";
-            this.btComprar.Size = new System.Drawing.Size(113, 23);
+            this.btComprar.Size = new System.Drawing.Size(162, 23);
             this.btComprar.TabIndex = 122;
-            this.btComprar.Text = "Finalizar Comprar";
+            this.btComprar.Text = "Finalizar Comprar/Reserva";
             this.btComprar.UseVisualStyleBackColor = true;
             this.btComprar.Click += new System.EventHandler(this.btComprar_Click);
             // 
             // btAgregarUbicacion
             // 
-            this.btAgregarUbicacion.Location = new System.Drawing.Point(230, 457);
+            this.btAgregarUbicacion.Location = new System.Drawing.Point(193, 464);
             this.btAgregarUbicacion.Name = "btAgregarUbicacion";
-            this.btAgregarUbicacion.Size = new System.Drawing.Size(113, 23);
+            this.btAgregarUbicacion.Size = new System.Drawing.Size(162, 23);
             this.btAgregarUbicacion.TabIndex = 121;
-            this.btAgregarUbicacion.Text = "Agregar a la compra";
+            this.btAgregarUbicacion.Text = "Agregar a la compra/reserva";
             this.btAgregarUbicacion.UseVisualStyleBackColor = true;
             this.btAgregarUbicacion.Click += new System.EventHandler(this.btAgregarUbicacion_Click);
             // 
@@ -150,9 +150,9 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(219, 76);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(124, 13);
+            this.label6.Size = new System.Drawing.Size(103, 13);
             this.label6.TabIndex = 120;
-            this.label6.Text = "Ubicaciones disponibles:";
+            this.label6.Text = "Cabinas disponibles:";
             // 
             // btUbicDisponibles
             // 
@@ -177,7 +177,7 @@
             this.Controls.Add(this.btAgregarUbicacion);
             this.Controls.Add(this.label6);
             this.Name = "UbicacionDisponible";
-            this.Text = "Ubicacion Disponible";
+            this.Text = "Cabina Disponible";
             ((System.ComponentModel.ISupportInitialize)(this.dgv_ubicacion)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -189,15 +189,15 @@
         private System.Windows.Forms.ComboBox cmb_tipo;
         private System.Windows.Forms.Label label7;
         public System.Windows.Forms.DataGridView dgv_ubicacion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colFila;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colAsiento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colPrecio;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colTipoUbicacion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ubi_pub;
         private System.Windows.Forms.Button btComprar;
         private System.Windows.Forms.Button btAgregarUbicacion;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btUbicDisponibles;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colPiso;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colNumero;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colPrecio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colTipoCabina;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cab_via_id;
     }
 }

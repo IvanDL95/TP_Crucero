@@ -1,4 +1,5 @@
-﻿using FrbaCrucero.AbmCrucero;
+﻿using FrbaCrucero.ABMCrucero;
+using FrbaCrucero.Generar_viaje;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace FrbaCrucero
             Application.SetCompatibleTextRenderingDefault(false);
 
             //Application.Run(new PantallaIncial(null, null));
-            Application.Run(new FormCrucero());
+            Application.Run(new FormGenerarViaje(null,false));
 
         }
         

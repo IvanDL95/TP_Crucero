@@ -91,8 +91,8 @@ namespace FrbaCrucero.Compra_Entrada
                     //Ubicacion sin numerar?
                     if (!Convert.ToBoolean(ubicaciones.Rows[0]["ubi_sin_numerar"]))
                     {
-                        colFila.Visible = true;
-                        colAsiento.Visible = true;
+                        //colFila.Visible = true;
+                        //colAsiento.Visible = true;
 
                         //Se agregan los datos en las filas
                         for (Int32 i = 0; i < ubicaciones.Rows.Count; i++)
@@ -108,8 +108,8 @@ namespace FrbaCrucero.Compra_Entrada
                     else //Sin numerar
                     {
 
-                        colFila.Visible = false;
-                        colAsiento.Visible = false;
+                        //colFila.Visible = false;
+                        //colAsiento.Visible = false;
 
                         for (Int32 i = 0; i < ubicaciones.Rows.Count; i++)
                         {

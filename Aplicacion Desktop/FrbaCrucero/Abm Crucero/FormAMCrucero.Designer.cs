@@ -42,8 +42,9 @@
             this.label14 = new System.Windows.Forms.Label();
             this.btCancelar = new System.Windows.Forms.Button();
             this.colPiso = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colCantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colNumero = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTipoCabina = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.colId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_cabinas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -82,8 +83,9 @@
             this.dgv_cabinas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_cabinas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colPiso,
-            this.colCantidad,
-            this.colTipoCabina});
+            this.colNumero,
+            this.colTipoCabina,
+            this.colId});
             this.dgv_cabinas.Location = new System.Drawing.Point(64, 165);
             this.dgv_cabinas.Name = "dgv_cabinas";
             this.dgv_cabinas.Size = new System.Drawing.Size(614, 249);
@@ -176,16 +178,22 @@
             this.colPiso.HeaderText = "Piso";
             this.colPiso.Name = "colPiso";
             // 
-            // colCantidad
+            // colNumero
             // 
-            this.colCantidad.HeaderText = "Cantidad";
-            this.colCantidad.Name = "colCantidad";
+            this.colNumero.HeaderText = "Numero";
+            this.colNumero.Name = "colNumero";
             // 
             // colTipoCabina
             // 
             this.colTipoCabina.HeaderText = "TipoCabina";
             this.colTipoCabina.Name = "colTipoCabina";
             this.colTipoCabina.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // colId
+            // 
+            this.colId.HeaderText = "Id";
+            this.colId.Name = "colId";
+            this.colId.Visible = false;
             // 
             // FormAmCrucero
             // 
@@ -229,7 +237,8 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Button btCancelar;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPiso;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colCantidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colNumero;
         private System.Windows.Forms.DataGridViewComboBoxColumn colTipoCabina;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colId;
     }
 }

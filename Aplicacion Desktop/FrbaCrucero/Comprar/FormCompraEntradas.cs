@@ -11,6 +11,9 @@ using MiLibreria.Modelo;
 using MiLibreria;
 using System.Data.SqlClient;
 using System.Globalization;
+using FrbaCrucero.ABMCrucero;
+using System.Text.RegularExpressions;
+
 
 
 namespace FrbaCrucero.Compra_Entrada
@@ -30,293 +33,55 @@ namespace FrbaCrucero.Compra_Entrada
         public FormCompraEntradas(bool esAdm, String user) 
         {
             InitializeComponent();
+            CargarComboPuerto();
 
-            if (esAdm)
-            {
-                MessageBox.Show("El usuario Admin no puede comprar entradas");
-                this.Close();
-            }
-            else
-            {
 
                 DateTime fechaSistema = DataBase.ObtenerFechaSistema();
                 dtpDe.Value = fechaSistema;
-                int iduser = User.ObtenerIDUsuario(user);
-                this.idCliente = Client.ObtenerIDClienteUser(iduser);
 
-                //Cantidad de publicaciones por pagina
-                this.PageSize = 10;
-                // fill a data table
-                var t = new DataTable();
-                t = RubroFunc.ObtenerRubrosList();
-
-                // Bind the table to the list box
-                lb_rubro.DisplayMember = "rub_desc";
-                lb_rubro.ValueMember = "rub_id";
-                lb_rubro.DataSource = t;
-
-                ds = new DataSet();
-
-                DataTable dtRubros = new DataTable();
-                if (lb_rubro.SelectedItems.Count >= 0)
-                {
-                    for (int i = 0; i < lb_rubro.SelectedItems.Count; i++)
-                    {
-                        DataRowView drv = (DataRowView)lb_rubro.SelectedItems[i];
-                        Int32 rub_id = Convert.ToInt32(drv.Row["rub_id"]);
-                        DataColumn workColumn = dtRubros.Columns.Add("rub_id", typeof(Int32));
-                        DataRow workRow = dtRubros.NewRow();
-                        workRow["rub_id"] = rub_id;
-                        dtRubros.Rows.Add(workRow);
-                    }
-                }
-
-                ds = ABMPublicacion.ListarPublicacionesPublicadas(null, dtpDe.Value, dtpHasta.Value, dtRubros);
-
-                //Set the source table.
-                dtSource = ds.Tables[0];
-
-                // Set the start and max records. 
-                pageSize = this.PageSize;
-                maxRec = dtSource.Rows.Count;
-                PageCount = maxRec / pageSize;
-
-                //Adjust the page number if the last page contains a partial page.
-                if ((maxRec % pageSize) > 0)
-                {
-                    PageCount += 1;
-                }
-
-                // Initial seeings
-                currentPage = 1;
-                recNo = 0;
-
-                // Display the content of the current page.
-                LoadPage();
-            }
-        }
-
-        private void LoadPage()
-        {
-            int i;
-            int startRec;
-            int endRec;
-            DataTable dtTemp;
-
-            //Clone the source table to create a temporary table.
-            dtTemp = dtSource.Clone();
-
-            if (currentPage == PageCount)
-            {
-                endRec = maxRec;
-            }
-            else
-            {
-                endRec = pageSize * currentPage;
-            }
-            startRec = recNo;
-
-            if (dtSource != null)
-            {
-                if (dtSource.Rows.Count > 0)
-                {
-                    //Copy rows from the source table to fill the temporary table.
-                    for (i = startRec; i < endRec; i++)
-                    {
-                        dtTemp.ImportRow(dtSource.Rows[i]);
-                        recNo += 1;
-                    }
-                    dgv_publicacion.DataSource = dtTemp;
-
-                }
-                else
-                {
-                    currentPage = 0;
-                    PageCount = 0;
-                    dgv_publicacion.Refresh();
-                    dgv_publicacion.DataSource = dtTemp;
-                    if (ds.Tables[0].Rows.Count != 0)
-                        dgv_publicacion.Columns["id"].Visible = false;
-                }
-            }
-            else
-            {
-                currentPage = 0;
-                PageCount = 0;
-                dgv_publicacion.Refresh();
-                dgv_publicacion.DataSource = dtTemp;
-                if (ds.Tables[0].Rows.Count != 0)
-                    dgv_publicacion.Columns["id"].Visible = false;
-            }
             
-            DisplayPageInfo();
         }
 
-        private void DisplayPageInfo()
+        private void CargarComboPuerto()
         {
-            txtDisplayPageNo.Text = "Página " + currentPage.ToString() + "/ " + PageCount.ToString();
-        }
+            SqlDataReader reader = ViajeFunc.ObtenerPuerto();
 
-        private bool CheckFillButton()
-        {
-            // Check if the user clicks the "Fill Grid" button.
-            if (pageSize == 0)
+            if (reader.HasRows)
             {
-                MessageBox.Show("Set the Page Size, and then click the Fill Grid button!");
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-
-        private void btnFillGrid_Click(object sender, EventArgs e)
-        {
-            //Validar al menos 1 rubro
-            if (lb_rubro.SelectedItems.Count == 0)
-            {
-                MessageBox.Show("Seleccione al menos un rubro");
-            }
-            else if (DateTime.Compare(dtpDe.Value, dtpHasta.Value) > 0)   
-                MessageBox.Show("La fecha de no puede ser mayor a la fecha hasta");
-            else
-            {
-                //Nuevos datos segun filtros
-                DataRow workRow;
-                DataTable dtRubros = new DataTable();
-                DataColumn workColumn = new DataColumn();
-                workColumn.DataType = System.Type.GetType("System.Int32");
-                workColumn.ColumnName = "rub_id";
-                dtRubros.Columns.Add(workColumn);
-                if (lb_rubro.SelectedItems.Count >= 0)
+                while (reader.Read())
                 {
-                    for (int i = 0; i < lb_rubro.SelectedItems.Count; i++)
-                    {
-                        DataRowView drv = (DataRowView)lb_rubro.SelectedItems[i];
-                        Int32 rub_id = Convert.ToInt32(drv.Row["rub_id"]);
-                        workRow = dtRubros.NewRow();
-                        workRow["rub_id"] = rub_id;
-                        dtRubros.Rows.Add(workRow);
-                    }
-                }
-                
-                ds = ABMPublicacion.ListarPublicacionesPublicadas(txt_desc.Text, dtpDe.Value, dtpHasta.Value, dtRubros);
-
-                dtSource = ds.Tables[0];
-
-                // Set the start and max records. 
-                pageSize = this.PageSize;
-                maxRec = dtSource.Rows.Count;
-                PageCount = maxRec / pageSize;
-
-                //Adjust the page number if the last page contains a partial page.
-                if ((maxRec % pageSize) > 0)
-                {
-                    PageCount += 1;
-                }
-
-                // Initial seeings
-                currentPage = 1;
-                recNo = 0;
-
-                // Display the content of the current page.
-                LoadPage();
-            }
-        }
-
-        private void btnFirstPage_Click(object sender, EventArgs e)
-        {
-            if (CheckFillButton() == false)
-            {
-                return;
-            }
-
-            //Check if you are already at the first page.
-            if (currentPage == 1)
-            {
-                MessageBox.Show("Es la primera página");
-                return;
-            }
-
-            currentPage = 1;
-            recNo = 0;
-            LoadPage();
-        }
-
-        private void btnNextPage_Click(object sender, EventArgs e)
-        {
-            //If the user did not click the "Fill Grid" button, then return.
-            if (CheckFillButton() == false)
-            {
-                return;
-            }
-
-            //Check if the user clicks the "Fill Grid" button.
-            if (pageSize == 0)
-            {
-                MessageBox.Show("Set the Page Size, and then click the Fill Grid button!");
-                return;
-            }
-
-            currentPage += 1;
-            if (currentPage > PageCount)
-            {
-                currentPage = PageCount;
-                //Check if you are already at the last page.
-                if (recNo == maxRec)
-                {
-                    MessageBox.Show("Es la última página");
-                    return;
+                    Puerto puerto = new Puerto();
+                    puerto.id = Convert.ToInt32(reader.GetDecimal(0));
+                    puerto.desc = reader.GetString(1);
+                    ComboboxItem item = new ComboboxItem();
+                    item.Text = puerto.desc;
+                    item.Value = puerto;
+                    cmb_pue_desde.Items.Add(item);
+                    cmb_pue_hasta.Items.Add(item);
                 }
             }
-            LoadPage();
+            reader.Close();
         }
 
-        private void btnPreviousPage_Click(object sender, EventArgs e)
+        private void bt_buscar_Click(object sender, EventArgs e)
         {
-            if (CheckFillButton() == false)
+            ComboboxItem item = new ComboboxItem();
+            Puerto puertoDesde = new Puerto();
+            Puerto puertoHasta = new Puerto();
+            if (cmb_pue_desde.SelectedItem != null)
             {
-                return;
+                item = (ComboboxItem)cmb_pue_desde.SelectedItem;
+                puertoDesde = (Puerto)item.Value;
+            }
+            if (cmb_pue_hasta.SelectedItem != null)
+            {
+                item = (ComboboxItem)cmb_pue_hasta.SelectedItem;
+                puertoHasta = (Puerto)item.Value;
             }
 
-            if (currentPage == PageCount)
-            {
-                recNo = pageSize * (currentPage - 2);
-            }
 
-            currentPage -= 1;
-            //Check if you are already at the first page.
-            if (currentPage < 1)
-            {
-                MessageBox.Show("Es la primera página");
-                currentPage = 1;
-                return;
-            }
-            else
-            {
-                recNo = pageSize * (currentPage - 1);
-            }
-            LoadPage();
-        }
-
-        private void btnLastPage_Click(object sender, EventArgs e)
-        {
-            if (CheckFillButton() == false)
-            {
-                return;
-            }
-
-            //Check if you are already at the last page.
-            if (recNo == maxRec)
-            {
-                MessageBox.Show("Es la última página");
-                return;
-            }
-            currentPage = PageCount;
-            recNo = pageSize * (currentPage - 1);
-            LoadPage();
-        }
+            dgv_publicacion.DataSource = ViajeFunc.ListarViaje(puertoDesde.id, puertoHasta.id,dtpDe.Value,dtpHasta.Value).Tables[0];
+        }     
 
         private void btUbicDisponibles_Click(object sender, EventArgs e)
         {          
@@ -334,46 +99,8 @@ namespace FrbaCrucero.Compra_Entrada
                 this.Hide();
                 fr.ShowDialog();
 
-                //Renueva el listado
-                DataRow workRow;
-                DataTable dtRubros = new DataTable();
-                DataColumn workColumn = new DataColumn();
-                workColumn.DataType = System.Type.GetType("System.Int32");
-                workColumn.ColumnName = "rub_id";
-                dtRubros.Columns.Add(workColumn);
-                if (lb_rubro.SelectedItems.Count >= 0)
-                {
-                    for (int i = 0; i < lb_rubro.SelectedItems.Count; i++)
-                    {
-                        DataRowView drv = (DataRowView)lb_rubro.SelectedItems[i];
-                        Int32 rub_id = Convert.ToInt32(drv.Row["rub_id"]);
-                        workRow = dtRubros.NewRow();
-                        workRow["rub_id"] = rub_id;
-                        dtRubros.Rows.Add(workRow);
-                    }
-                }
 
-                ds = ABMPublicacion.ListarPublicacionesPublicadas(txt_desc.Text, dtpDe.Value, dtpHasta.Value, dtRubros);
-
-                dtSource = ds.Tables[0];
-                // Set the start and max records. 
-                pageSize = this.PageSize;
-                maxRec = dtSource.Rows.Count;
-                PageCount = maxRec / pageSize;
-
-                //Adjust the page number if the last page contains a partial page.
-                if ((maxRec % pageSize) > 0)
-                {
-                    PageCount += 1;
-                }
-
-                // Initial seeings
-                currentPage = 1;
-                recNo = 0;
-
-                // Display the content of the current page.
-                LoadPage();
-
+                //ds = ABMPublicacion.ListarPublicacionesPublicadas(txt_desc.Text, dtpDe.Value, dtpHasta.Value, dtRubros);
                 
                 this.Show();       
             }
@@ -582,7 +309,9 @@ namespace FrbaCrucero.Compra_Entrada
                 MessageBox.Show(String.Format("El mínimo valor que puede ingresarse en Fecha hasta: es la Fecha Sistema {0}", fechaSistema.ToString()));
                 dtpHasta.Value = fechaSistema;
             }
-        }     
+        }
+
+        
 
 
     }

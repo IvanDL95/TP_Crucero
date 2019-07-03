@@ -12,7 +12,7 @@ using System.Data.SqlClient;
 using MiLibreria;
 using FrbaCrucero.Generar_Rendicion_Comisiones;
 using FrbaCrucero.Listados;
-using FrbaCrucero.AbmCrucero;
+using FrbaCrucero.ABMCrucero;
 
 namespace FrbaCrucero
 {
@@ -268,7 +268,7 @@ namespace FrbaCrucero
 
         private void aBMPuertoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AbmCrucero.FormCrucero fr = new AbmCrucero.FormCrucero();
+            ABMCrucero.FormCrucero fr = new ABMCrucero.FormCrucero();
             this.Hide();
             fr.ShowDialog();
             this.Show();

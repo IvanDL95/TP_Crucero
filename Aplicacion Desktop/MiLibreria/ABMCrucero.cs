@@ -59,6 +59,175 @@ namespace MiLibreria
             return ds;
         }
 
+        public static DataSet ListarCrucerosViaje(DateTime fechasalida, DateTime fechallegada)
+        {
+            List<SqlParameter> parametros = new List<SqlParameter>();
+
+            SqlParameter parametro;
+
+            parametro = new SqlParameter("@via_fecha_salida", SqlDbType.DateTime);
+            parametro.Value = fechasalida;
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@via_fecha_llegada", SqlDbType.DateTime);
+            parametro.Value = fechallegada;
+            parametros.Add(parametro);
+
+            DataSet ds = DataBase.ObtenerUnDataSet("TROLLS.LISTAR_CRUCEROS_VIAJE", DataBase.Tipos.StoredProcedure, parametros);
+
+            return ds;
+        }
+
+        public static DataSet ListarCrucerosReemplazo(String cru_id, DateTime fechabaja)
+        {
+            List<SqlParameter> parametros = new List<SqlParameter>();
+
+            SqlParameter parametro;
+
+            parametro = new SqlParameter("@cru_id_original", SqlDbType.VarChar, 30);
+            parametro.Value = cru_id;
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@cru_fecha_baja_definitiva", SqlDbType.DateTime);
+            parametro.Value = fechabaja;
+            parametros.Add(parametro);
+
+            DataSet ds = DataBase.ObtenerUnDataSet("TROLLS.LISTAR_CRUCEROS_REEMPLAZO", DataBase.Tipos.StoredProcedure, parametros);
+
+            return ds;
+        }
+
+        public static void CancelarViajes(String cru_id, String motivo, DateTime fechabaja, DateTime fechareinicio)
+        {
+            List<SqlParameter> parametros = new List<SqlParameter>();
+
+            SqlParameter parametro;
+
+            parametro = new SqlParameter("@cru_id", SqlDbType.VarChar, 30);
+            parametro.Value = cru_id;
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@cru_fecha_baja_fuera_servicio", SqlDbType.DateTime);
+            parametro.Value = fechabaja;
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@cru_fecha_reinicio_servicio", SqlDbType.DateTime);
+            parametro.Value = fechareinicio;
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@can_motivo", SqlDbType.VarChar, 100);
+            parametro.Value = motivo;
+            parametros.Add(parametro);
+
+            DataBase.EscribirEnLaBase("TROLLS.CANCELAR_VIAJES", DataBase.Tipos.StoredProcedure, parametros);
+
+        }
+
+        public static void CruceroBajaServicio(String cru_id, DateTime fechabaja, DateTime fechareinicio)
+        {
+            List<SqlParameter> parametros = new List<SqlParameter>();
+
+            SqlParameter parametro;
+
+            parametro = new SqlParameter("@cru_id", SqlDbType.VarChar, 30);
+            parametro.Value = cru_id;
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@cru_fecha_baja_fuera_servicio", SqlDbType.DateTime);
+            parametro.Value = fechabaja;
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@cru_fecha_reinicio_servicio", SqlDbType.DateTime);
+            parametro.Value = fechareinicio;
+            parametros.Add(parametro);
+
+            DataBase.EscribirEnLaBase("TROLLS.CRUCERO_BAJA_SERVICIO", DataBase.Tipos.StoredProcedure, parametros);
+
+        }
+
+        public static void CruceroBajaDefinitiva(String cru_id, DateTime fechabaja)
+        {
+            List<SqlParameter> parametros = new List<SqlParameter>();
+
+            SqlParameter parametro;
+
+            parametro = new SqlParameter("@cru_id", SqlDbType.VarChar, 30);
+            parametro.Value = cru_id;
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@cru_fecha_baja_definitiva", SqlDbType.DateTime);
+            parametro.Value = fechabaja;
+            parametros.Add(parametro);
+
+            DataBase.EscribirEnLaBase("TROLLS.CRUCERO_BAJA_DEFINITIVA", DataBase.Tipos.StoredProcedure, parametros);
+
+        }
+
+        public static void CancelarViajesBajaDefinitiva(String cru_id, DateTime fechabaja, String motivo)
+        {
+            List<SqlParameter> parametros = new List<SqlParameter>();
+
+            SqlParameter parametro;
+
+            parametro = new SqlParameter("@cru_id", SqlDbType.VarChar, 30);
+            parametro.Value = cru_id;
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@cru_fecha_baja_definitiva", SqlDbType.DateTime);
+            parametro.Value = fechabaja;
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@can_motivo", SqlDbType.VarChar, 100);
+            parametro.Value = motivo;
+            parametros.Add(parametro);
+
+            DataBase.EscribirEnLaBase("TROLLS.CANCELAR_VIAJES_BAJA_DEFINITIVA", DataBase.Tipos.StoredProcedure, parametros);
+
+        }
+
+        public static void ActualizarViajeReemplazo(String cru_id_original, String cru_id_reemplazo, DateTime fechabaja)
+        {
+            List<SqlParameter> parametros = new List<SqlParameter>();
+
+            SqlParameter parametro;
+
+            parametro = new SqlParameter("@cru_id_original", SqlDbType.VarChar, 30);
+            parametro.Value = cru_id_original;
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@cru_fecha_baja_definitiva", SqlDbType.DateTime);
+            parametro.Value = fechabaja;
+            parametros.Add(parametro);
+
+            DataBase.EscribirEnLaBase("TROLLS.ACTUALIZAR_VIAJES_REEMPLAZO", DataBase.Tipos.StoredProcedure, parametros);
+
+        }
+
+        public static void ReprogramarViajes(String cru_id, DateTime fechabaja, int dias, DateTime fechareinicio)
+        {
+            List<SqlParameter> parametros = new List<SqlParameter>();
+
+            SqlParameter parametro;
+
+            parametro = new SqlParameter("@cru_id", SqlDbType.VarChar, 30);
+            parametro.Value = cru_id;
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@cru_fecha_baja_fuera_servicio", SqlDbType.DateTime);
+            parametro.Value = fechabaja;
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@cru_fecha_reinicio_servicio", SqlDbType.DateTime);
+            parametro.Value = fechareinicio;
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@dias", SqlDbType.Int);
+            parametro.Value = dias;
+            parametros.Add(parametro);
+
+            DataBase.EscribirEnLaBase("TROLLS.REPROGRAMAR_VIAJES", DataBase.Tipos.StoredProcedure, parametros);
+        }
+
         public static DataSet ListarPublicacionesPublicadas(String desc, DateTime pub_fecha_espec_de, DateTime pub_fecha_espec_hasta, DataTable dt)
         {
             List<SqlParameter> parametros = new List<SqlParameter>();
@@ -167,6 +336,35 @@ namespace MiLibreria
             return resultado;
         }
 
+        public static bool ValidarViajesPendientes(String id_crucero, DateTime fechabaja)
+        {
+            bool resultado;
+            List<SqlParameter> parametros = new List<SqlParameter>();
+            SqlParameter parametro;
+            parametro = new SqlParameter("@cru_id", SqlDbType.Char, 30);
+            parametro.Value = id_crucero;
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@cru_fecha_baja", SqlDbType.DateTime, 100);
+            parametro.Value = fechabaja;
+            parametros.Add(parametro);
+
+            SqlDataReader reader = DataBase.ObtenerUnDataReader("TROLLS.VALIDAR_VIAJES_PENDIENTES", DataBase.Tipos.StoredProcedure, parametros);
+
+            if (reader.HasRows)
+            {
+                resultado = true;
+            }
+            else
+            {
+                resultado = false;
+            }
+            reader.Close();
+
+
+            return resultado;
+        }
+
         public static void CrearCrucero(Crucero crucero)
         {
             List<SqlParameter> parametros = PrepararParametros(crucero);
@@ -177,29 +375,6 @@ namespace MiLibreria
         {
             List<SqlParameter> parametros = PrepararParametrosModificar(crucero);
             DataBase.EscribirEnLaBase("TROLLS.MODIFICAR_CRUCERO", DataBase.Tipos.StoredProcedure, parametros);
-        }
-
-        public static void ModificarEstadoPublicacion(int id_publicacion, string pub_estado, DateTime fechaPub)
-        {
-            List<SqlParameter> parametros = new List<SqlParameter>();
-            SqlParameter parametro;
-            parametro = new SqlParameter("@pub_id", SqlDbType.Int, 100);
-            parametro.Value = id_publicacion;
-            parametros.Add(parametro);
-            parametro = new SqlParameter("@pub_estado", SqlDbType.VarChar, 10);
-            parametro.Value = pub_estado;
-            parametros.Add(parametro);
-            parametro = new SqlParameter("@pub_fecha_pub", SqlDbType.DateTime);
-            if (string.Compare(pub_estado, "Publicada") == 0)
-            {
-                DateTime fechaSistema = DataBase.ObtenerFechaSistema();
-                parametro.Value = fechaSistema;
-            }
-            else
-                parametro.Value = fechaPub;
-            parametros.Add(parametro);
-            DataBase.EscribirEnLaBase("TROLLS.MODIFICAR_ESTADO_PUBLICACION", DataBase.Tipos.StoredProcedure, parametros);
-
         }
 
         private static List<SqlParameter> PrepararParametrosModificar(Crucero crucero)

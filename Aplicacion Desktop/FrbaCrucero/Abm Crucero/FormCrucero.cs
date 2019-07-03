@@ -13,7 +13,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 using FrbaCrucero.ABMCrucero;
 
-namespace FrbaCrucero.AbmCrucero
+namespace FrbaCrucero.ABMCrucero
 {
     public partial class FormCrucero : Form
     {
@@ -114,24 +114,16 @@ namespace FrbaCrucero.AbmCrucero
                                                                                 , txt_id.Text).Tables[0];
         }
 
-        private bool ConfirmarBaja()
+        private bool ConfirmarBajaServicio()
         {
-            DialogResult result = MessageBox.Show("¿Realmente desea eliminar a la Empresa seleccionada?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show("¿Realmente desea dar de baja de servicio al crucero seleccionada?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             return result == DialogResult.Yes;
         }
 
-        private void btHabilitar_Click(object sender, EventArgs e)
+        private bool ConfirmarBajaDefinitiva()
         {
-            if (Convert.ToBoolean(dgv_listado.CurrentRow.Cells[4].Value))
-                MessageBox.Show("La empresa ya está habilitada");
-            else
-            {
-                Int32 IDEmpresa = Convert.ToInt32(dgv_listado.CurrentRow.Cells[0].Value);
-                DataBase.EscribirEnLaBase("UPDATE TROLLS.EMPRESA SET EMP_ESTADO = 1 WHERE EMP_ID = " + IDEmpresa.ToString());
-                DataBase.EscribirEnLaBase("UPDATE TROLLS.USUARIO SET USU_ESTADO = 1 WHERE USU_ID = (select emp_usu_id from TROLLS.EMPRESA where EMP_ID = " + IDEmpresa.ToString() + ")");
-                MessageBox.Show("La Empresa ha sido habilitada correctamente.");
-                IniciarFormulario();
-            }
+            DialogResult result = MessageBox.Show("¿Realmente desea dar de baja definitivamente al crucero seleccionada?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            return result == DialogResult.Yes;
         }
 
         private void btNuevo_Click(object sender, EventArgs e)
@@ -155,21 +147,36 @@ namespace FrbaCrucero.AbmCrucero
             IniciarFormulario();
         }
 
-        private void btEliminar_Click(object sender, EventArgs e)
+        private void btBajaServicio_Click(object sender, EventArgs e)
         {
-            if (!Convert.ToBoolean(dgv_listado.CurrentRow.Cells[4].Value))
-                MessageBox.Show("La empresa ya está eliminada");
+            if (Convert.ToBoolean(dgv_listado.CurrentRow.Cells[5].Value))
+                MessageBox.Show("El crucero ya está dado de baja de servicio");
+            else if (Convert.ToBoolean(dgv_listado.CurrentRow.Cells[6].Value))
+                    MessageBox.Show("El crucero ya está dado de baja definitiva. No se puede dar de baja de servicio");
             else
             {
-                if (ConfirmarBaja())
-                {
-                    Int32 IDEmpresa = Convert.ToInt32(dgv_listado.CurrentRow.Cells[0].Value);
-                    DataBase.EscribirEnLaBase("UPDATE TROLLS.EMPRESA SET EMP_ESTADO = 0 WHERE EMP_ID = " + IDEmpresa.ToString());
-                    DataBase.EscribirEnLaBase("UPDATE TROLLS.USUARIO SET USU_ESTADO = 0 WHERE USU_ID = (select emp_usu_id from TROLLS.EMPRESA where EMP_ID = " + IDEmpresa.ToString() + ")");
-                    MessageBox.Show("La Empresa ha sido dado de baja correctamente.");
-                    IniciarFormulario();
-                }
+                String id = Convert.ToString(dgv_listado.CurrentRow.Cells[0].Value);
+                FormBajaServicioCrucero form = new FormBajaServicioCrucero(id);
+                this.Hide();
+                form.ShowDialog();
+                this.Show();                       
             }
+            IniciarFormulario();
+        }
+
+        private void btBajaDefinitiva_Click(object sender, EventArgs e)
+        {
+            if (Convert.ToBoolean(dgv_listado.CurrentRow.Cells[6].Value))
+                MessageBox.Show("El crucero ya está dado de baja definitiva. No se puede dar de baja definitiva nuevamente");
+            else
+            {
+                String id = Convert.ToString(dgv_listado.CurrentRow.Cells[0].Value);
+                FormBajaDefinitivaCrucero form = new FormBajaDefinitivaCrucero(id);
+                this.Hide();
+                form.ShowDialog();
+                this.Show();
+            }
+            IniciarFormulario();
         }
 
     }

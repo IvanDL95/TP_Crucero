@@ -54,21 +54,22 @@ namespace MiLibreria
             return reader;
         }
 
-        /*public static DataTable ObtenerUbicacionesSinCompra(Int32 id_publicacion, Int32 idTipo)
+        public static void CrearCabinaReemplazo(String idOrginal, String idReemplazo)
         {
             List<SqlParameter> parametros = new List<SqlParameter>();
+
             SqlParameter parametro;
-            parametro = new SqlParameter("@ID", SqlDbType.Int, 100);
-            parametro.Value = id_publicacion;
-            parametros.Add(parametro);
-            parametro = new SqlParameter("@ubi_tipo", SqlDbType.Int, 100);
-            parametro.Value = idTipo;
+
+            parametro = new SqlParameter("@cru_id_orginal", SqlDbType.Char);
+            parametro.Value = idOrginal;
             parametros.Add(parametro);
 
-            DataSet ds = DataBase.ObtenerUnDataSet("TROLLS.OBTENER_UBICACIONES_SIN_COMPRA", DataBase.Tipos.StoredProcedure, parametros);
+            parametro = new SqlParameter("@cru_id_reemplazo", SqlDbType.Char);
+            parametro.Value = idReemplazo;
+            parametros.Add(parametro);
 
-            return ds.Tables[0];
-        }*/
+            DataBase.EscribirEnLaBase("TROLLS.CREAR_CABINA_CRUCERO_REEMPLAZO", DataBase.Tipos.StoredProcedure, parametros);
+        }
 
         public static void CrearCabinaCrucero(Cabinas_Crucero cab_cru)
         {
@@ -79,7 +80,7 @@ namespace MiLibreria
 
         public static void ModificarCabinaCrucero(Cabinas_Crucero cab_cru)
         {
-            List<SqlParameter> parametros = PrepararParametros(cab_cru);
+            List<SqlParameter> parametros = PrepararParametrosModificar(cab_cru);
             DataBase.EscribirEnLaBase("TROLLS.MODIFICAR_CABINA_CRUCERO", DataBase.Tipos.StoredProcedure, parametros);
 
         }
@@ -99,7 +100,33 @@ namespace MiLibreria
             parametros.Add(parametro);
 
             parametro = new SqlParameter("@cc_cantidad", SqlDbType.Decimal);
-            parametro.Value = cab_cru.cantidad;
+            parametro.Value = cab_cru.numero;
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@cc_tcab_id", SqlDbType.Int);
+            parametro.Value = cab_cru.tcab_id;
+            parametros.Add(parametro);
+
+            return parametros;
+
+        }
+
+        private static List<SqlParameter> PrepararParametrosModificar(Cabinas_Crucero cab_cru)
+        {
+            List<SqlParameter> parametros = new List<SqlParameter>();
+
+            SqlParameter parametro;
+
+            parametro = new SqlParameter("@cc_id", SqlDbType.Char);
+            parametro.Value = cab_cru.id;
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@cc_piso", SqlDbType.Int);
+            parametro.Value = cab_cru.piso;
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@cc_cantidad", SqlDbType.Decimal);
+            parametro.Value = cab_cru.numero;
             parametros.Add(parametro);
 
             parametro = new SqlParameter("@cc_tcab_id", SqlDbType.Int);

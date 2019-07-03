@@ -1,4 +1,4 @@
-﻿using FrbaCrucero.AbmCrucero;
+﻿using FrbaCrucero.ABMCrucero;
 using MiLibreria;
 using MiLibreria.Modelo;
 using System;
@@ -118,7 +118,7 @@ namespace FrbaCrucero.ABMCrucero
 
         private void btCancelar_Click(object sender, EventArgs e)
         {
-           // ejecutar("Publicada");
+            this.Close();
         }
 
 
@@ -242,7 +242,7 @@ namespace FrbaCrucero.ABMCrucero
                         e.Cancel = true;
                     }
                 }
-                if (columnName.Equals("colCantidad"))
+                if (columnName.Equals("colNumero"))
                 {
                     // Check if the input is empty
                     if (string.IsNullOrEmpty(e.FormattedValue.ToString()))
@@ -257,30 +257,6 @@ namespace FrbaCrucero.ABMCrucero
         {
             this.dgv_cabinas.Rows[e.RowIndex].ErrorText = string.Empty;
         }
-
-        /*private void dgv_fecha_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
-        {
-            e.Control.KeyPress -= new KeyPressEventHandler(dgv_fecha_Column1_KeyPress);
-            e.Control.KeyPress -= new KeyPressEventHandler(dgv_fecha_Column2_KeyPress);
-            if (dgv_fecha.CurrentCell.ColumnIndex == 0)
-            {
-                TextBox tb = e.Control as TextBox;
-                if (tb != null)
-                {
-                    tb.MaxLength = 10;
-                    tb.KeyPress += new KeyPressEventHandler(dgv_fecha_Column1_KeyPress);
-                }
-            }
-            if (dgv_fecha.CurrentCell.ColumnIndex == 1)
-            {
-                TextBox tb = e.Control as TextBox;
-                if (tb != null)
-                {
-                    tb.MaxLength = 5;
-                    tb.KeyPress += new KeyPressEventHandler(dgv_fecha_Column2_KeyPress);
-                }
-            }
-        }*/
 
         private void dgv_fecha_Column1_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -298,59 +274,6 @@ namespace FrbaCrucero.ABMCrucero
             }
         }
 
-        /*private void dgv_fecha_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
-        {
-            string columnName = this.dgv_fecha.Columns[e.ColumnIndex].Name;
-
-
-            if (columnName.Equals("colFecha"))
-            {
-                // Check if the input is empty
-                if (string.IsNullOrEmpty(e.FormattedValue.ToString()))
-                {
-                    this.dgv_fecha.Rows[e.RowIndex].ErrorText = "La columna Fecha está vacía";
-                    e.Cancel = true;
-                }
-                else
-                {
-                    // Check if the input format is correct
-                    Regex datePattern = new Regex("^[0-9]{2}([/][0-9]{2}([/][0-9]{4}))?$");
-                    if (!datePattern.IsMatch(e.FormattedValue.ToString()))
-                    {
-                        this.dgv_fecha.Rows[e.RowIndex].ErrorText = "Formato incorrecto: \"DD/MM/AAAA\"";
-                        e.Cancel = true;
-                    }
-                }
-            }
-
-            // Check for the column to validate
-            if (columnName.Equals("colHora"))
-            {
-                // Check if the input is empty
-                if (string.IsNullOrEmpty(e.FormattedValue.ToString()))
-                {
-                    this.dgv_fecha.Rows[e.RowIndex].ErrorText = "La columna Hora está vacía";
-                    e.Cancel = true;
-                }
-                else
-                {
-                    // Check if the input format is correct
-                    Regex datePattern = new Regex("^[0-9]{2}([:][0-9]{2})?$");
-                    if (!datePattern.IsMatch(e.FormattedValue.ToString()))
-                    {
-                        this.dgv_fecha.Rows[e.RowIndex].ErrorText = "Formato incorrecto: \"HH:MM\"";
-                        e.Cancel = true;
-                    }
-                }
-            }
-        }*/
-
-        /*private void dgv_fecha_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        {
-            this.dgv_fecha.Rows[e.RowIndex].ErrorText = string.Empty;
-        }*/
-
-
         private void dgv_ubicacion_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             
@@ -362,11 +285,11 @@ namespace FrbaCrucero.ABMCrucero
             RegexUtilities util = new RegexUtilities();
             if (ValidarCamposVacios())
                 MessageBox.Show("Debe completar todos los campos");
-            else if (ValidarTipoUbicacionVacio())
+            else if (ValidarTipoCabinaVacio())
             {
             }
-            else if (ValidaPisoTipo())
-                MessageBox.Show("Piso y tipo de cabina repetido");
+            else if (ValidaPisoNumeroTipo())
+                MessageBox.Show("Piso, numero y tipo de cabina repetido");
             else
             {
                 if (String.IsNullOrEmpty(this.IDCrucero))
@@ -398,7 +321,7 @@ namespace FrbaCrucero.ABMCrucero
                             Cabinas_Crucero cabinaCrucero = new Cabinas_Crucero();
                             cabinaCrucero.cru_id = txt_id.Text.Trim();
                             cabinaCrucero.piso = Convert.ToInt32(dgv_cabinas.Rows[l].Cells["colPiso"].Value);
-                            cabinaCrucero.cantidad = Convert.ToInt32(dgv_cabinas.Rows[l].Cells["colCantidad"].Value);
+                            cabinaCrucero.numero = Convert.ToInt32(dgv_cabinas.Rows[l].Cells["colNumero"].Value);
                             cabinaCrucero.tcab_id = Cabina_crucerofunc.ObtenerIDTipo(Convert.ToString(dgv_cabinas.Rows[l].Cells["colTipoCabina"].Value));
                             Cabina_crucerofunc.CrearCabinaCrucero(cabinaCrucero);
                         }
@@ -424,15 +347,16 @@ namespace FrbaCrucero.ABMCrucero
                     crucero.id = txt_id.Text.Trim();
 
                     CruceroFunc.ModificarCrucero(crucero);
-                    //Cantidad de cabinas del crucero
 
+                    //Cabinas del crucero
                     for (int l = 0; l < this.cantCabinas; l++)
                     {
                         Cabinas_Crucero cabinaCrucero = new Cabinas_Crucero();
                         cabinaCrucero.cru_id = txt_id.Text.Trim();
                         cabinaCrucero.piso = Convert.ToInt32(dgv_cabinas.Rows[l].Cells["colPiso"].Value);
-                        cabinaCrucero.cantidad = Convert.ToInt32(dgv_cabinas.Rows[l].Cells["colCantidad"].Value);
+                        cabinaCrucero.numero = Convert.ToInt32(dgv_cabinas.Rows[l].Cells["colNumero"].Value);
                         cabinaCrucero.tcab_id = Cabina_crucerofunc.ObtenerIDTipo(Convert.ToString(dgv_cabinas.Rows[l].Cells["colTipoCabina"].Value));
+                        cabinaCrucero.id = Convert.ToInt32(dgv_cabinas.Rows[l].Cells["ColId"].Value);
                         Cabina_crucerofunc.ModificarCabinaCrucero(cabinaCrucero);
 
                     }
@@ -441,12 +365,10 @@ namespace FrbaCrucero.ABMCrucero
                         Cabinas_Crucero cabinaCrucero = new Cabinas_Crucero();
                         cabinaCrucero.cru_id = txt_id.Text.Trim();
                         cabinaCrucero.piso = Convert.ToInt32(dgv_cabinas.Rows[l2].Cells["colPiso"].Value);
-                        cabinaCrucero.cantidad = Convert.ToInt32(dgv_cabinas.Rows[l2].Cells["colCantidad"].Value);
+                        cabinaCrucero.numero = Convert.ToInt32(dgv_cabinas.Rows[l2].Cells["colNumero"].Value);
                         cabinaCrucero.tcab_id = Cabina_crucerofunc.ObtenerIDTipo(Convert.ToString(dgv_cabinas.Rows[l2].Cells["colTipoCabina"].Value));
                         Cabina_crucerofunc.ModificarCabinaCrucero(cabinaCrucero);
                     }
-
-
 
                     MessageBox.Show("Crucero modificado");
                     this.Close();
@@ -454,7 +376,7 @@ namespace FrbaCrucero.ABMCrucero
             }
         }
 
-        private bool ValidarTipoUbicacionVacio()
+        private bool ValidarTipoCabinaVacio()
         {
 
             if (dgv_cabinas.Rows.Count < 2)
@@ -467,7 +389,7 @@ namespace FrbaCrucero.ABMCrucero
                 for (int j = 0; j < this.dgv_cabinas.Rows.Count - 1; j++)
                 {
                     if (string.IsNullOrEmpty(Convert.ToString(dgv_cabinas.Rows[j].Cells["colPiso"].Value))
-                        || string.IsNullOrEmpty(Convert.ToString(dgv_cabinas.Rows[j].Cells["colCantidad"].Value))
+                        || string.IsNullOrEmpty(Convert.ToString(dgv_cabinas.Rows[j].Cells["colNumero"].Value))
                         || string.IsNullOrEmpty(Convert.ToString(dgv_cabinas.Rows[j].Cells["colTipoCabina"].Value)))
                     {
                         MessageBox.Show("Debe completar todos los campos de la cantidad de cabinas");
@@ -489,17 +411,19 @@ namespace FrbaCrucero.ABMCrucero
 
 
 
-        private bool ValidaPisoTipo()
+        private bool ValidaPisoNumeroTipo()
         {
             //Busca Piso y Tipo repetido
 
             for (int j = 0; j < this.dgv_cabinas.Rows.Count - 1; j++)
             {
                 String piso;
+                String numero;
                 String tipo;
                 piso = Convert.ToString(dgv_cabinas.Rows[j].Cells["colPiso"].Value);
+                numero = Convert.ToString(dgv_cabinas.Rows[j].Cells["colNumero"].Value);
                 tipo = Convert.ToString(dgv_cabinas.Rows[j].Cells["colTipoCabina"].Value);
-                if (buscarPisoTipo(piso, tipo, j))
+                if (buscarPisoNumeroTipo(piso, numero, tipo, j))
                     return true;
             }
             
@@ -507,17 +431,19 @@ namespace FrbaCrucero.ABMCrucero
         }
 
         //Busca Piso y Tipo repetido
-        private bool buscarPisoTipo(String piso, String tipo, int numFila)
+        private bool buscarPisoNumeroTipo(String piso,String numero, String tipo, int numFila)
         {
             for (int j = 0; j < this.dgv_cabinas.Rows.Count - 1; j++)
             {
                 if (j != numFila)
                 {
                     String pisoBusca;
+                    String numeroBusca;
                     String tipoBusca;
                     pisoBusca = Convert.ToString(dgv_cabinas.Rows[j].Cells["colPiso"].Value);
-                    tipoBusca = Convert.ToString(dgv_cabinas.Rows[j].Cells["colTipoUbicacion"].Value);
-                    if (String.Equals(piso, pisoBusca) && String.Equals(tipo, tipoBusca))
+                    numeroBusca = Convert.ToString(dgv_cabinas.Rows[j].Cells["colNumero"].Value);
+                    tipoBusca = Convert.ToString(dgv_cabinas.Rows[j].Cells["colTipoCabina"].Value);
+                    if (String.Equals(piso, pisoBusca) && String.Equals(numero, numeroBusca) && String.Equals(tipo, tipoBusca))
                     {                  
                         return true;
                     }

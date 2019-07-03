@@ -1,4 +1,4 @@
-﻿namespace FrbaCrucero.AbmCrucero
+﻿namespace FrbaCrucero.ABMCrucero
 {
     partial class FormAMEmpresa
     {

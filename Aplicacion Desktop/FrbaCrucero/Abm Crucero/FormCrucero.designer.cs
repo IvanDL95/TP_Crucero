@@ -1,4 +1,4 @@
-﻿namespace FrbaCrucero.AbmCrucero
+﻿namespace FrbaCrucero.ABMCrucero
 {
     partial class FormCrucero
     {
@@ -42,11 +42,11 @@
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.btn_limpiar = new System.Windows.Forms.Button();
             this.btn_buscar = new System.Windows.Forms.Button();
-            this.btHabilitar = new System.Windows.Forms.Button();
-            this.btEliminar = new System.Windows.Forms.Button();
+            this.btBajaServicio = new System.Windows.Forms.Button();
             this.btModificar = new System.Windows.Forms.Button();
             this.btNuevo = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
+            this.btBajaDefinitiva = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_listado)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
@@ -177,31 +177,21 @@
             this.btn_buscar.UseVisualStyleBackColor = true;
             this.btn_buscar.Click += new System.EventHandler(this.btn_buscar_Click);
             // 
-            // btHabilitar
+            // btBajaServicio
             // 
-            this.btHabilitar.Location = new System.Drawing.Point(506, 492);
-            this.btHabilitar.Name = "btHabilitar";
-            this.btHabilitar.Size = new System.Drawing.Size(75, 23);
-            this.btHabilitar.TabIndex = 29;
-            this.btHabilitar.Text = "Habilitar";
-            this.btHabilitar.UseVisualStyleBackColor = true;
-            this.btHabilitar.Click += new System.EventHandler(this.btHabilitar_Click);
-            // 
-            // btEliminar
-            // 
-            this.btEliminar.Location = new System.Drawing.Point(373, 492);
-            this.btEliminar.Name = "btEliminar";
-            this.btEliminar.Size = new System.Drawing.Size(75, 23);
-            this.btEliminar.TabIndex = 35;
-            this.btEliminar.Text = "Dar de baja";
-            this.btEliminar.UseVisualStyleBackColor = true;
-            this.btEliminar.Click += new System.EventHandler(this.btEliminar_Click);
+            this.btBajaServicio.Location = new System.Drawing.Point(332, 485);
+            this.btBajaServicio.Name = "btBajaServicio";
+            this.btBajaServicio.Size = new System.Drawing.Size(75, 41);
+            this.btBajaServicio.TabIndex = 35;
+            this.btBajaServicio.Text = "Dar de baja servicio";
+            this.btBajaServicio.UseVisualStyleBackColor = true;
+            this.btBajaServicio.Click += new System.EventHandler(this.btBajaServicio_Click);
             // 
             // btModificar
             // 
-            this.btModificar.Location = new System.Drawing.Point(221, 492);
+            this.btModificar.Location = new System.Drawing.Point(226, 485);
             this.btModificar.Name = "btModificar";
-            this.btModificar.Size = new System.Drawing.Size(75, 23);
+            this.btModificar.Size = new System.Drawing.Size(75, 41);
             this.btModificar.TabIndex = 34;
             this.btModificar.Text = "Modificar";
             this.btModificar.UseVisualStyleBackColor = true;
@@ -209,9 +199,9 @@
             // 
             // btNuevo
             // 
-            this.btNuevo.Location = new System.Drawing.Point(87, 492);
+            this.btNuevo.Location = new System.Drawing.Point(124, 485);
             this.btNuevo.Name = "btNuevo";
-            this.btNuevo.Size = new System.Drawing.Size(75, 23);
+            this.btNuevo.Size = new System.Drawing.Size(75, 41);
             this.btNuevo.TabIndex = 33;
             this.btNuevo.Text = "Nuevo";
             this.btNuevo.UseVisualStyleBackColor = true;
@@ -227,16 +217,26 @@
             this.label4.TabIndex = 123;
             this.label4.Text = "ABM Crucero";
             // 
+            // btBajaDefinitiva
+            // 
+            this.btBajaDefinitiva.Location = new System.Drawing.Point(438, 485);
+            this.btBajaDefinitiva.Name = "btBajaDefinitiva";
+            this.btBajaDefinitiva.Size = new System.Drawing.Size(75, 41);
+            this.btBajaDefinitiva.TabIndex = 124;
+            this.btBajaDefinitiva.Text = "Dar de baja definitiva";
+            this.btBajaDefinitiva.UseVisualStyleBackColor = true;
+            this.btBajaDefinitiva.Click += new System.EventHandler(this.btBajaDefinitiva_Click);
+            // 
             // FormCrucero
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(665, 538);
+            this.Controls.Add(this.btBajaDefinitiva);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.btEliminar);
+            this.Controls.Add(this.btBajaServicio);
             this.Controls.Add(this.btModificar);
             this.Controls.Add(this.btNuevo);
-            this.Controls.Add(this.btHabilitar);
             this.Controls.Add(this.btn_buscar);
             this.Controls.Add(this.btn_limpiar);
             this.Controls.Add(this.groupBox1);
@@ -265,13 +265,13 @@
         private System.Windows.Forms.Button btn_limpiar;
         private System.Windows.Forms.Button btn_buscar;
         private System.Windows.Forms.ErrorProvider errorProvider;
-        private System.Windows.Forms.Button btHabilitar;
-        private System.Windows.Forms.Button btEliminar;
+        private System.Windows.Forms.Button btBajaServicio;
         private System.Windows.Forms.Button btModificar;
         private System.Windows.Forms.Button btNuevo;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cmb_fabricante;
         private System.Windows.Forms.ComboBox cmb_servicio;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btBajaDefinitiva;
     }
 }

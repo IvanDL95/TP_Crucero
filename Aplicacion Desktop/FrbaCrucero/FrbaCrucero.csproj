@@ -79,6 +79,24 @@
     <Compile Include="Abm Cliente\FormAMCliente.Designer.cs">
       <DependentUpon>FormAMCliente.cs</DependentUpon>
     </Compile>
+    <Compile Include="Abm Crucero\BajaServicio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Crucero\BajaServicio.designer.cs">
+      <DependentUpon>BajaServicio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Crucero\BajaDefinitiva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Crucero\BajaDefinitiva.designer.cs">
+      <DependentUpon>BajaDefinitiva.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Crucero\BajaDefinitivaBuscarCrucero.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Crucero\BajaDefinitivaBuscarCrucero.designer.cs">
+      <DependentUpon>BajaDefinitivaBuscarCrucero.cs</DependentUpon>
+    </Compile>
     <Compile Include="Abm Crucero\FormAEmpresaLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -163,11 +181,11 @@
     <Compile Include="Comprar\FormCompraEntradas.Designer.cs">
       <DependentUpon>FormCompraEntradas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Comprar\UbicacionDisponible.cs">
+    <Compile Include="Comprar\CabinaDisponible.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Comprar\UbicacionDisponible.Designer.cs">
-      <DependentUpon>UbicacionDisponible.cs</DependentUpon>
+    <Compile Include="Comprar\CabinaDisponible.Designer.cs">
+      <DependentUpon>CabinaDisponible.cs</DependentUpon>
     </Compile>
     <Compile Include="ContenedorPrincipal.cs">
       <SubType>Form</SubType>
@@ -253,6 +271,15 @@
     <EmbeddedResource Include="Abm Cliente\FormAMCliente.resx">
       <DependentUpon>FormAMCliente.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Abm Crucero\BajaServicio.resx">
+      <DependentUpon>BajaServicio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Crucero\BajaDefinitiva.resx">
+      <DependentUpon>BajaDefinitiva.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Crucero\BajaDefinitivaBuscarCrucero.resx">
+      <DependentUpon>BajaDefinitivaBuscarCrucero.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Abm Crucero\FormAEmpresaLogin.resx">
       <DependentUpon>FormAEmpresaLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -292,8 +319,8 @@
     <EmbeddedResource Include="Comprar\FormCompraEntradas.resx">
       <DependentUpon>FormCompraEntradas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Comprar\UbicacionDisponible.resx">
-      <DependentUpon>UbicacionDisponible.cs</DependentUpon>
+    <EmbeddedResource Include="Comprar\CabinaDisponible.resx">
+      <DependentUpon>CabinaDisponible.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ContenedorPrincipal.resx">
       <DependentUpon>ContenedorPrincipal.cs</DependentUpon>

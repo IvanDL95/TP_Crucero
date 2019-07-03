@@ -8,7 +8,8 @@ namespace MiLibreria.Modelo
 {
     public class Cabinas_Crucero
     {
-        public  Int32 cantidad { get; set; }
+        public  Int32 id { get; set; }
+        public  Int32 numero { get; set; }
         public  String cru_id { get; set; } 
         public  Int32 tcab_id { get; set; }
         public  Int32 piso { get; set; }    
