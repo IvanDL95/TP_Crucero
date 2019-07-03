@@ -73,17 +73,15 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 13);
             this.label2.TabIndex = 104;
-            this.label2.Text = "Trimestre:";
+            this.label2.Text = "Semestre:";
             // 
             // cmbTrimestre
             // 
             this.cmbTrimestre.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTrimestre.FormattingEnabled = true;
             this.cmbTrimestre.Items.AddRange(new object[] {
-            "Enero-Marzo",
-            "Abril-Junio",
-            "Julio-Septiembre",
-            "Octubre-Diciembre"});
+            "Enero-Junio",
+            "Julio-Diciembre"});
             this.cmbTrimestre.Location = new System.Drawing.Point(176, 77);
             this.cmbTrimestre.Name = "cmbTrimestre";
             this.cmbTrimestre.Size = new System.Drawing.Size(126, 21);

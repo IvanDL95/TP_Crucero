@@ -12,13 +12,13 @@ namespace MiLibreria
 {
     public class ListadoFunc
     {
-        public static DataSet Listado(int anio, int trimestre, int listado)
+        public static DataSet Listado(int anio, int semestre, int listado)
         {
             List<SqlParameter> parametros = new List<SqlParameter>();
 
             SqlParameter parametro;
-            parametro = new SqlParameter("@trimestre", SqlDbType.Int, 100);
-            parametro.Value = trimestre;
+            parametro = new SqlParameter("@semestre", SqlDbType.Int, 100);
+            parametro.Value = semestre;
             parametros.Add(parametro);
             parametro = new SqlParameter("@anio", SqlDbType.Int, 100);
             parametro.Value = anio;
