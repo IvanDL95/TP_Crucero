@@ -239,9 +239,9 @@ namespace FrbaCrucero
 
         private void btNuevo_Click(object sender, EventArgs e)
         {
-            RegistrarUsuario fr = new RegistrarUsuario();
+            //RegistrarUsuario fr = new RegistrarUsuario();
             this.Hide();
-            fr.ShowDialog();
+            //fr.ShowDialog();
             this.Show();
         }
 

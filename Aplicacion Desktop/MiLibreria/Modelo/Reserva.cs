@@ -7,14 +7,11 @@ using System.Threading.Tasks;
 
 namespace MiLibreria.Modelo
 {
-    public class Compra
+    public class Reserva
     {
-        public Int32 com_id;
-        public DateTime com_fecha;
-        public Int32 com_cli;
-        public Int32 com_mp;
-        public Int32 com_cant;
-        public String com_detalle;
+        public DateTime res_fecha;
+        public Int32 res_cli;
+        public Int32 res_mp;
         public DataTable cabinas;
     }
 }

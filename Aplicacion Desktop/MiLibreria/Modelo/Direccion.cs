@@ -19,16 +19,12 @@ namespace MiLibreria.Modelo
         public Boolean Estado { get; set; }
         public Int32 Id { get; set; }
 
-        public Direccion(String Calle, String Numero, String Piso, String Departamento, String CodigoPostal, String Telefono, String Mail, String Localidad)
+        public Direccion(String Calle, String Numero, String Telefono, String Mail)
         {
             this.Calle = Calle;
             this.Numero = Numero;
-            this.Piso = Piso;
-            this.Departamento = Departamento;
-            this.CodigoPostal = CodigoPostal;
             this.Telefono = Telefono;
             this.Mail = Mail;
-            this.Localidad = Localidad;
         }
 
         public Direccion()

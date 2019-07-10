@@ -95,11 +95,6 @@ namespace MiLibreria
             parametro.Value = usuario.User;
             parametros.Add(parametro);
 
-
-            parametro = new SqlParameter("@USU_PASSWORD", SqlDbType.VarChar, 255);
-            parametro.Value = usuario.Password;
-            parametros.Add(parametro);
-
             parametro = new SqlParameter("@USU_CANT_INT_FALLIDOS", SqlDbType.Int, 100);
             parametro.Value = 0;
             parametros.Add(parametro);

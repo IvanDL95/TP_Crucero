@@ -61,12 +61,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abm Cliente\FormAClienteLogin.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Abm Cliente\FormAClienteLogin.Designer.cs">
-      <DependentUpon>FormAClienteLogin.cs</DependentUpon>
-    </Compile>
     <Compile Include="Abm Cliente\FormCliente.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,23 +91,11 @@
     <Compile Include="Abm Crucero\BajaDefinitivaBuscarCrucero.designer.cs">
       <DependentUpon>BajaDefinitivaBuscarCrucero.cs</DependentUpon>
     </Compile>
-    <Compile Include="Abm Crucero\FormAEmpresaLogin.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Abm Crucero\FormAEmpresaLogin.Designer.cs">
-      <DependentUpon>FormAEmpresaLogin.cs</DependentUpon>
-    </Compile>
     <Compile Include="Abm Crucero\FormCrucero.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Abm Crucero\FormCrucero.designer.cs">
       <DependentUpon>FormCrucero.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Abm Crucero\FormACrucero.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Abm Crucero\FormACrucero.Designer.cs">
-      <DependentUpon>FormACrucero.cs</DependentUpon>
     </Compile>
     <Compile Include="Abm Crucero\FormAMCrucero.cs">
       <SubType>Form</SubType>
@@ -133,6 +115,18 @@
     <Compile Include="Abm Grado\AMGrado.Designer.cs">
       <DependentUpon>AMGrado.cs</DependentUpon>
     </Compile>
+    <Compile Include="Abm Recorrido\FormAMRecorrido.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Recorrido\FormAMRecorrido.Designer.cs">
+      <DependentUpon>FormAMRecorrido.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Recorrido\FormRecorrido.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Recorrido\FormRecorrido.designer.cs">
+      <DependentUpon>FormRecorrido.cs</DependentUpon>
+    </Compile>
     <Compile Include="Abm Rol\FormAMRol.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -151,12 +145,6 @@
     <Compile Include="Abm Rubro\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="ABMUsuario.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ABMUsuario.Designer.cs">
-      <DependentUpon>ABMUsuario.cs</DependentUpon>
-    </Compile>
     <Compile Include="CambiarPass.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -169,11 +157,17 @@
     <Compile Include="Canje Puntos\FormCanjearPuntos.Designer.cs">
       <DependentUpon>FormCanjearPuntos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Comprar\CargarTarjeta.cs">
+    <Compile Include="Comprar\CargarCliente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Comprar\CargarTarjeta.Designer.cs">
-      <DependentUpon>CargarTarjeta.cs</DependentUpon>
+    <Compile Include="Comprar\CargarCliente.Designer.cs">
+      <DependentUpon>CargarCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Comprar\MostrarVoucher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Comprar\MostrarVoucher.Designer.cs">
+      <DependentUpon>MostrarVoucher.cs</DependentUpon>
     </Compile>
     <Compile Include="Comprar\FormCompraEntradas.cs">
       <SubType>Form</SubType>
@@ -192,6 +186,12 @@
     </Compile>
     <Compile Include="ContenedorPrincipal.Designer.cs">
       <DependentUpon>ContenedorPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pago Reserva\PagoReserva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pago Reserva\PagoReserva.Designer.cs">
+      <DependentUpon>PagoReserva.cs</DependentUpon>
     </Compile>
     <Compile Include="InicioCliente.cs">
       <SubType>Form</SubType>
@@ -223,10 +223,10 @@
     <Compile Include="Generar Viaje\FormGenerarViaje.Designer.cs">
       <DependentUpon>FormGenerarViaje.cs</DependentUpon>
     </Compile>
-    <Compile Include="Generar Rendicion Comisiones\FormGenerarRendicion.cs">
+    <Compile Include="Pago Reserva\FormGenerarRendicion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Generar Rendicion Comisiones\FormGenerarRendicion.Designer.cs">
+    <Compile Include="Pago Reserva\FormGenerarRendicion.Designer.cs">
       <DependentUpon>FormGenerarRendicion.cs</DependentUpon>
     </Compile>
     <Compile Include="Historial Cliente\FormHistorialCliente.cs">
@@ -256,15 +256,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegexUtilities.cs" />
-    <Compile Include="RegistrarUsuario.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="RegistrarUsuario.Designer.cs">
-      <DependentUpon>RegistrarUsuario.cs</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="Abm Cliente\FormAClienteLogin.resx">
-      <DependentUpon>FormAClienteLogin.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Abm Cliente\FormCliente.resx">
       <DependentUpon>FormCliente.cs</DependentUpon>
     </EmbeddedResource>
@@ -280,14 +271,8 @@
     <EmbeddedResource Include="Abm Crucero\BajaDefinitivaBuscarCrucero.resx">
       <DependentUpon>BajaDefinitivaBuscarCrucero.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Abm Crucero\FormAEmpresaLogin.resx">
-      <DependentUpon>FormAEmpresaLogin.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Abm Crucero\FormCrucero.resx">
       <DependentUpon>FormCrucero.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Abm Crucero\FormACrucero.resx">
-      <DependentUpon>FormACrucero.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Abm Crucero\FormAMCrucero.resx">
       <DependentUpon>FormAMCrucero.cs</DependentUpon>
@@ -298,14 +283,17 @@
     <EmbeddedResource Include="Abm Grado\AMGrado.resx">
       <DependentUpon>AMGrado.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Abm Recorrido\FormAMRecorrido.resx">
+      <DependentUpon>FormAMRecorrido.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Recorrido\FormRecorrido.resx">
+      <DependentUpon>FormRecorrido.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Abm Rol\FormAMRol.resx">
       <DependentUpon>FormAMRol.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Abm Rol\FormRol.resx">
       <DependentUpon>FormRol.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ABMUsuario.resx">
-      <DependentUpon>ABMUsuario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CambiarPass.resx">
       <DependentUpon>CambiarPass.cs</DependentUpon>
@@ -313,8 +301,11 @@
     <EmbeddedResource Include="Canje Puntos\FormCanjearPuntos.resx">
       <DependentUpon>FormCanjearPuntos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Comprar\CargarTarjeta.resx">
-      <DependentUpon>CargarTarjeta.cs</DependentUpon>
+    <EmbeddedResource Include="Comprar\CargarCliente.resx">
+      <DependentUpon>CargarCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Comprar\MostrarVoucher.resx">
+      <DependentUpon>MostrarVoucher.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Comprar\FormCompraEntradas.resx">
       <DependentUpon>FormCompraEntradas.cs</DependentUpon>
@@ -324,6 +315,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ContenedorPrincipal.resx">
       <DependentUpon>ContenedorPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pago Reserva\PagoReserva.resx">
+      <DependentUpon>PagoReserva.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InicioCliente.resx">
       <DependentUpon>InicioCliente.cs</DependentUpon>
@@ -340,7 +334,7 @@
     <EmbeddedResource Include="Generar Viaje\FormGenerarViaje.resx">
       <DependentUpon>FormGenerarViaje.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Generar Rendicion Comisiones\FormGenerarRendicion.resx">
+    <EmbeddedResource Include="Pago Reserva\FormGenerarRendicion.resx">
       <DependentUpon>FormGenerarRendicion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Historial Cliente\FormHistorialCliente.resx">
@@ -362,9 +356,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="RegistrarUsuario.resx">
-      <DependentUpon>RegistrarUsuario.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -401,6 +392,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

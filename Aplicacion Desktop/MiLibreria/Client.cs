@@ -91,10 +91,19 @@ namespace MiLibreria
             return ds;
         }
 
+        public static Int32 ExisteDoc(Int32 doc)
+        {
+            Int32 ID = -1;
+            String query = "SELECT 1 FROM TROLLS.CLIENTE WHERE CLI_ID = '" + doc + "'";
+            ID = DataBase.queryForInt(query);
+
+            return ID;
+        }
+
         public static Int32 ObtenerIDCliente(Int32 doc)
         {
             Int32 ID = -1;
-            String query = "SELECT CLI_ID FROM TROLLS.CLIENTE WHERE CLI_NRO_DOC = '" + doc + "'";
+            String query = "SELECT 1 FROM TROLLS.CLIENTE WHERE CLI_ID = '" + doc + "'";
             ID = DataBase.queryForInt(query);
 
             return ID;
@@ -152,10 +161,10 @@ namespace MiLibreria
                     cliente.Apellido = reader.GetString(0);
                     if (!reader.IsDBNull(1))
                     cliente.Nombre = reader.GetString(1);
+                    if (!reader.IsDBNull(2))
+                    cliente.FechaNac = reader.GetDateTime(2);
                     if (!reader.IsDBNull(3))
-                        cliente.NroDoc = reader.GetString(3);
-                    if (!reader.IsDBNull(6))
-                    cliente.FechaNac = reader.GetDateTime(6);
+                    cliente.IdDireccion = Convert.ToInt32(reader.GetDecimal(3));
                 }
             }
 
@@ -257,6 +266,9 @@ namespace MiLibreria
 
             SqlParameter parametro;
 
+            parametro = new SqlParameter("@CLI_ID", SqlDbType.Char, 10);
+            parametro.Value = cliente.NroDoc;
+            parametros.Add(parametro);
 
             parametro = new SqlParameter("@CLI_NOMBRE", SqlDbType.VarChar, 30);
             parametro.Value = cliente.Nombre;
@@ -264,12 +276,7 @@ namespace MiLibreria
 
             parametro = new SqlParameter("@CLI_APELLIDO", SqlDbType.VarChar, 30);
             parametro.Value = cliente.Apellido;
-            parametros.Add(parametro);
-
-            parametro = new SqlParameter("@CLI_NRO_DOC", SqlDbType.Char, 10);
-            parametro.Value = cliente.NroDoc;
-            parametros.Add(parametro);
-
+            parametros.Add(parametro);         
 
             parametro = new SqlParameter("@CLI_FECHA_NAC", SqlDbType.DateTime, 100);
             parametro.Value = cliente.FechaNac;
@@ -293,6 +300,10 @@ namespace MiLibreria
 
             SqlParameter parametro;
 
+            parametro = new SqlParameter("@CLI_ID", SqlDbType.Int, 100);
+            parametro.Value = cliente.NroDoc;
+            parametros.Add(parametro);
+
             parametro = new SqlParameter("@CLI_USU_ID", SqlDbType.Int, 100);
             parametro.Value = cliente.IdUsuario;
             parametros.Add(parametro);
@@ -305,14 +316,9 @@ namespace MiLibreria
             parametro.Value = cliente.Apellido;
             parametros.Add(parametro);
 
-            parametro = new SqlParameter("@CLI_NRO_DOC", SqlDbType.Char, 10);
-            parametro.Value = cliente.NroDoc;
-            parametros.Add(parametro);
-
             parametro = new SqlParameter("@CLI_FECHA_NAC", SqlDbType.DateTime, 100);
             parametro.Value = cliente.FechaNac;
             parametros.Add(parametro);
-            //Fecha creacion
 
             parametro = new SqlParameter("@CLI_DIRECCION", SqlDbType.Int, 100);
             parametro.Value = cliente.IdDireccion;

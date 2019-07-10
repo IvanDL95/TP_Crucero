@@ -514,7 +514,7 @@ namespace FrbaCrucero.Editar_Publicacion
                 else
                 {
                     //Modificar Direccion
-                    Direccion direccion = new Direccion(txt_calle.Text, txt_numero.Text, txt_piso.Text, txt_departamento.Text, txt_cp.Text, txt_tel.Text, txt_mail.Text, txt_localidad.Text);
+                    Direccion direccion = new Direccion(txt_calle.Text, txt_numero.Text, txt_tel.Text, txt_mail.Text);
                     direccion.Id = publicacionBase.pub_dir;
                     Adress.ModificarDireccion(direccion);
 

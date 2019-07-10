@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace MiLibreria.Modelo
 {
-    public class Puerto
+    public class MedioPago
     {
-        public Int32 id { get; set; }
-        public String desc { get; set; }
+        public Int32 mp_id  { get; set; }
+        public String mp_desc { get; set; }   
+
     }
+
 }

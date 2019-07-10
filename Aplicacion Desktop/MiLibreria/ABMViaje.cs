@@ -130,7 +130,7 @@ namespace MiLibreria
         public static SqlDataReader ObtenerPuerto()
         {
             List<SqlParameter> parametros = new List<SqlParameter>();
-            SqlDataReader reader = DataBase.ObtenerUnDataReader("TROLLS.OBTENERTPUERTO", DataBase.Tipos.StoredProcedure, parametros);
+            SqlDataReader reader = DataBase.ObtenerUnDataReader("TROLLS.OBTENERPUERTO", DataBase.Tipos.StoredProcedure, parametros);
 
             return reader;
         }

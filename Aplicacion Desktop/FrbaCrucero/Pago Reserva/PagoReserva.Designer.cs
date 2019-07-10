@@ -1,6 +1,6 @@
-﻿namespace FrbaCrucero.Compra_Reservar
+﻿namespace FrbaCrucero.Pago_Reserva
 {
-    partial class CabinaDisponible
+    partial class PagoReserva
     {
         /// <summary>
         /// Required designer variable.
@@ -28,18 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.cmb_tipo = new System.Windows.Forms.ComboBox();
             this.lb_tipo = new System.Windows.Forms.Label();
             this.dgv_cabina = new System.Windows.Forms.DataGridView();
-            this.cab_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTipoCabina = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPiso = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colNumero = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cab_via_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btComprarReservar = new System.Windows.Forms.Button();
-            this.btAgregarCabina = new System.Windows.Forms.Button();
-            this.lb_cab_disp = new System.Windows.Forms.Label();
             this.btCabDisponibles = new System.Windows.Forms.Button();
             this.bt_mp = new System.Windows.Forms.Button();
             this.cmb_mp = new System.Windows.Forms.ComboBox();
@@ -48,41 +39,27 @@
             this.cmb_cuota = new System.Windows.Forms.ComboBox();
             this.lb_selec = new System.Windows.Forms.Label();
             this.bt_cuota = new System.Windows.Forms.Button();
+            this.txt_reserva = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_cabina)).BeginInit();
             this.SuspendLayout();
-            // 
-            // cmb_tipo
-            // 
-            this.cmb_tipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmb_tipo.FormattingEnabled = true;
-            this.cmb_tipo.Location = new System.Drawing.Point(147, 29);
-            this.cmb_tipo.Name = "cmb_tipo";
-            this.cmb_tipo.Size = new System.Drawing.Size(133, 21);
-            this.cmb_tipo.TabIndex = 125;
             // 
             // lb_tipo
             // 
             this.lb_tipo.AutoSize = true;
             this.lb_tipo.Location = new System.Drawing.Point(49, 32);
             this.lb_tipo.Name = "lb_tipo";
-            this.lb_tipo.Size = new System.Drawing.Size(67, 13);
+            this.lb_tipo.Size = new System.Drawing.Size(50, 13);
             this.lb_tipo.TabIndex = 124;
-            this.lb_tipo.Text = "Tipo Cabina:";
+            this.lb_tipo.Text = "Reserva:";
             // 
             // dgv_cabina
             // 
+            this.dgv_cabina.AllowUserToAddRows = false;
             this.dgv_cabina.AllowUserToDeleteRows = false;
             this.dgv_cabina.AllowUserToResizeColumns = false;
             this.dgv_cabina.AllowUserToResizeRows = false;
             this.dgv_cabina.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgv_cabina.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_cabina.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.cab_id,
-            this.colTipoCabina,
-            this.colPiso,
-            this.colNumero,
-            this.colPrecio,
-            this.cab_via_id});
             this.dgv_cabina.Location = new System.Drawing.Point(22, 102);
             this.dgv_cabina.MultiSelect = false;
             this.dgv_cabina.Name = "dgv_cabina";
@@ -91,75 +68,15 @@
             this.dgv_cabina.Size = new System.Drawing.Size(523, 336);
             this.dgv_cabina.TabIndex = 123;
             // 
-            // cab_id
-            // 
-            this.cab_id.HeaderText = "id";
-            this.cab_id.Name = "cab_id";
-            this.cab_id.ReadOnly = true;
-            this.cab_id.Visible = false;
-            // 
-            // colTipoCabina
-            // 
-            this.colTipoCabina.HeaderText = "TipoCabina";
-            this.colTipoCabina.Name = "colTipoCabina";
-            this.colTipoCabina.ReadOnly = true;
-            this.colTipoCabina.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.colTipoCabina.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colTipoCabina.Visible = false;
-            // 
-            // colPiso
-            // 
-            this.colPiso.HeaderText = "Piso";
-            this.colPiso.Name = "colPiso";
-            this.colPiso.ReadOnly = true;
-            // 
-            // colNumero
-            // 
-            this.colNumero.HeaderText = "Numero";
-            this.colNumero.Name = "colNumero";
-            this.colNumero.ReadOnly = true;
-            // 
-            // colPrecio
-            // 
-            this.colPrecio.HeaderText = "Precio";
-            this.colPrecio.Name = "colPrecio";
-            this.colPrecio.ReadOnly = true;
-            // 
-            // cab_via_id
-            // 
-            this.cab_via_id.HeaderText = "cab_via_id";
-            this.cab_via_id.Name = "cab_via_id";
-            this.cab_via_id.ReadOnly = true;
-            this.cab_via_id.Visible = false;
-            // 
             // btComprarReservar
             // 
             this.btComprarReservar.Location = new System.Drawing.Point(193, 511);
             this.btComprarReservar.Name = "btComprarReservar";
             this.btComprarReservar.Size = new System.Drawing.Size(162, 23);
             this.btComprarReservar.TabIndex = 122;
-            this.btComprarReservar.Text = "Finalizar Comprar/Reserva";
+            this.btComprarReservar.Text = "Pago Reserva";
             this.btComprarReservar.UseVisualStyleBackColor = true;
             this.btComprarReservar.Click += new System.EventHandler(this.btComprar_Click);
-            // 
-            // btAgregarCabina
-            // 
-            this.btAgregarCabina.Location = new System.Drawing.Point(193, 464);
-            this.btAgregarCabina.Name = "btAgregarCabina";
-            this.btAgregarCabina.Size = new System.Drawing.Size(162, 23);
-            this.btAgregarCabina.TabIndex = 121;
-            this.btAgregarCabina.Text = "Agregar a la compra/reserva";
-            this.btAgregarCabina.UseVisualStyleBackColor = true;
-            this.btAgregarCabina.Click += new System.EventHandler(this.btAgregarCabina_Click);
-            // 
-            // lb_cab_disp
-            // 
-            this.lb_cab_disp.AutoSize = true;
-            this.lb_cab_disp.Location = new System.Drawing.Point(219, 76);
-            this.lb_cab_disp.Name = "lb_cab_disp";
-            this.lb_cab_disp.Size = new System.Drawing.Size(103, 13);
-            this.lb_cab_disp.TabIndex = 120;
-            this.lb_cab_disp.Text = "Cabinas disponibles:";
             // 
             // btCabDisponibles
             // 
@@ -248,11 +165,19 @@
             this.bt_cuota.Visible = false;
             this.bt_cuota.Click += new System.EventHandler(this.bt_cuota_Click);
             // 
-            // CabinaDisponible
+            // txt_reserva
+            // 
+            this.txt_reserva.Location = new System.Drawing.Point(105, 29);
+            this.txt_reserva.Name = "txt_reserva";
+            this.txt_reserva.Size = new System.Drawing.Size(100, 20);
+            this.txt_reserva.TabIndex = 134;
+            // 
+            // PagoReserva
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(569, 638);
+            this.Controls.Add(this.txt_reserva);
             this.Controls.Add(this.bt_cuota);
             this.Controls.Add(this.lb_selec);
             this.Controls.Add(this.cmb_cuota);
@@ -261,14 +186,11 @@
             this.Controls.Add(this.cmb_mp);
             this.Controls.Add(this.lb_mp);
             this.Controls.Add(this.btCabDisponibles);
-            this.Controls.Add(this.cmb_tipo);
             this.Controls.Add(this.lb_tipo);
             this.Controls.Add(this.dgv_cabina);
             this.Controls.Add(this.btComprarReservar);
-            this.Controls.Add(this.btAgregarCabina);
-            this.Controls.Add(this.lb_cab_disp);
-            this.Name = "CabinaDisponible";
-            this.Text = "Cabina Disponible";
+            this.Name = "PagoReserva";
+            this.Text = "Pago Reserva";
             ((System.ComponentModel.ISupportInitialize)(this.dgv_cabina)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -277,19 +199,10 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox cmb_tipo;
         private System.Windows.Forms.Label lb_tipo;
         public System.Windows.Forms.DataGridView dgv_cabina;
         private System.Windows.Forms.Button btComprarReservar;
-        private System.Windows.Forms.Button btAgregarCabina;
-        private System.Windows.Forms.Label lb_cab_disp;
         private System.Windows.Forms.Button btCabDisponibles;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cab_id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colTipoCabina;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colPiso;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colNumero;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colPrecio;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cab_via_id;
         private System.Windows.Forms.Button bt_mp;
         private System.Windows.Forms.ComboBox cmb_mp;
         private System.Windows.Forms.Label lb_mp;
@@ -297,5 +210,7 @@
         private System.Windows.Forms.ComboBox cmb_cuota;
         private System.Windows.Forms.Label lb_selec;
         private System.Windows.Forms.Button bt_cuota;
+        private NumericTextBox textBox1;
+        private System.Windows.Forms.TextBox txt_reserva;
     }
 }

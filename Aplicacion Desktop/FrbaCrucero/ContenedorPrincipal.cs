@@ -206,7 +206,7 @@ namespace FrbaCrucero
         {
             if (this.id_rol == 1)//Admin
             {
-                Compra_Entrada.FormCompraEntradas fr = new Compra_Entrada.FormCompraEntradas(true, this.usuario);
+                Compra_Reservar.FormCompraReservar fr = new Compra_Reservar.FormCompraReservar(true, this.usuario);
                 this.Hide();
                 if (!fr.IsDisposed)
                 fr.ShowDialog();
@@ -214,7 +214,7 @@ namespace FrbaCrucero
             }
             else
             {
-                Compra_Entrada.FormCompraEntradas fr2 = new Compra_Entrada.FormCompraEntradas(false, this.usuario);
+                Compra_Reservar.FormCompraReservar fr2 = new Compra_Reservar.FormCompraReservar(false, this.usuario);
                 this.Hide();
                 if (!fr2.IsDisposed)
                 fr2.ShowDialog();

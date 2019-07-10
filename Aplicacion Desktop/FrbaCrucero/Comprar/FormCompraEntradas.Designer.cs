@@ -1,6 +1,6 @@
-﻿namespace FrbaCrucero.Compra_Entrada
+﻿namespace FrbaCrucero.Compra_Reservar
 {
-    partial class FormCompraEntradas
+    partial class FormCompraReservar
     {
         /// <summary>
         /// Required designer variable.
@@ -40,11 +40,11 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.dgv_publicacion = new System.Windows.Forms.DataGridView();
+            this.dgv_viaje = new System.Windows.Forms.DataGridView();
             this.btUbicDisponibles = new System.Windows.Forms.Button();
             this.bt_buscar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_publicacion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_viaje)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -168,20 +168,20 @@
             this.label4.TabIndex = 102;
             this.label4.Text = "Comprar Reservar";
             // 
-            // dgv_publicacion
+            // dgv_viaje
             // 
-            this.dgv_publicacion.AllowUserToAddRows = false;
-            this.dgv_publicacion.AllowUserToDeleteRows = false;
-            this.dgv_publicacion.AllowUserToResizeColumns = false;
-            this.dgv_publicacion.AllowUserToResizeRows = false;
-            this.dgv_publicacion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_publicacion.Location = new System.Drawing.Point(38, 256);
-            this.dgv_publicacion.MultiSelect = false;
-            this.dgv_publicacion.Name = "dgv_publicacion";
-            this.dgv_publicacion.ReadOnly = true;
-            this.dgv_publicacion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_publicacion.Size = new System.Drawing.Size(614, 243);
-            this.dgv_publicacion.TabIndex = 103;
+            this.dgv_viaje.AllowUserToAddRows = false;
+            this.dgv_viaje.AllowUserToDeleteRows = false;
+            this.dgv_viaje.AllowUserToResizeColumns = false;
+            this.dgv_viaje.AllowUserToResizeRows = false;
+            this.dgv_viaje.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_viaje.Location = new System.Drawing.Point(38, 256);
+            this.dgv_viaje.MultiSelect = false;
+            this.dgv_viaje.Name = "dgv_viaje";
+            this.dgv_viaje.ReadOnly = true;
+            this.dgv_viaje.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgv_viaje.Size = new System.Drawing.Size(614, 243);
+            this.dgv_viaje.TabIndex = 103;
             // 
             // btUbicDisponibles
             // 
@@ -189,9 +189,9 @@
             this.btUbicDisponibles.Name = "btUbicDisponibles";
             this.btUbicDisponibles.Size = new System.Drawing.Size(74, 51);
             this.btUbicDisponibles.TabIndex = 116;
-            this.btUbicDisponibles.Text = "Ver cabinas disponbies";
+            this.btUbicDisponibles.Text = "Seleccionar Viaje";
             this.btUbicDisponibles.UseVisualStyleBackColor = true;
-            this.btUbicDisponibles.Click += new System.EventHandler(this.btUbicDisponibles_Click);
+            this.btUbicDisponibles.Click += new System.EventHandler(this.btCargarCliente_Click);
             // 
             // bt_buscar
             // 
@@ -203,21 +203,21 @@
             this.bt_buscar.UseVisualStyleBackColor = true;
             this.bt_buscar.Click += new System.EventHandler(this.bt_buscar_Click);
             // 
-            // FormCompraEntradas
+            // FormCompraReservar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(758, 528);
             this.Controls.Add(this.bt_buscar);
             this.Controls.Add(this.btUbicDisponibles);
-            this.Controls.Add(this.dgv_publicacion);
+            this.Controls.Add(this.dgv_viaje);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.groupBox1);
-            this.Name = "FormCompraEntradas";
+            this.Name = "FormCompraReservar";
             this.Text = "Comprar";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_publicacion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_viaje)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -231,7 +231,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DateTimePicker dtpHasta;
         private System.Windows.Forms.DateTimePicker dtpDe;
-        private System.Windows.Forms.DataGridView dgv_publicacion;
+        private System.Windows.Forms.DataGridView dgv_viaje;
         private System.Windows.Forms.Button btUbicDisponibles;
         private System.Windows.Forms.RadioButton rb_reserva;
         private System.Windows.Forms.RadioButton rb_compra;

@@ -49,7 +49,7 @@ namespace FrbaCrucero.AbmCliente
                 txt_apellido.Text = cliente.Apellido.Trim();
                 txt_nro_doc.Text = cliente.NroDoc.ToString();
                 fechaNac.Value = cliente.FechaNac;
-                this.clienteModificado.NroDoc = this.IDCliente.ToString();
+                //this.clienteModificado.NroDoc = this.IDCliente.ToString();
                 this.direccionModificado.Id = Client.ObtenerIDDireccionCliente(this.IDCliente);
                 this.clienteBase = cliente;
 
@@ -107,8 +107,8 @@ namespace FrbaCrucero.AbmCliente
             //Validar mail   
             else if (!util.IsValidEmail(txt_mail.Text))
                 MessageBox.Show("El Email ingresado no es válido");
-            else if(Adress.ValidaDireccion(txt_calle.Text, txt_numero.Text, txt_piso.Text, txt_departamento.Text, txt_cp.Text, txt_tel.Text, txt_mail.Text, txt_localidad.Text))
-                MessageBox.Show("La dirección ingresada ya existe");
+            /*else if(Adress.ValidaDireccion(txt_calle.Text, txt_numero.Text, txt_piso.Text, txt_departamento.Text, txt_cp.Text, txt_tel.Text, txt_mail.Text, txt_localidad.Text))
+                MessageBox.Show("La dirección ingresada ya existe");*/
             //Validar cuil   
             else if (!util.ValidaCuit(txt_cuil.Text))
                 MessageBox.Show("El CUIL ingresado no es válido");
@@ -120,14 +120,14 @@ namespace FrbaCrucero.AbmCliente
                 {
                     //Modificar
                     //Validar DNI duplicado
-                    if (!Client.EsValidoDocModif(txt_nro_doc.Text, this.clienteBase.NroDoc.Trim()))
+                    if (!Client.EsValidoDocModif("", ""))
                         MessageBox.Show("El Numero de Documento ya existe");
                     else
                     {
 
                         this.clienteModificado.Apellido = txt_apellido.Text;
                         this.clienteModificado.Nombre = txt_nombre.Text;
-                        this.clienteModificado.NroDoc = txt_nro_doc.Text;
+                        //this.clienteModificado.NroDoc = txt_nro_doc.Text;
                         this.clienteModificado.FechaNac = fechaNac.Value;
 
                         Client.ModificarCliente(this.clienteModificado);
@@ -179,7 +179,7 @@ namespace FrbaCrucero.AbmCliente
                         //RolxUsuario Cliente
                         Role.CrearRolxUsuario(3, idUser);
                         //Crear Direccion
-                        Direccion direccion = new Direccion(txt_calle.Text, txt_numero.Text, txt_piso.Text, txt_departamento.Text, txt_cp.Text, txt_tel.Text, txt_mail.Text, txt_localidad.Text);
+                        /*Direccion direccion = new Direccion(txt_calle.Text, txt_numero.Text, txt_piso.Text, txt_departamento.Text, txt_cp.Text, txt_tel.Text, txt_mail.Text, txt_localidad.Text);
                         Adress.CrearDireccion(direccion);
                         int idDireccion = Adress.ObtenerIDDireccion(txt_calle.Text, txt_numero.Text, txt_piso.Text, txt_departamento.Text, txt_cp.Text, txt_tel.Text, txt_mail.Text, txt_localidad.Text);
                         //Crear Cliente
@@ -195,7 +195,7 @@ namespace FrbaCrucero.AbmCliente
                             MessageBox.Show(String.Format("El usuario {0} ya existia. Se creo el usuario {1}", txt_nro_doc.Text.Trim(), usuarioAlternativo));
                         MessageBox.Show("Cliente creado");
                         this.Close();
-                        this.fr.Show();
+                        this.fr.Show();*/
                     }
                 }
 

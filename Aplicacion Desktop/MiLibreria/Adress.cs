@@ -19,26 +19,41 @@ namespace MiLibreria
 
         }
 
-        public static int ObtenerIDDireccion(string calle, string num, string piso, string dpto, string cp, string tel, string mail, string localidad)
+        public static int ObtenerIDDireccion(string calle, string num, string tel, string mail)
         {
             List<SqlParameter> parametros = new List<SqlParameter>();
             parametros.Add(new SqlParameter("@DIR_CALLE", calle));
             parametros.Add(new SqlParameter("@DIR_NUM", num));
-            parametros.Add(new SqlParameter("@DIR_PISO", piso));
-            parametros.Add(new SqlParameter("@DIR_DTO", dpto));
-            parametros.Add(new SqlParameter("@DIR_CP", cp));
             parametros.Add(new SqlParameter("@DIR_TELEFONO", tel));
-            parametros.Add(new SqlParameter("@DIR_MAIL", mail));
-            parametros.Add(new SqlParameter("@DIR_LOCALIDAD", localidad));
+            SqlParameter parametro;
+            parametro = new SqlParameter("@DIR_MAIL", SqlDbType.VarChar, 50);
+            parametro.Value = DBNull.Value;
+            if (!String.IsNullOrEmpty(mail))
+            {
+                parametro.Value = mail;
+            }
+            parametros.Add(parametro);
 
             int id = DataBase.queryForInt("TROLLS.OBTENER_ID_DIRECCION", DataBase.Tipos.StoredProcedure, parametros);
 
             return id;
         }
 
-        public static bool ValidaDireccion(string calle, string num, string piso, string dpto, string cp, string tel, string mail, string localidad)
+        public static int ObtenerIDDireccion(string calle, string num, string tel)
         {
-            SqlDataReader reader = DataBase.ObtenerUnDataReader(String.Concat("SELECT 1 FROM TROLLS.DIRECCION WHERE DIR_CALLE = '",calle,"' AND DIR_NUM = '",num,"' AND DIR_PISO = '",piso,"'AND DIR_DTO = '",dpto,"' AND DIR_CP = '",cp,"' AND DIR_TELEFONO = '",tel,"' AND DIR_MAIL = '",mail,"' AND DIR_LOCALIDAD = '",localidad,"'"));
+            List<SqlParameter> parametros = new List<SqlParameter>();
+            parametros.Add(new SqlParameter("@DIR_CALLE", calle));
+            parametros.Add(new SqlParameter("@DIR_NUM", num));
+            parametros.Add(new SqlParameter("@DIR_TELEFONO", tel));
+
+            int id = DataBase.queryForInt("TROLLS.OBTENER_ID_DIRECCION_SIN_MAIL", DataBase.Tipos.StoredProcedure, parametros);
+
+            return id;
+        }
+
+        public static bool ValidaDireccion(string calle, string num, string tel, string mail)
+        {
+            SqlDataReader reader = DataBase.ObtenerUnDataReader(String.Concat("SELECT 1 FROM TROLLS.DIRECCION WHERE DIR_CALLE = '",calle,"' AND DIR_NUM = '",num,"' AND DIR_TELEFONO = '",tel,"' AND DIR_MAIL = '",mail,"'"));
             bool resultado;
             if (reader.HasRows)
             {
@@ -72,17 +87,9 @@ namespace MiLibreria
                     if (!reader.IsDBNull(1))
                         direccion.Numero = reader.GetString(1);
                     if (!reader.IsDBNull(2))
-                        direccion.Piso = reader.GetString(2);
+                        direccion.Telefono = reader.GetString(2);
                     if (!reader.IsDBNull(3))
-                        direccion.Departamento = reader.GetString(3);
-                    if (!reader.IsDBNull(4))
-                        direccion.CodigoPostal = reader.GetString(4);
-                    if (!reader.IsDBNull(5))
-                        direccion.Localidad = reader.GetString(5);
-                    if (!reader.IsDBNull(6))
-                        direccion.Telefono = reader.GetString(6);
-                    if (!reader.IsDBNull(7))
-                        direccion.Mail = reader.GetString(7);
+                        direccion.Mail = reader.GetString(3);
                 }
             }
 
@@ -104,28 +111,16 @@ namespace MiLibreria
             parametro.Value = direccion.Numero;
             parametros.Add(parametro);
 
-            parametro = new SqlParameter("@DIR_PISO", SqlDbType.Char, 2);
-            parametro.Value = direccion.Piso;
-            parametros.Add(parametro);
-
-            parametro = new SqlParameter("@DIR_DTO", SqlDbType.Char, 2);
-            parametro.Value = direccion.Departamento;
-            parametros.Add(parametro);
-
-            parametro = new SqlParameter("@DIR_CP", SqlDbType.Char, 4);
-            parametro.Value = direccion.CodigoPostal;
-            parametros.Add(parametro);
-
-            parametro = new SqlParameter("@DIR_LOCALIDAD", SqlDbType.VarChar, 50);
-            parametro.Value = direccion.Localidad;
-            parametros.Add(parametro);
-
             parametro = new SqlParameter("@DIR_TELEFONO", SqlDbType.VarChar, 18);
             parametro.Value = direccion.Telefono;
             parametros.Add(parametro);
 
             parametro = new SqlParameter("@DIR_MAIL", SqlDbType.VarChar, 50);
-            parametro.Value = direccion.Mail;
+            parametro.Value = DBNull.Value;
+            if (!String.IsNullOrEmpty(direccion.Mail))
+            {
+                parametro.Value = direccion.Mail;
+            }
             parametros.Add(parametro);
 
             return parametros;
@@ -150,28 +145,17 @@ namespace MiLibreria
             parametro.Value = direccion.Numero;
             parametros.Add(parametro);
 
-            parametro = new SqlParameter("@DIR_PISO", SqlDbType.Char, 2);
-            parametro.Value = direccion.Piso;
-            parametros.Add(parametro);
-
-            parametro = new SqlParameter("@DIR_DTO", SqlDbType.Char, 2);
-            parametro.Value = direccion.Departamento;
-            parametros.Add(parametro);
-
-            parametro = new SqlParameter("@DIR_CP", SqlDbType.Char, 4);
-            parametro.Value = direccion.CodigoPostal;
-            parametros.Add(parametro);
-
-            parametro = new SqlParameter("@DIR_LOCALIDAD", SqlDbType.VarChar, 50);
-            parametro.Value = direccion.Localidad;
-            parametros.Add(parametro);
-
             parametro = new SqlParameter("@DIR_TELEFONO", SqlDbType.VarChar, 18);
             parametro.Value = direccion.Telefono;
             parametros.Add(parametro);
 
+
             parametro = new SqlParameter("@DIR_MAIL", SqlDbType.VarChar, 50);
-            parametro.Value = direccion.Mail;
+            parametro.Value = DBNull.Value;
+            if (!String.IsNullOrEmpty(direccion.Mail))
+            {
+                parametro.Value = direccion.Mail;
+            }
             parametros.Add(parametro);
 
             return parametros;
