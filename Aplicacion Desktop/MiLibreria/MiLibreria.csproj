@@ -87,6 +87,7 @@
     <Compile Include="Role.cs" />
     <Compile Include="RubroFunc.cs" />
     <Compile Include="TipoServicioFunc.cs" />
+    <Compile Include="TramoFunc.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Util.cs" />
   </ItemGroup>
