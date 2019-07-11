@@ -38,3 +38,6 @@ C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\obj\Debu
 C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\obj\Debug\FrbaCrucero.Compra_Reservar.CabinaDisponible.resources
 C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\obj\Debug\FrbaCrucero.Compra_Reservar.MostrarVoucher.resources
 C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\obj\Debug\FrbaCrucero.Pago_Reserva.PagoReserva.resources
+C:\Users\Ivan\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\bin\Debug\FrbaCrucero.exe.config
+C:\Users\Ivan\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\obj\Debug\FrbaCrucero.exe
+C:\Users\Ivan\Documents\GitHub\trolls\Aplicacion Desktop\FrbaCrucero\obj\Debug\FrbaCrucero.pdb
