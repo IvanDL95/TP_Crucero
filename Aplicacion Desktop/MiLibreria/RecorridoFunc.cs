@@ -17,40 +17,43 @@ namespace MiLibreria
             return null;
         }
         //public static SqlDataReader ObtenerRecorrido()
-        public static SqlDataReader ObtenerRecorrido(int id_recorrido)
+        public static SqlDataReader ObtenerRecorrido(int? id_recorrido)
         {
             List<SqlParameter> parametros = new List<SqlParameter>();
             SqlParameter parametro;
-            parametro = new SqlParameter("@ID", SqlDbType.Int, 30);
-            parametro.Value = id_recorrido;
+            parametro = new SqlParameter("@rec_id", SqlDbType.Int, 30);
+            if (!id_recorrido.HasValue || id_recorrido == 0)
+                parametro.Value = DBNull.Value;
+            else
+                parametro.Value = id_recorrido;
             parametros.Add(parametro);
+
             SqlDataReader reader = DataBase.ObtenerUnDataReader("TROLLS.OBTENER_RECORRIDO", DataBase.Tipos.StoredProcedure, parametros);
             return reader;
         }
 
-        public static DataTable ObtenerTramos(int? rec_id)
-        {
-            List<SqlParameter> parametros = new List<SqlParameter>();
-            DataSet ds = DataBase.ObtenerUnDataSet("TROLLS.OBTENER_TRAMOS ", DataBase.Tipos.StoredProcedure, parametros);
-
-            return ds.Tables[0];
-        }
-
-        public static SqlDataReader CrearRecorrido(Recorrido recorrido)
+        public static int CrearRecorrido(Recorrido recorrido)
         {
             List<SqlParameter> parametros = new List<SqlParameter>();
             SqlParameter parametro;
 
-            parametro = new SqlParameter("@rec_pue_desde", SqlDbType.VarChar, 100);
-            parametro.Value = recorrido.rec_pue_desde;
+            parametro = new SqlParameter("@rec_pue_desde", SqlDbType.Int, 30);
+            parametro.Value = recorrido.rec_pue_id_desde;
             parametros.Add(parametro);
 
-            parametro = new SqlParameter("@rec_pue_hasta", SqlDbType.VarChar, 100);
-            parametro.Value = recorrido.rec_pue_hasta;
+            parametro = new SqlParameter("@rec_pue_hasta", SqlDbType.Int, 30);
+            parametro.Value = recorrido.rec_pue_id_hasta;
             parametros.Add(parametro);
 
             SqlDataReader reader = DataBase.ObtenerUnDataReader("TROLLS.CREAR_RECORRIDO", DataBase.Tipos.StoredProcedure, parametros);
-            return reader;
+
+            int id = 0;
+            if (reader.HasRows)
+            {
+                reader.Read();
+                id = Convert.ToInt32(reader.GetDecimal(0));
+            }
+            return id;
         }
 
         public static DataSet ListarRecorridosExistentes(int? rec_id, int? rec_pue_desde, int? rec_pue_hasta)
@@ -88,65 +91,6 @@ namespace MiLibreria
             return ds;
         }
 
-        public static Recorrido ObtenerRecorridoDesdeUnReader(SqlDataReader reader)
-        {
-            Recorrido recorrido = new Recorrido();
-
-            if (reader.HasRows)
-            {
-                while (reader.Read())
-                {
-                    if (!reader.IsDBNull(0))
-                        recorrido.rec_id = Convert.ToInt32(reader.GetDecimal(0));
-                    if (!reader.IsDBNull(1))
-                        recorrido.rec_pue_id_desde = Convert.ToInt32(reader.GetDecimal(1));
-                    if (!reader.IsDBNull(2))
-                        recorrido.rec_pue_id_hasta = Convert.ToInt32(reader.GetDecimal(2));
-                    if (!reader.IsDBNull(3))
-                        recorrido.rec_estado = reader.GetBoolean(3);
-                }
-            }
-            reader.Close();
-            return recorrido;
-        }
-
-
-        public static void DarDeBajaUnRecorrido(int? rec_id)
-        {
-            List<SqlParameter> parametros = new List<SqlParameter>();
-            SqlParameter parametro = new SqlParameter("@rec_id", SqlDbType.Int, 30);
-            parametro.Value = rec_id;
-            parametros.Add(parametro);
-
-            parametro = new SqlParameter("@motivo", SqlDbType.VarChar, 50);
-            parametro.Value = "Se dio de baja el recorrido";
-            parametros.Add(parametro);
-
-            DataBase.EscribirEnLaBase("TROLLS.BAJA_RECORRIDO", DataBase.Tipos.StoredProcedure, parametros);
-        }
-
-        public static void InsertarRecorridoTramo(int rec_id, List<Tramo> tramosList)
-        {
-            List<SqlParameter> parametros = new List<SqlParameter>();
-
-            SqlParameter parametro;
-
-            Int32 tramosListLenght = tramosList.Count;
-
-            for (int i = 0; i < tramosListLenght; i++)
-            {
-                parametro = new SqlParameter("@rec_id", SqlDbType.Int, 30);
-                parametro.Value = rec_id;
-                parametros.Add(parametro);
-
-                parametro = new SqlParameter("@tra_id", SqlDbType.Int, 30);
-                parametro.Value = tramosList.ElementAt(i).id;
-                parametros.Add(parametro);
-
-                DataBase.EscribirEnLaBase("TROLLS.INSERTAR_RECORRIDO_X_TRAMO", DataBase.Tipos.StoredProcedure, parametros);
-            }
-        }
-
         public static void ModificarRecorrido(Recorrido recorrido)
         {
             List<SqlParameter> parametros = new List<SqlParameter>();
@@ -171,6 +115,68 @@ namespace MiLibreria
             DataBase.EscribirEnLaBase("TROLLS.MODIFICAR_RECORRIDO", DataBase.Tipos.StoredProcedure, parametros);
         }
 
+        public static void DarDeBajaUnRecorrido(int? rec_id)
+        {
+            List<SqlParameter> parametros = new List<SqlParameter>();
+            SqlParameter parametro = new SqlParameter("@rec_id", SqlDbType.Int, 30);
+            parametro.Value = rec_id;
+            parametros.Add(parametro);
+
+            /*
+            parametro = new SqlParameter("@motivo", SqlDbType.VarChar, 50);
+            parametro.Value = "Se dio de baja el recorrido";
+            parametros.Add(parametro);
+            */
+
+            DataBase.EscribirEnLaBase("TROLLS.BAJA_RECORRIDO", DataBase.Tipos.StoredProcedure, parametros);
+        }
+
+        public static Recorrido ObtenerRecorridoDesdeUnReader(SqlDataReader reader)
+        {
+            Recorrido recorrido = new Recorrido();
+
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    if (!reader.IsDBNull(0))
+                        recorrido.rec_id = Convert.ToInt32(reader.GetDecimal(0));
+                    if (!reader.IsDBNull(1))
+                        recorrido.rec_pue_id_desde = Convert.ToInt32(reader.GetDecimal(1));
+                    if (!reader.IsDBNull(2))
+                        recorrido.rec_pue_id_hasta = Convert.ToInt32(reader.GetDecimal(2));
+                    if (!reader.IsDBNull(3))
+                        recorrido.rec_estado = reader.GetBoolean(3);
+                }
+            }
+            reader.Close();
+            return recorrido;
+        }
+
+        public static void InsertarRecorridoTramo(int rec_id, List<Tramo> tramosList)
+        {
+            List<SqlParameter> parametros = new List<SqlParameter>();
+
+            SqlParameter parametro;
+
+            Int32 tramosListLenght = tramosList.Count;
+
+            for (int i = 0; i < tramosListLenght; i++)
+            {
+                parametros.Clear();
+
+                parametro = new SqlParameter("@rec_id", SqlDbType.Int, 30);
+                parametro.Value = rec_id;
+                parametros.Add(parametro);
+
+                parametro = new SqlParameter("@tra_id", SqlDbType.Int, 30);
+                parametro.Value = tramosList.ElementAt(i).id;
+                parametros.Add(parametro);
+
+                DataBase.EscribirEnLaBase("TROLLS.INSERTAR_RECORRIDO_X_TRAMO", DataBase.Tipos.StoredProcedure, parametros);
+            }
+        }
+
         public static void ModificarRecorridoTramo(int rec_id, List<Tramo> tramosList)
         {
             List<SqlParameter> parametros = new List<SqlParameter>();
@@ -181,15 +187,95 @@ namespace MiLibreria
 
             for (int i = 0; i < tramosListLenght; i++)
             {
+                parametros.Clear();
+
                 parametro = new SqlParameter("@rec_id", SqlDbType.Int, 30);
                 parametro.Value = rec_id;
                 parametros.Add(parametro);
+
+                //MessageBox.Show(String.Format("rec_id {0}", parametro.Value.ToString()));
 
                 parametro = new SqlParameter("@tra_id", SqlDbType.Int, 30);
                 parametro.Value = tramosList.ElementAt(i).id;
                 parametros.Add(parametro);
 
-                DataBase.EscribirEnLaBase("TROLLS.MODIFICAR_RECORRIDO_X_TRAMO", DataBase.Tipos.StoredProcedure, parametros);
+                //MessageBox.Show(String.Format("tra_id {0}", parametro.Value.ToString()));
+
+                DataSet ds = DataBase.ObtenerUnDataSet("TROLLS.OBTENER_RECORRIDO_X_TRAMO", DataBase.Tipos.StoredProcedure, parametros);
+
+                DataTable dt = ds.Tables[0];
+
+                MessageBox.Show(String.Format("cantidad de registros OBTENER_RECORRIDO_X_TRAMO {0}", dt.Rows.Count.ToString()));
+
+                if (dt.Rows.Count != 0)
+                {
+                    parametros.Clear();
+
+                    parametro = new SqlParameter("@rec_id", SqlDbType.Int, 30);
+                    parametro.Value = rec_id;
+                    parametros.Add(parametro);
+
+
+                    parametro = new SqlParameter("@tra_id", SqlDbType.Int, 30);
+                    parametro.Value = tramosList.ElementAt(i).id;
+                    parametros.Add(parametro);
+
+
+                    parametro = new SqlParameter("@estado", SqlDbType.Bit, 2);
+                    parametro.Value = 1;
+                    parametros.Add(parametro);
+
+                    DataBase.EscribirEnLaBase("TROLLS.MODIFICAR_RECORRIDO_TRAMO", DataBase.Tipos.StoredProcedure, parametros);
+                }
+                else
+                {
+                    parametros.Clear();
+
+                    parametro = new SqlParameter("@rec_id", SqlDbType.Int, 30);
+                    parametro.Value = rec_id;
+                    parametros.Add(parametro);
+
+
+                    parametro = new SqlParameter("@tra_id", SqlDbType.Int, 30);
+                    parametro.Value = tramosList.ElementAt(i).id;
+                    parametros.Add(parametro);
+
+                    DataBase.EscribirEnLaBase("TROLLS.INSERTAR_RECORRIDO_X_TRAMO", DataBase.Tipos.StoredProcedure, parametros);
+                }
+            }
+        }
+
+        public static void BorrarRecorridoTramo(int rec_id, Queue<Tramo> listaTramos)
+        {
+            List<SqlParameter> parametros = new List<SqlParameter>();
+
+            SqlParameter parametro;
+
+            Int32 tramosListLenght = listaTramos.Count;
+
+            for (int i = 0; i < tramosListLenght; i++)
+            {
+                parametros.Clear();
+
+                Tramo tramo_actual = listaTramos.Dequeue();
+
+                parametro = new SqlParameter("@rec_id", SqlDbType.Int, 30);
+                parametro.Value = rec_id;
+                parametros.Add(parametro);
+
+                //MessageBox.Show(String.Format("rec_id a borrar {0}", parametro.Value.ToString()));
+
+                parametro = new SqlParameter("@tra_id", SqlDbType.Int, 30);
+                parametro.Value = tramo_actual.id;
+                parametros.Add(parametro);
+
+                //MessageBox.Show(String.Format("tra_id a borrar {0}", parametro.Value.ToString()));
+
+                parametro = new SqlParameter("@estado", SqlDbType.Bit, 2);
+                parametro.Value = 0;
+                parametros.Add(parametro);
+
+                DataBase.EscribirEnLaBase("TROLLS.MODIFICAR_RECORRIDO_TRAMO", DataBase.Tipos.StoredProcedure, parametros);
             }
         }
 
