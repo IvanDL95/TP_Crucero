@@ -37,7 +37,7 @@
             // 
             // btAceptar
             // 
-            this.btAceptar.Location = new System.Drawing.Point(314, 352);
+            this.btAceptar.Location = new System.Drawing.Point(538, 360);
             this.btAceptar.Name = "btAceptar";
             this.btAceptar.Size = new System.Drawing.Size(75, 23);
             this.btAceptar.TabIndex = 109;
@@ -49,7 +49,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(294, 9);
+            this.label4.Location = new System.Drawing.Point(515, 9);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(122, 31);
             this.label4.TabIndex = 111;
@@ -68,7 +68,7 @@
             this.dgv_listado.Name = "dgv_listado";
             this.dgv_listado.ReadOnly = true;
             this.dgv_listado.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_listado.Size = new System.Drawing.Size(651, 244);
+            this.dgv_listado.Size = new System.Drawing.Size(1092, 244);
             this.dgv_listado.TabIndex = 124;
             // 
             // label1
@@ -84,7 +84,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(705, 396);
+            this.ClientSize = new System.Drawing.Size(1141, 413);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgv_listado);
             this.Controls.Add(this.label4);

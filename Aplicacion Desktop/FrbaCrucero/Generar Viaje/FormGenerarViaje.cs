@@ -17,25 +17,10 @@ namespace FrbaCrucero.Generar_viaje
 {
     public partial class FormGenerarViaje : Form
     {
-        String user;
-        Int32 IdUsuario;
-        public FormGenerarViaje(String user, bool esAdm)
+        public FormGenerarViaje()
         {
             InitializeComponent();
-
-            if (esAdm)
-            {
-                MessageBox.Show("El usuario Admin no puede generar publicaciones");
-                this.Close();
-            }
-            else
-            {
-
-                this.user = user;
-                dgv_listado2.DataSource = ViajeFunc.ListarRecorrido("","").Tables[0];
-                
-
-            }
+            dgv_listado2.DataSource = ViajeFunc.ListarRecorrido("", "").Tables[0];
 
         }
 

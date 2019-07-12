@@ -180,12 +180,12 @@
             this.dgv_viaje.Name = "dgv_viaje";
             this.dgv_viaje.ReadOnly = true;
             this.dgv_viaje.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_viaje.Size = new System.Drawing.Size(614, 243);
+            this.dgv_viaje.Size = new System.Drawing.Size(733, 243);
             this.dgv_viaje.TabIndex = 103;
             // 
             // btUbicDisponibles
             // 
-            this.btUbicDisponibles.Location = new System.Drawing.Point(670, 355);
+            this.btUbicDisponibles.Location = new System.Drawing.Point(791, 360);
             this.btUbicDisponibles.Name = "btUbicDisponibles";
             this.btUbicDisponibles.Size = new System.Drawing.Size(74, 51);
             this.btUbicDisponibles.TabIndex = 116;
@@ -207,7 +207,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(758, 528);
+            this.ClientSize = new System.Drawing.Size(877, 528);
             this.Controls.Add(this.bt_buscar);
             this.Controls.Add(this.btUbicDisponibles);
             this.Controls.Add(this.dgv_viaje);

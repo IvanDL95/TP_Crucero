@@ -286,7 +286,7 @@ namespace FrbaCrucero.Compra_Reservar
 
                 if (reader.Read())
                 {
-                    idCompra = Convert.ToInt32(reader.GetInt32(0));
+                    idCompra = Convert.ToInt32(reader.GetDecimal(0));
                 }
 
                 MessageBox.Show("Compra realizada");

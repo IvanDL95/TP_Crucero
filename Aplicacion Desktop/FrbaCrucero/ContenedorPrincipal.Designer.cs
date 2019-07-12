@@ -84,27 +84,27 @@
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(156, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(149, 6);
             // 
             // cerrarSesionToolStripMenuItem
             // 
             this.cerrarSesionToolStripMenuItem.Name = "cerrarSesionToolStripMenuItem";
-            this.cerrarSesionToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.cerrarSesionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.cerrarSesionToolStripMenuItem.Text = "Cerrar Sesion";
             this.cerrarSesionToolStripMenuItem.Click += new System.EventHandler(this.cerrarSesionToolStripMenuItem_Click);
             // 
             // cambiarClienteToolStripMenuItem
             // 
             this.cambiarClienteToolStripMenuItem.Name = "cambiarClienteToolStripMenuItem";
-            this.cambiarClienteToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
-            this.cambiarClienteToolStripMenuItem.Text = "Cambiar Cliente";
+            this.cambiarClienteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.cambiarClienteToolStripMenuItem.Text = "Volver al inicio";
             this.cambiarClienteToolStripMenuItem.Click += new System.EventHandler(this.cambiarClienteToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = "&Salir";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolsStripMenuItem_Click);
             // 

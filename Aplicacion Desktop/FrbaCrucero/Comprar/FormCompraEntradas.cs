@@ -26,7 +26,7 @@ namespace FrbaCrucero.Compra_Reservar
         public int puertoDesde;
         public int puertoHasta;
 
-        public FormCompraReservar(bool esAdm, String user) 
+        public FormCompraReservar() 
         {
             InitializeComponent();
             CargarComboPuerto();

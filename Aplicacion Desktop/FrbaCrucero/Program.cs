@@ -21,8 +21,7 @@ namespace FrbaCrucero
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            //Application.Run(new PantallaIncial(null, null));
-            Application.Run(new PagoReserva());
+            Application.Run(new PantallaIncial(null, null));
 
         }
         

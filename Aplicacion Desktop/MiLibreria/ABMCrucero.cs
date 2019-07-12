@@ -12,6 +12,21 @@ namespace MiLibreria
 {
     public class CruceroFunc
     {
+        public static void HabilitarCrucero()
+        {
+            List<SqlParameter> parametros = new List<SqlParameter>();
+
+            SqlParameter parametro;
+
+            DateTime fechaSistema = DataBase.ObtenerFechaSistema();
+
+            parametro = new SqlParameter("@fecha_sistema", SqlDbType.DateTime);
+            parametro.Value = fechaSistema;
+            parametros.Add(parametro);
+
+            DataBase.EscribirEnLaBase("TROLLS.HABILITAR_CRUCERO", DataBase.Tipos.StoredProcedure, parametros);
+        }
+
         public static DataSet ListarCrucerosExistentes(int? tser_id, int? fab_id, String cru_mod_desc, String cru_id)
         {
             List<SqlParameter> parametros = new List<SqlParameter>();

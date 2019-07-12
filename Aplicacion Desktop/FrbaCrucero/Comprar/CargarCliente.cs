@@ -43,7 +43,7 @@ namespace FrbaCrucero.Compra_Reservar
             }
             else
             {
-                if (txt_nro_doc.Text.Trim().Length == 8)
+                if (txt_nro_doc.Text.Trim().Length >= 7 )
                 {                            
 
                     if (Client.ExisteDoc(Convert.ToInt32(txt_nro_doc.Text.Trim()))>0)

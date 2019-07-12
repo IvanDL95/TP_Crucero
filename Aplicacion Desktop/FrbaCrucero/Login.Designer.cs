@@ -35,10 +35,6 @@
             this.lbl_user = new System.Windows.Forms.Label();
             this.lbl_pass = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btn_elegir_rol = new System.Windows.Forms.Button();
-            this.lbl_rol = new System.Windows.Forms.Label();
-            this.cmb_rol = new System.Windows.Forms.ComboBox();
-            this.btNuevo = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -104,10 +100,6 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.btNuevo);
-            this.groupBox1.Controls.Add(this.btn_elegir_rol);
-            this.groupBox1.Controls.Add(this.lbl_rol);
-            this.groupBox1.Controls.Add(this.cmb_rol);
             this.groupBox1.Controls.Add(this.txt_user);
             this.groupBox1.Controls.Add(this.btn_iniciar);
             this.groupBox1.Controls.Add(this.btn_salir);
@@ -117,58 +109,16 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(105, 25);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(276, 283);
+            this.groupBox1.Size = new System.Drawing.Size(276, 179);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Acceso al Sistema";
-            // 
-            // btn_elegir_rol
-            // 
-            this.btn_elegir_rol.Location = new System.Drawing.Point(182, 208);
-            this.btn_elegir_rol.Name = "btn_elegir_rol";
-            this.btn_elegir_rol.Size = new System.Drawing.Size(75, 23);
-            this.btn_elegir_rol.TabIndex = 9;
-            this.btn_elegir_rol.Text = "Elegir Rol";
-            this.btn_elegir_rol.UseVisualStyleBackColor = true;
-            this.btn_elegir_rol.Visible = false;
-            this.btn_elegir_rol.Click += new System.EventHandler(this.btn_elegir_rol_Click);
-            // 
-            // lbl_rol
-            // 
-            this.lbl_rol.AutoSize = true;
-            this.lbl_rol.Location = new System.Drawing.Point(38, 192);
-            this.lbl_rol.Name = "lbl_rol";
-            this.lbl_rol.Size = new System.Drawing.Size(92, 13);
-            this.lbl_rol.TabIndex = 8;
-            this.lbl_rol.Text = "Seleccione un rol:";
-            this.lbl_rol.Visible = false;
-            // 
-            // cmb_rol
-            // 
-            this.cmb_rol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmb_rol.FormattingEnabled = true;
-            this.cmb_rol.Location = new System.Drawing.Point(15, 208);
-            this.cmb_rol.Name = "cmb_rol";
-            this.cmb_rol.Size = new System.Drawing.Size(143, 21);
-            this.cmb_rol.Sorted = true;
-            this.cmb_rol.TabIndex = 7;
-            this.cmb_rol.Visible = false;
-            // 
-            // btNuevo
-            // 
-            this.btNuevo.Location = new System.Drawing.Point(76, 254);
-            this.btNuevo.Name = "btNuevo";
-            this.btNuevo.Size = new System.Drawing.Size(116, 23);
-            this.btNuevo.TabIndex = 10;
-            this.btNuevo.Text = "Nuevo Usuario";
-            this.btNuevo.UseVisualStyleBackColor = true;
-            this.btNuevo.Click += new System.EventHandler(this.btNuevo_Click);
             // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(485, 324);
+            this.ClientSize = new System.Drawing.Size(485, 229);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "Login";
@@ -189,10 +139,6 @@
         private System.Windows.Forms.Label lbl_user;
         private System.Windows.Forms.Label lbl_pass;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ComboBox cmb_rol;
-        private System.Windows.Forms.Label lbl_rol;
-        private System.Windows.Forms.Button btn_elegir_rol;
-        private System.Windows.Forms.Button btNuevo;
     }
 }
 

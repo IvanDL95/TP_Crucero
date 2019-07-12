@@ -18,24 +18,11 @@ namespace FrbaCrucero.Pago_Reserva
     public partial class PagoReserva : Form
     {
         DataTable cabinasCompradas;
-        Int32 idCliente;
-        Int32 idViaje;
-        Int32 idRecorrido;
-        Int32 puertoDesde;
-        Int32 puertoHasta;
-        Int32 mp_id;
-        bool esCompra;
 
         public PagoReserva ()
         {
             InitializeComponent();
             CargarComboMp();
-            this.idViaje = idViaje;
-            this.idCliente = idCliente;
-            this.idRecorrido = idRecorrido;
-            this.puertoDesde = puertoDesde;
-            this.puertoHasta = puertoHasta;
-            this.esCompra = esCompra;
             //Crea tabla ubicacionesCompradas
             this.cabinasCompradas = new DataTable("cabinasCompradas");
             DataColumn workCol = this.cabinasCompradas.Columns.Add("cab_id", typeof(Int32));
@@ -76,73 +63,41 @@ namespace FrbaCrucero.Pago_Reserva
 
         private void btCabDisponibles_Click(object sender, EventArgs e)
         {
-            if(txt_reserva.Text == "")
-                MessageBox.Show("Ingrese Reserva");
-            else
-            dgv_cabina.DataSource = CompraFunc.VerificarReserva(Convert.ToInt32(txt_reserva.Text.Trim())).Tables[0];
+            dgv_cabina.Refresh();
+                //dgv_cabina.Rows.Clear();
 
-
-                /*dgv_cabina.Refresh();
-                dgv_cabina.Rows.Clear();
-
-
-                Int32 idViaje = this.idViaje;
-                Int32 idTipo = ABMCabina.ObtenerIDTipo(cmb_tipo.Text.Trim());
-
-                DataTable cabinas = ABMCabina.ObtenerCabinasSinCompra(idViaje, idTipo);
-                //Si hay ubicaciones
-                if (cabinas.Rows.Count > 0)
+                if (txt_reserva.Text == "")
+                    MessageBox.Show("Ingrese Reserva");
+                else
                 {
-                    //cab_id,cab_tcab_id,cab_piso,cab_nro,cab_via_id
-                    
                     dgv_cabina.AllowUserToAddRows = true;
-                    int cantCabinas = cabinas.Rows.Count;
-                    //Se agragan las filas necesarias          
-                    for (Int32 j = 0; j < cabinas.Rows.Count; j++)
-                    {
-                        DataGridViewRow rowCab = (DataGridViewRow)dgv_cabina.Rows[0].Clone();
-                        dgv_cabina.Rows.Add(rowCab);
-                    }
-
-                    //Se agregan los datos en las filas
-                    for (Int32 i = 0; i < cabinas.Rows.Count; i++)
-                    {
-                        dgv_cabina.Rows[i].Cells[0].Value = cabinas.Rows[i]["cab_id"].ToString();
-                        dgv_cabina.Rows[i].Cells[1].Value = ABMCabina.ObtenerDescTipo(Convert.ToInt32(cabinas.Rows[i]["cab_tcab_id"]));
-                        dgv_cabina.Rows[i].Cells[2].Value = cabinas.Rows[i]["cab_piso"].ToString();
-                        dgv_cabina.Rows[i].Cells[3].Value = cabinas.Rows[i]["cab_nro"].ToString();  //.Replace(",", ".").Replace(".", ".");
-                        //Precio = (Suma precio de tramos * Porc)/100 + Suma precio de tramos
-                        dgv_cabina.Rows[i].Cells[4].Value = Math.Round((ABMCabina.ObtenerPorc(Convert.ToInt32(cabinas.Rows[i]["cab_tcab_id"])) * ABMCabina.ObtenerPrecioRecorrido(this.idRecorrido,this.puertoDesde,this.puertoHasta)/100) +ABMCabina.ObtenerPrecioRecorrido(this.idRecorrido,this.puertoDesde,this.puertoHasta),2);
-                        dgv_cabina.Rows[i].Cells[5].Value = cabinas.Rows[i]["cab_via_id"].ToString();
-                    }                    
-
-                    //Marcar las filas que ya fueron seleccionadas para comprar
-                    if (this.cabinasCompradas.Rows.Count > 0)
-                        for (Int32 j = 0; j < this.cabinasCompradas.Rows.Count; j++)
-                        {
-                            for (Int32 j2 = 0; j2 < this.dgv_cabina.Rows.Count - 1; j2++)
-                            {
-                                if (string.Compare(dgv_cabina.Rows[j2].Cells[0].Value.ToString(), this.cabinasCompradas.Rows[j]["cab_id"].ToString()) == 0)
-                                    dgv_cabina.Rows[j2].DefaultCellStyle.BackColor = Color.Aqua;
-                            }
-                        }
-
-                    dgv_cabina.AllowUserToAddRows = false;
+                    dgv_cabina.DataSource = CompraFunc.VerificarReserva(Convert.ToInt32(txt_reserva.Text.Trim())).Tables[0];
                 }
-            }*/
+
+            dgv_cabina.AllowUserToAddRows = false;
         }
 
         private void btComprar_Click(object sender, EventArgs e)
         {
+            if (dgv_cabina.Rows.Count > 0)
+            {
+
                 DataRow row = this.cabinasCompradas.NewRow();
                 DataGridViewRow dataRow = dgv_cabina.Rows[(dgv_cabina.CurrentRow.Index)];
-                row["cab_id"] = dataRow.Cells["cab_id"].Value.ToString();
-                row["cab_via_id"] = dataRow.Cells["cab_via_id"].Value.ToString();
-                row["cab_precio"] = Convert.ToDecimal(dataRow.Cells["colPrecio"].Value, CultureInfo.InvariantCulture);
-                row["cab_nro"] = dataRow.Cells["colNumero"].Value.ToString();
-                row["cab_piso"] = dataRow.Cells["colPiso"].Value.ToString();
-                row["cab_tcab_id"] = ABMCabina.ObtenerIDTipo(dataRow.Cells["colTipo"].Value.ToString());
-                row["pue_id_hasta"] = this.puertoHasta;
+                int idViaje = ABMCabina.ObtenerIDViaje(Convert.ToInt32(txt_reserva.Text.Trim()));
+                int idTipo = ABMCabina.ObtenerIDTipo(dataRow.Cells["TipoCabina"].Value.ToString());
+
+                row["cab_id"] = ABMCabina.ObtenerIdCabina(
+                    Convert.ToInt32(dataRow.Cells["Piso"].Value.ToString()),
+                    Convert.ToInt32(dataRow.Cells["Numero"].Value.ToString()),
+                    idTipo,
+                    idViaje);
+                row["cab_via_id"] = idViaje;
+                row["cab_precio"] = dataRow.Cells["Precio"].Value.ToString();
+                row["cab_nro"] = dataRow.Cells["Numero"].Value.ToString();
+                row["cab_piso"] = dataRow.Cells["Piso"].Value.ToString();
+                row["cab_tcab_id"] = idTipo;
+                row["pue_id_hasta"] = ABMCabina.ObtenerIDPuerto(dataRow.Cells["PuertoHasta"].Value.ToString());
                 this.cabinasCompradas.Rows.Add(row);
 
                 dgv_cabina.Enabled = false;
@@ -153,7 +108,9 @@ namespace FrbaCrucero.Pago_Reserva
                 lb_mp.Visible = true;
                 lb_selec.Visible = true;
                 bt_mp.Visible = true;
-                cmb_mp.Visible = true;   
+                cmb_mp.Visible = true;
+            }else
+                MessageBox.Show("Ingrese una reserva valida");
 
         }
 
@@ -181,8 +138,9 @@ namespace FrbaCrucero.Pago_Reserva
                     DateTime fechaSistema = DataBase.ObtenerFechaSistema();
                     Compra compra = new Compra();
                     compra.com_fecha = fechaSistema;
-                    compra.com_cli = this.idCliente;
-                    compra.cabinas = cabinasCompradas;
+                    DataGridViewRow dataRow = dgv_cabina.Rows[(dgv_cabina.CurrentRow.Index)];
+                    compra.com_cli = Convert.ToInt32(dataRow.Cells["Documento"].Value.ToString());
+                    compra.cabinas = this.cabinasCompradas;
                     compra.com_mp = CompraFunc.ObtenerIDMp(cmb_mp.Text);
                     SqlDataReader reader = CompraFunc.CrearCompra(compra);
 
@@ -193,8 +151,9 @@ namespace FrbaCrucero.Pago_Reserva
                         idCompra = Convert.ToInt32(reader.GetDecimal(0));
                     }
                     
+                    CompraFunc.ComprarReserva(Convert.ToInt32(txt_reserva.Text.Trim()));
                     MessageBox.Show("Compra realizada");
-                    MostrarVoucher mv = new MostrarVoucher(compra, null, idCompra, this.esCompra);
+                    MostrarVoucher mv = new MostrarVoucher(compra, null, idCompra, true);
                     this.Hide();
                     mv.ShowDialog();
                     this.Close();
@@ -216,8 +175,9 @@ namespace FrbaCrucero.Pago_Reserva
                 DateTime fechaSistema = DataBase.ObtenerFechaSistema();
                 Compra compra = new Compra();
                 compra.com_fecha = fechaSistema;
-                compra.com_cli = this.idCliente;
-                compra.cabinas = cabinasCompradas;
+                DataGridViewRow dataRow = dgv_cabina.Rows[(dgv_cabina.CurrentRow.Index)];
+                compra.com_cli = Convert.ToInt32(dataRow.Cells["Documento"].Value.ToString());
+                compra.cabinas = this.cabinasCompradas;
                 compra.com_mp = CompraFunc.ObtenerIDMp(cmb_mp.Text);
                 compra.com_detalle = String.Concat("N° Cuotas: ", cmb_cuota.Text);
                 SqlDataReader reader = CompraFunc.CrearCompra(compra);
@@ -226,11 +186,11 @@ namespace FrbaCrucero.Pago_Reserva
 
                 if (reader.Read())
                 {
-                    idCompra = Convert.ToInt32(reader.GetInt32(0));
+                    idCompra = Convert.ToInt32(reader.GetDecimal(0));
                 }
-
+                CompraFunc.ComprarReserva(Convert.ToInt32(txt_reserva.Text.Trim()));
                 MessageBox.Show("Compra realizada");
-                MostrarVoucher mv = new MostrarVoucher(compra,null, idCompra, this.esCompra);
+                MostrarVoucher mv = new MostrarVoucher(compra,null, idCompra, true);
                 this.Hide();
                 mv.ShowDialog();
                 this.Close();

@@ -55,9 +55,6 @@ namespace FrbaCrucero
             txt_pass.Enabled = estado;
             lbl_user.Enabled = estado;
             lbl_pass.Enabled = estado;
-            cmb_rol.Visible = !estado;
-            lbl_rol.Visible = !estado;
-            btn_elegir_rol.Visible = !estado;
         }
 
         public string ValidarCampos()
@@ -152,14 +149,6 @@ namespace FrbaCrucero
                         }
 
                     }
-                    else if (cantidadRoles > 1)
-                    {
-                        btn_iniciar.Enabled = false;
-                        HabilitarSeleccionRol(false);
-                        this.id = LLenarCombo(user);
-                    }
-
-                    btn_elegir_rol.Click += new EventHandler(this.btn_elegir_rol_Click);
 
                     break;
 
@@ -186,55 +175,6 @@ namespace FrbaCrucero
             reader.Close();
             return id;
 
-        }
-
-        private int LLenarCombo(string user)
-        {
-            int id = User.ObtenerIDUsuario(user);
-
-            List<SqlParameter> parametros = new List<SqlParameter>();
-            parametros.Add(new SqlParameter("@ID", id));
-            SqlDataReader reader = DataBase.ObtenerUnDataReader("TROLLS.OBTENER_ROLES_ACTIVOS", DataBase.Tipos.StoredProcedure, parametros);
-
-            if (reader.HasRows)
-            {
-                while (reader.Read())
-                {
-                    Rol rol = new Rol();
-                    rol.id_rol = Convert.ToInt32(reader.GetDecimal(1));
-                    rol.str_rol = reader.GetString(0);
-                    cmb_rol.Items.Add(rol);
-                }
-            }
-
-            reader.Close();
-            return id;
-
-        }
-
-        private void btn_elegir_rol_Click(object sender, EventArgs e)
-        {
-            // Aca hay que ver como entrar al contenedor ppal viendo solo 
-            //llamar al contenedor ppal con id como parametro
-            Rol rol = new Rol();
-            rol = (Rol)cmb_rol.SelectedItem;
-            if (this.cpal == null)
-            {
-                ContenedorPrincipal cppal = new ContenedorPrincipal(this.id, this.user, rol.id_rol,false,false);
-                this.Hide();
-                cppal.ShowDialog();
-                this.Close();
-            }
-            else
-            {
-                this.Hide();
-                this.cpal.id = this.id;
-                this.cpal.usuario = this.user;
-                this.cpal.id_rol = rol.id_rol;
-                this.cpal.inicializar(this.id, this.user, rol.id_rol,false,true);
-                this.cpal.Show();
-                this.Close();
-            }
         }
 
         private void btNuevo_Click(object sender, EventArgs e)

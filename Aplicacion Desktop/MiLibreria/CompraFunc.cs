@@ -106,6 +106,35 @@ namespace MiLibreria
             return ds;
         }
 
+        public static void CancelarReserva()
+        {
+            List<SqlParameter> parametros = new List<SqlParameter>();
+
+            SqlParameter parametro;
+
+            DateTime fechaSistema = DataBase.ObtenerFechaSistema();
+            DateTime fechaSistemaCancelaReserva = ChangeTimeCancelaReserva(fechaSistema);
+
+            parametro = new SqlParameter("@fecha_sistema", SqlDbType.DateTime);
+            parametro.Value = fechaSistemaCancelaReserva;
+            parametros.Add(parametro);  
+
+            DataBase.EscribirEnLaBase("TROLLS.CANCELAR_RESERVA", DataBase.Tipos.StoredProcedure, parametros);
+        }
+
+        public static void ComprarReserva(int idReserva)
+        {
+            List<SqlParameter> parametros = new List<SqlParameter>();
+
+            SqlParameter parametro;
+
+            parametro = new SqlParameter("@res_id", SqlDbType.Int, 100);
+            parametro.Value = idReserva;
+            parametros.Add(parametro);
+
+            DataBase.EscribirEnLaBase("TROLLS.RESERVA_COMPRADA", DataBase.Tipos.StoredProcedure, parametros);
+        }
+
         public static DataSet VoucherReserva(Reserva reserva)
         {
             List<SqlParameter> parametros = PrepararParametrosVoucher(reserva);
@@ -223,6 +252,19 @@ namespace MiLibreria
 
             return parametros;
 
+        }
+
+        public static DateTime ChangeTimeCancelaReserva(DateTime dateTime)
+        {
+            return new DateTime(
+                dateTime.Year,
+                dateTime.Month,
+                (dateTime.Day-4),
+                dateTime.Hour,
+                dateTime.Minute,
+                dateTime.Second,
+                dateTime.Millisecond,
+                dateTime.Kind);
         }
 
         public static void RendirCompra(DataTable compras, DateTime fechaSistema)

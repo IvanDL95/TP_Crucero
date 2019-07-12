@@ -12,23 +12,29 @@ namespace MiLibreria
 {
     public class ABMCabina
     {
-        public static DataTable ObtenerUbicaciones(Int32 id_publicacion)
-        {
-            List<SqlParameter> parametros = new List<SqlParameter>();
-            SqlParameter parametro;
-            parametro = new SqlParameter("@ID", SqlDbType.Int, 100);
-            parametro.Value = id_publicacion;
-            parametros.Add(parametro);
-
-            DataSet ds = DataBase.ObtenerUnDataSet("TROLLS.OBTENER_UBICACIONES", DataBase.Tipos.StoredProcedure, parametros);
-
-            return ds.Tables[0];
-        }
 
         public static Int32 ObtenerIDTipo(String desc)
         {
             Int32 ID = -1;
             String query = "SELECT TCAB_ID FROM TROLLS.TIPO_CABINA WHERE TCAB_TIPO = '" + desc + "'";
+            ID = DataBase.queryForInt(query);
+
+            return ID;
+        }
+
+        public static Int32 ObtenerIDPuerto(String desc)
+        {
+            Int32 ID = -1;
+            String query = "SELECT PUE_ID FROM TROLLS.PUERTO WHERE PUE_NOMBRE = '" + desc + "'";
+            ID = DataBase.queryForInt(query);
+
+            return ID;
+        }
+
+        public static Int32 ObtenerIDViaje(int res_id)
+        {
+            Int32 ID = -1;
+            String query = "SELECT RES_VIA_ID FROM TROLLS.RESERVA WHERE RES_ID = '" + res_id.ToString() + "'";
             ID = DataBase.queryForInt(query);
 
             return ID;
@@ -43,6 +49,33 @@ namespace MiLibreria
             parametros.Add(parametro);
             SqlDataReader reader = DataBase.ObtenerUnDataReader("TROLLS.OBTENERDESCTIPOCABINA", DataBase.Tipos.StoredProcedure, parametros);
             return reader;
+        }
+
+        public static int ObtenerIdCabina(Int32 cab_piso, Int32 cab_nro, Int32 cab_tcab_id, Int32 via_id)
+        {
+            List<SqlParameter> parametros = new List<SqlParameter>();
+            SqlParameter parametro;
+            parametro = new SqlParameter("@cab_piso", SqlDbType.Int, 100);
+            parametro.Value = cab_piso;
+            parametros.Add(parametro);
+            parametro = new SqlParameter("@cab_numero", SqlDbType.Int, 100);
+            parametro.Value = cab_nro;
+            parametros.Add(parametro);
+            parametro = new SqlParameter("@cab_tcab_id", SqlDbType.Int, 100);
+            parametro.Value = cab_tcab_id;
+            parametros.Add(parametro);
+            parametro = new SqlParameter("@via_id", SqlDbType.Int, 100);
+            parametro.Value = via_id;
+            parametros.Add(parametro);
+            SqlDataReader reader = DataBase.ObtenerUnDataReader("TROLLS.OBTENERIDCABINA", DataBase.Tipos.StoredProcedure, parametros);
+
+            int id = 0;
+            if (reader.Read())
+            {
+                id = Convert.ToInt32(reader.GetDecimal(0));
+            }
+
+            return id;
         }
 
         public static decimal ObtenerPrecioRecorrido(Int32 rec_id, Int32 pue_id_desde, Int32 pue_id_hasta)
@@ -112,161 +145,5 @@ namespace MiLibreria
             return ds.Tables[0];
         }
 
-        public static void CrearUbicacion(Ubicacion ubicacion)
-        {
-            List<SqlParameter> parametros = PrepararParametros(ubicacion);
-            DataBase.EscribirEnLaBase("TROLLS.CREAR_UBICACION", DataBase.Tipos.StoredProcedure, parametros);
-
-        }
-
-        public static void ModificarUbicacion(Ubicacion ubicacion)
-        {
-            List<SqlParameter> parametros = PrepararParametrosModificar(ubicacion);
-            DataBase.EscribirEnLaBase("TROLLS.MODIFICAR_UBICACION", DataBase.Tipos.StoredProcedure, parametros);
-
-        }
-
-        private static List<SqlParameter> PrepararParametrosModificar(Ubicacion ubicacion)
-        {
-            List<SqlParameter> parametros = new List<SqlParameter>();
-
-            SqlParameter parametro;
-
-            parametro = new SqlParameter("@ubi_id", SqlDbType.Int);
-            parametro.Value = ubicacion.ubi_id;
-            parametros.Add(parametro);
-
-            parametro = new SqlParameter("@ubi_tipo", SqlDbType.VarChar);
-            parametro.Value = ubicacion.ubi_tipo;
-            parametros.Add(parametro);
-
-            parametro = new SqlParameter("@ubi_precio", SqlDbType.Decimal);
-            parametro.Value = ubicacion.ubi_precio;
-            parametros.Add(parametro);
-
-            parametro = new SqlParameter("@ubi_sin_numerar", SqlDbType.Bit);
-            parametro.Value = ubicacion.ubi_sin_numerar;
-            parametros.Add(parametro);
-
-            parametro = new SqlParameter("@ubi_asiento", SqlDbType.VarChar);
-
-            parametro.Value = DBNull.Value;
-            if (!String.IsNullOrEmpty(ubicacion.ubi_asiento))
-            {
-                parametro.Value = ubicacion.ubi_asiento;
-            }
-            parametros.Add(parametro);
-
-            parametro = new SqlParameter("@ubi_fila", SqlDbType.VarChar);
-            parametro.Value = DBNull.Value;
-            if (!String.IsNullOrEmpty(ubicacion.ubi_fila))
-            {
-                parametro.Value = ubicacion.ubi_fila;
-            }
-            parametros.Add(parametro);
-            return parametros;
-
-        }
-
-        private static List<SqlParameter> PrepararParametros(Ubicacion ubicacion)
-        {
-            List<SqlParameter> parametros = new List<SqlParameter>();
-
-            SqlParameter parametro;
-
-            parametro = new SqlParameter("@ubi_tipo", SqlDbType.VarChar);
-            parametro.Value = ubicacion.ubi_tipo;
-            parametros.Add(parametro);
-
-            parametro = new SqlParameter("@ubi_precio", SqlDbType.Decimal);
-            parametro.Value = ubicacion.ubi_precio;
-            parametros.Add(parametro);
-
-            parametro = new SqlParameter("@ubi_sin_numerar", SqlDbType.Bit);
-            parametro.Value = ubicacion.ubi_sin_numerar;
-            parametros.Add(parametro);
-
-            parametro = new SqlParameter("@ubi_asiento", SqlDbType.VarChar);
-            parametro.Value = ubicacion.ubi_asiento;
-            parametros.Add(parametro);
-
-            parametro = new SqlParameter("@ubi_fila", SqlDbType.VarChar);
-            parametro.Value = ubicacion.ubi_fila;
-            parametros.Add(parametro);
-
-            parametro = new SqlParameter("@ubi_pub", SqlDbType.Int);
-            parametro.Value = ubicacion.ubi_pub;
-            parametros.Add(parametro);
-
-            return parametros;
-
-        }
-
-        public static void CrearUbicacionSinNumerar(Ubicacion ubicacion)
-        {
-            List<SqlParameter> parametros = PrepararParametrosSinNumerar(ubicacion);
-
-            DataBase.EscribirEnLaBase("TROLLS.CREAR_UBICACION_SIN_NUMERAR", DataBase.Tipos.StoredProcedure, parametros);
-
-        }
-
-        public static void ModificarUbicacionSinNumerar(Ubicacion ubicacion)
-        {
-            List<SqlParameter> parametros = PrepararParametrosSinNumerarModificar(ubicacion);
-
-            DataBase.EscribirEnLaBase("TROLLS.MODIFICAR_UBICACION_SIN_NUMERAR", DataBase.Tipos.StoredProcedure, parametros);
-
-        }
-
-        private static List<SqlParameter> PrepararParametrosSinNumerarModificar(Ubicacion ubicacion)
-        {
-            List<SqlParameter> parametros = new List<SqlParameter>();
-
-            SqlParameter parametro;
-
-            parametro = new SqlParameter("@ubi_id", SqlDbType.Int);
-            parametro.Value = ubicacion.ubi_id;
-            parametros.Add(parametro);
-
-            parametro = new SqlParameter("@ubi_tipo", SqlDbType.VarChar);
-            parametro.Value = ubicacion.ubi_tipo;
-            parametros.Add(parametro);
-
-            parametro = new SqlParameter("@ubi_precio", SqlDbType.Decimal);
-            parametro.Value = ubicacion.ubi_precio;
-            parametros.Add(parametro);
-
-            parametro = new SqlParameter("@ubi_sin_numerar", SqlDbType.Bit);
-            parametro.Value = ubicacion.ubi_sin_numerar;
-            parametros.Add(parametro);
-
-            return parametros;
-        }
-
-        private static List<SqlParameter> PrepararParametrosSinNumerar(Ubicacion ubicacion)
-        {
-            List<SqlParameter> parametros = new List<SqlParameter>();
-
-            SqlParameter parametro;
-
-            parametro = new SqlParameter("@ubi_tipo", SqlDbType.VarChar);
-            parametro.Value = ubicacion.ubi_tipo;
-            parametros.Add(parametro);
-
-            parametro = new SqlParameter("@ubi_precio", SqlDbType.Decimal);
-            parametro.Value = ubicacion.ubi_precio;
-            parametros.Add(parametro);
-
-            parametro = new SqlParameter("@ubi_sin_numerar", SqlDbType.Bit);
-            parametro.Value = ubicacion.ubi_sin_numerar;
-            parametros.Add(parametro);
-
-            parametro = new SqlParameter("@ubi_pub", SqlDbType.Int);
-            parametro.Value = ubicacion.ubi_pub;
-            parametros.Add(parametro);
-
-            return parametros;
-
-        }
     }
 }

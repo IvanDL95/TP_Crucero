@@ -10,9 +10,10 @@ using System.Windows.Forms;
 using System.Collections;
 using System.Data.SqlClient;
 using MiLibreria;
-using FrbaCrucero.Generar_Rendicion_Comisiones;
 using FrbaCrucero.Listados;
 using FrbaCrucero.ABMCrucero;
+using FrbaCrucero.Generar_viaje;
+using FrbaCrucero.AbmRecorrido;
 
 namespace FrbaCrucero
 {
@@ -22,7 +23,6 @@ namespace FrbaCrucero
         public int id_rol { get; set; }
         public String usuario { get; set; }
 
-        Boolean primerInicio;
         private int childFormNumber = 0;
         public const int ADMINISTRADOR = 1;
         ArrayList funcionalidades = new ArrayList();
@@ -41,9 +41,8 @@ namespace FrbaCrucero
             this.id = id;
             this.id_rol = rol;
             this.usuario = usuario;
-            this.primerInicio = primerInicio;
-            this.cerrarSesionToolStripMenuItem.Available = false;
-            this.cambiarClienteToolStripMenuItem.Available = false;
+            this.cerrarSesionToolStripMenuItem.Available = true;
+            this.cambiarClienteToolStripMenuItem.Available = true;
             this.aBMToolStripMenuItem.Available = false;
             this.aBMRolToolStripMenuItem.Available = false;
             this.accionesToolStripMenuItem.Available = false;
@@ -56,25 +55,8 @@ namespace FrbaCrucero
             this.aBMPuertoToolStripMenuItem.Available = false;
             this.aBMRecorridoToolStripMenuItem.Available = false;
 
-            if (id == 2) //Cliente
-                this.cambiarClienteToolStripMenuItem.Available = true;
-            else
-                this.cerrarSesionToolStripMenuItem.Available = true;
-
-            if (iniciado)
-            //Cambiar pass
-            if (this.primerInicio)
-            {
-                MessageBox.Show("Debe modificar su password");
-                CambiarPass fr = new CambiarPass(this.usuario, this.primerInicio);
-                this.Hide();
-                if (!fr.IsDisposed)
-                    fr.ShowDialog();
-                this.Show();
-                this.primerInicio = false;
-            }
-            
-
+            if (rol == 2) //Cliente
+                this.cerrarSesionToolStripMenuItem.Available = false;      
             
             CambiarMenu(rol);
         }
@@ -204,47 +186,25 @@ namespace FrbaCrucero
 
         private void comprarReservarViajeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (this.id_rol == 1)//Admin
-            {
-                Compra_Reservar.FormCompraReservar fr = new Compra_Reservar.FormCompraReservar(true, this.usuario);
-                this.Hide();
-                if (!fr.IsDisposed)
+            Compra_Reservar.FormCompraReservar fr = new Compra_Reservar.FormCompraReservar();
+            this.Hide();
+            if (!fr.IsDisposed)
                 fr.ShowDialog();
-                this.Show();
-            }
-            else
-            {
-                Compra_Reservar.FormCompraReservar fr2 = new Compra_Reservar.FormCompraReservar(false, this.usuario);
-                this.Hide();
-                if (!fr2.IsDisposed)
-                fr2.ShowDialog();
-                this.Show();
-            }
+            this.Show();
         }
 
         private void pagoReservaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (this.id_rol == 1)//Admin
-            {
-                Canjear_Puntos.FormCanjearPuntos fr = new Canjear_Puntos.FormCanjearPuntos(this.usuario,true);
-                this.Hide();
-                if (!fr.IsDisposed)
+            Pago_Reserva.PagoReserva fr = new Pago_Reserva.PagoReserva();
+            this.Hide();
+            if (!fr.IsDisposed)
                 fr.ShowDialog();
-                this.Show();
-            }
-            else
-            {
-                Canjear_Puntos.FormCanjearPuntos fr = new Canjear_Puntos.FormCanjearPuntos(this.usuario, false);
-                this.Hide();
-                if (!fr.IsDisposed)
-                fr.ShowDialog();
-                this.Show();
-            }
+            this.Show();
         }
 
         private void generarViajeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormCrucero fr = new FormCrucero();
+            FormGenerarViaje fr = new FormGenerarViaje();
                 this.Hide();
                 if (!fr.IsDisposed)
                     fr.ShowDialog();
@@ -263,12 +223,14 @@ namespace FrbaCrucero
         private void cerrarSesionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Login fr = new Login(this);
-            fr.Show();
+            this.Hide();
+            fr.ShowDialog();
+            this.Close();
         }
 
         private void aBMPuertoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ABMCrucero.FormCrucero fr = new ABMCrucero.FormCrucero();
+            ABMPuerto.ABMPuertoForm fr = new ABMPuerto.ABMPuertoForm();
             this.Hide();
             fr.ShowDialog();
             this.Show();
@@ -276,7 +238,7 @@ namespace FrbaCrucero
 
         private void aBMRecorridoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Abm_Grado.ABMGrado fr = new Abm_Grado.ABMGrado();
+            FormRecorrido fr = new FormRecorrido();
             this.Hide();
             fr.ShowDialog();
             this.Show();
@@ -292,23 +254,20 @@ namespace FrbaCrucero
 
         private void ContenedorPrincipal_Load(object sender, EventArgs e)
         {
-            //Cambiar pass
-            if (this.primerInicio)
-            {
-                MessageBox.Show("Debe modificar su password");
-                CambiarPass fr = new CambiarPass(this.usuario, this.primerInicio);
-                this.Hide();
-                if (!fr.IsDisposed)
-                    fr.ShowDialog();
-                this.Show();
+            if (this.id_rol == 1)
+            { //Es admin
+                CompraFunc.CancelarReserva();
+                CruceroFunc.HabilitarCrucero();
             }
-            this.primerInicio = false;
+
         }
 
         private void cambiarClienteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            InicioCliente fr = new InicioCliente(this);
-            fr.Show();
+            PantallaIncial fr = new PantallaIncial(null,null);
+            this.Hide();
+            fr.ShowDialog();
+            this.Close();
         }
 
     }

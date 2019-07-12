@@ -10,18 +10,17 @@ using System.Windows.Forms;
 using MiLibreria;
 using System.Configuration;
 using System.Data.SqlClient;
+using MiLibreria.Modelo;
 
 
 namespace FrbaCrucero
 {
-
-
     public partial class PantallaIncial : Form
     {
         Login login;
-        InicioCliente icliente;
+        ContenedorPrincipal cpal;
 
-        public PantallaIncial(Login login, InicioCliente icliente)
+        public PantallaIncial(Login login, ContenedorPrincipal cpal)
         {
             InitializeComponent();
             if (login == null)
@@ -29,37 +28,43 @@ namespace FrbaCrucero
             else
                 this.login = login;
 
-            if (icliente == null)
-                this.icliente = null;
+            if (cpal == null)
+                this.cpal = null;
             else
-                this.icliente = icliente;
+                this.cpal = cpal;
 
         }
 
 
         private void btCliente_Click(object sender, EventArgs e)
         {
-            if (this.icliente == null)
-            {
+            Rol rol = new Rol();
+            rol.id = 2; //Cliente
 
-                InicioCliente icliente = new InicioCliente(null);
+            if (this.cpal == null)
+            {
+                ContenedorPrincipal cppal = new ContenedorPrincipal(0, null, rol.id, false, false);
                 this.Hide();
-                if (!icliente.IsDisposed)
-                    icliente.ShowDialog();
+                if (!cppal.IsDisposed)
+                    cppal.ShowDialog();
                 this.Close();
             }
             else
             {
                 this.Hide();
-                this.icliente.Show();
+                this.cpal.id = 0;
+                this.cpal.usuario = null;
+                this.cpal.id_rol = rol.id;
+                this.cpal.inicializar(0, null, rol.id, false, true);
+                this.cpal.Show();
                 this.Close();
-            }
+            }      
         }
 
         private void btAdmin_Click(object sender, EventArgs e)
         {
             if (this.login == null)
-            {             
+            {
                 Login login = new Login(null);
                 this.Hide();
                 if (!login.IsDisposed)
