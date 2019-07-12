@@ -30,20 +30,23 @@
         {
             this.label2 = new System.Windows.Forms.Label();
             this.dgv_tramos = new System.Windows.Forms.DataGridView();
-            this.colPuertoSalida = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPuertoDestino = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPuertoSalida = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.colPuertoDestino = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.colPrecioBase = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label4 = new System.Windows.Forms.Label();
             this.btAceptar = new System.Windows.Forms.Button();
             this.btEliminar = new System.Windows.Forms.Button();
             this.btCancelar = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.cmb_puertoSalida = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.cmb_puertoDestino = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.txt_id = new FrbaCrucero.NumericTextBox();
             this.label14 = new System.Windows.Forms.Label();
+            this.Agregar = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.numericTextBox2 = new FrbaCrucero.NumericTextBox();
+            this.numericTextBox1 = new FrbaCrucero.NumericTextBox();
+            this.txt_id = new FrbaCrucero.NumericTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_tramos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -67,40 +70,51 @@
             this.dgv_tramos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colPuertoSalida,
             this.colPuertoDestino,
-            this.colPrecioBase});
+            this.colPrecioBase,
+            this.colId});
             this.dgv_tramos.Location = new System.Drawing.Point(64, 145);
             this.dgv_tramos.Name = "dgv_tramos";
-            this.dgv_tramos.Size = new System.Drawing.Size(946, 269);
+            this.dgv_tramos.Size = new System.Drawing.Size(848, 269);
             this.dgv_tramos.TabIndex = 106;
             // 
             // colPuertoSalida
             // 
             this.colPuertoSalida.HeaderText = "Puerto Salida";
             this.colPuertoSalida.Name = "colPuertoSalida";
+            this.colPuertoSalida.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.colPuertoSalida.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // colPuertoDestino
             // 
             this.colPuertoDestino.HeaderText = "Puerto Destino";
             this.colPuertoDestino.Name = "colPuertoDestino";
+            this.colPuertoDestino.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.colPuertoDestino.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // colPrecioBase
             // 
             this.colPrecioBase.HeaderText = "Precio Tramo";
             this.colPrecioBase.Name = "colPrecioBase";
+            this.colPrecioBase.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // colId
+            // 
+            this.colId.HeaderText = "*";
+            this.colId.Name = "colId";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(492, 6);
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(361, 9);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(79, 25);
+            this.label4.Size = new System.Drawing.Size(255, 31);
             this.label4.TabIndex = 107;
-            this.label4.Text = "Tramos";
+            this.label4.Text = "Generar Recorrido";
             // 
             // btAceptar
             // 
-            this.btAceptar.Location = new System.Drawing.Point(184, 420);
+            this.btAceptar.Location = new System.Drawing.Point(140, 420);
             this.btAceptar.Name = "btAceptar";
             this.btAceptar.Size = new System.Drawing.Size(75, 23);
             this.btAceptar.TabIndex = 109;
@@ -110,7 +124,7 @@
             // 
             // btEliminar
             // 
-            this.btEliminar.Location = new System.Drawing.Point(497, 420);
+            this.btEliminar.Location = new System.Drawing.Point(597, 420);
             this.btEliminar.Name = "btEliminar";
             this.btEliminar.Size = new System.Drawing.Size(75, 23);
             this.btEliminar.TabIndex = 110;
@@ -120,7 +134,7 @@
             // 
             // btCancelar
             // 
-            this.btCancelar.Location = new System.Drawing.Point(812, 420);
+            this.btCancelar.Location = new System.Drawing.Point(769, 420);
             this.btCancelar.Name = "btCancelar";
             this.btCancelar.Size = new System.Drawing.Size(75, 23);
             this.btCancelar.TabIndex = 131;
@@ -128,59 +142,14 @@
             this.btCancelar.UseVisualStyleBackColor = true;
             this.btCancelar.Click += new System.EventHandler(this.btCancelar_Click);
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(61, 18);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(73, 13);
-            this.label5.TabIndex = 111;
-            this.label5.Text = "Puerto Salida:";
-            // 
-            // cmb_puertoSalida
-            // 
-            this.cmb_puertoSalida.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmb_puertoSalida.FormattingEnabled = true;
-            this.cmb_puertoSalida.Location = new System.Drawing.Point(140, 15);
-            this.cmb_puertoSalida.Name = "cmb_puertoSalida";
-            this.cmb_puertoSalida.Size = new System.Drawing.Size(250, 21);
-            this.cmb_puertoSalida.TabIndex = 112;
-            this.cmb_puertoSalida.SelectedIndexChanged += new System.EventHandler(this.cmb_puertoSalida_SelectedIndexChanged);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(672, 18);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(82, 13);
-            this.label6.TabIndex = 113;
-            this.label6.Text = "Puerto Llegada:";
-            // 
-            // cmb_puertoDestino
-            // 
-            this.cmb_puertoDestino.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmb_puertoDestino.FormattingEnabled = true;
-            this.cmb_puertoDestino.Location = new System.Drawing.Point(760, 15);
-            this.cmb_puertoDestino.Name = "cmb_puertoDestino";
-            this.cmb_puertoDestino.Size = new System.Drawing.Size(250, 21);
-            this.cmb_puertoDestino.TabIndex = 114;
-            this.cmb_puertoDestino.SelectedIndexChanged += new System.EventHandler(this.cmb_puertoDestino_SelectedIndexChanged);
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(322, 83);
+            this.label7.Location = new System.Drawing.Point(61, 48);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(68, 13);
             this.label7.TabIndex = 133;
             this.label7.Text = "Id Recorrido:";
-            // 
-            // txt_id
-            // 
-            this.txt_id.Location = new System.Drawing.Point(396, 80);
-            this.txt_id.Name = "txt_id";
-            this.txt_id.Size = new System.Drawing.Size(274, 20);
-            this.txt_id.TabIndex = 132;
             // 
             // label14
             // 
@@ -189,20 +158,81 @@
             this.label14.Size = new System.Drawing.Size(100, 23);
             this.label14.TabIndex = 0;
             // 
+            // Agregar
+            // 
+            this.Agregar.Location = new System.Drawing.Point(367, 420);
+            this.Agregar.Name = "Agregar";
+            this.Agregar.Size = new System.Drawing.Size(75, 23);
+            this.Agregar.TabIndex = 134;
+            this.Agregar.Text = "Agregar";
+            this.Agregar.UseVisualStyleBackColor = true;
+            this.Agregar.Click += new System.EventHandler(this.Agregar_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(424, 118);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(74, 24);
+            this.label1.TabIndex = 137;
+            this.label1.Text = "Tramos";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(550, 51);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(122, 13);
+            this.label3.TabIndex = 138;
+            this.label3.Text = "Puerto Salida Recorrido:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(550, 77);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(131, 13);
+            this.label5.TabIndex = 139;
+            this.label5.Text = "Puerto Llegada Recorrido:";
+            // 
+            // numericTextBox2
+            // 
+            this.numericTextBox2.Location = new System.Drawing.Point(687, 74);
+            this.numericTextBox2.Name = "numericTextBox2";
+            this.numericTextBox2.Size = new System.Drawing.Size(225, 20);
+            this.numericTextBox2.TabIndex = 136;
+            // 
+            // numericTextBox1
+            // 
+            this.numericTextBox1.Location = new System.Drawing.Point(687, 48);
+            this.numericTextBox1.Name = "numericTextBox1";
+            this.numericTextBox1.Size = new System.Drawing.Size(225, 20);
+            this.numericTextBox1.TabIndex = 135;
+            // 
+            // txt_id
+            // 
+            this.txt_id.Location = new System.Drawing.Point(64, 65);
+            this.txt_id.Name = "txt_id";
+            this.txt_id.Size = new System.Drawing.Size(243, 20);
+            this.txt_id.TabIndex = 132;
+            // 
             // FormAmRecorrido
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1091, 450);
+            this.ClientSize = new System.Drawing.Size(1004, 450);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.numericTextBox2);
+            this.Controls.Add(this.numericTextBox1);
+            this.Controls.Add(this.Agregar);
             this.Controls.Add(this.btAceptar);
             this.Controls.Add(this.btCancelar);
             this.Controls.Add(this.btEliminar);
             this.Controls.Add(this.txt_id);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.cmb_puertoDestino);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.cmb_puertoSalida);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.dgv_tramos);
             this.Name = "FormAmRecorrido";
@@ -222,16 +252,18 @@
         private System.Windows.Forms.Button btAceptar;
         private System.Windows.Forms.Button btEliminar;
         private System.Windows.Forms.Button btCancelar;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox cmb_puertoSalida;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox cmb_puertoDestino;
         private System.Windows.Forms.Label label7;
         private NumericTextBox txt_id;
-        private System.Windows.Forms.Label label14; 
-        private System.Windows.Forms.DataGridViewTextBoxColumn colPuertoSalida;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colPuertoDestino;
-        private System.Windows.Forms.DataGridViewComboBoxColumn colTipoCabina;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Button Agregar;
+        private NumericTextBox numericTextBox1;
+        private NumericTextBox numericTextBox2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DataGridViewComboBoxColumn colPuertoSalida;
+        private System.Windows.Forms.DataGridViewComboBoxColumn colPuertoDestino;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPrecioBase;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colId;
     }
 }
