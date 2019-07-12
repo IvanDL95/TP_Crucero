@@ -28,12 +28,12 @@ namespace FrbaCrucero.ABMRecorrido
             dgv_tramos.EditingControlShowing += dgv_tramos_EditingControlShowing;
             dgv_tramos.CellValidating += dgv_tramos_CellValidating;
             dgv_tramos.CellEndEdit += dgv_tramos_CellEndEdit;
-            dgv_tramos.AllowUserToAddRows = false;
+            //Cargar Puerto Desde
+            CargarComboPuertoSalida();
+            //Cargar Puerto Hasta
+            CargarComboPuertoDestino();
 
-            txt_id.ReadOnly = true;
-            dgv_tramos.Columns["colId"].Visible = false;
-
-            if (IDRecorrido != 0)
+            if (IDRecorrido != null || IDRecorrido != 0)
             {
                 //Modificar
                 Recorrido recorrido = new Recorrido();
@@ -43,90 +43,46 @@ namespace FrbaCrucero.ABMRecorrido
 
                 recorrido = RecorridoFunc.ObtenerRecorridoDesdeUnReader(reader);
 
-
+                
                 //Llenar textos
                 txt_id.Text = recorrido.rec_id.ToString();
                 //cmb_puertoDestino.SelectedIndex = cmb_puertoDestino.SelectedIndex.Equals(recorrido.rec_pue_desde);
                 //cmb_puertoSalida.SelectedIndex = PuertoFunc.ObtenerNombre(recorrido.rec_pue_hasta);
 
 
-                DataTable tramo = TramoFunc.ObtenerTramos(this.IDRecorrido);
+                DataTable tramo = RecorridoFunc.ObtenerTramos(this.IDRecorrido);
 
                 //Se carga combo Tipo Cabina de la fila
-                dgv_tramos.Rows.Add();
-                CargarComboPuertoSalida();
-                CargarComboPuertoDestino();
+                //CargarComboTipoCabina();
 
                 this.cantTramos = tramo.Rows.Count;
                 //Se agragan las filas necesarias          
-                for (Int32 j = 0; j < this.cantTramos; j++)
+                for (Int32 j = 0; j < tramo.Rows.Count; j++)
                 {
                     DataGridViewRow rowTram = (DataGridViewRow)dgv_tramos.Rows[0].Clone();
                     dgv_tramos.Rows.Add(rowTram);
                 }
 
-                Queue<Tramo> tramosList = new Queue<Tramo>();
-                //Se agregan los datos en las filas
-                for (Int32 i = 0; i < this.cantTramos; i++)
-                {
-                    Tramo nuevo_tram = new Tramo();
-                    //dgv_tramos.Rows[i].Cells[0].Text =  i.ToString();
-                    nuevo_tram.id = Convert.ToInt32(tramo.Rows[i]["tra_id"]);
-                    nuevo_tram.salida = tramo.Rows[i]["tra_desde"].ToString().Trim();
-                    nuevo_tram.destino = tramo.Rows[i]["tra_hasta"].ToString().Trim();
-                    nuevo_tram.precio = Convert.ToDecimal(tramo.Rows[i]["tra_precio_base"]);
-                    if (tramosList.Count != 0)
-                    {
-                        Tramo tramo_anterior = tramosList.Peek();
-                        if (!String.Equals(tramo_anterior.destino, nuevo_tram.salida))
-                        {
-                            tramo_anterior = tramosList.Dequeue();
-                            tramosList.Enqueue(nuevo_tram);
-                            tramosList.Enqueue(tramo_anterior);
-                        }
-                    }
-                    tramosList.Enqueue(nuevo_tram);
-                }
 
-                for (int j = 0; j < this.cantTramos; j++)
+                    //Se agregan los datos en las filas
+                for (Int32 i = 0; i < tramo.Rows.Count; i++)
                 {
-                    Tramo nue_tramo = tramosList.Dequeue();
-                    dgv_tramos.Rows[j].Cells["colId"].Value = nue_tramo.id.ToString();
-                    dgv_tramos.Rows[j].Cells[0].Value = nue_tramo.salida.ToString().Trim();
-                    dgv_tramos.Rows[j].Cells[1].Value = nue_tramo.destino.ToString().Trim();
-                    dgv_tramos.Rows[j].Cells[2].Value = nue_tramo.precio.ToString();
+                    dgv_tramos.Rows[i].Cells[0].Value = tramo.Rows[i]["tra_desde"].ToString().Trim();
+                    dgv_tramos.Rows[i].Cells[1].Value = tramo.Rows[i]["tra_hasta"].ToString().Trim();
+                    dgv_tramos.Rows[i].Cells[2].Value = tramo.Rows[i]["tra_precio_base"].ToString();
+                    dgv_tramos.Rows[i].Cells[3].Value = tramo.Rows[i]["tra_id"].ToString();
                 }
 
                 this.recorridoModificado.rec_id = recorrido.rec_id;
-                this.recorridoModificado.rec_pue_id_desde = recorrido.rec_pue_id_desde;
-                this.recorridoModificado.rec_pue_id_hasta = recorrido.rec_pue_id_hasta;
+                this.recorridoModificado.rec_pue_desde = recorrido.rec_pue_desde.Trim();
+                this.recorridoModificado.rec_pue_hasta = recorrido.rec_pue_hasta.Trim();
                 this.recorridoModificado.rec_estado = recorrido.rec_estado;
 
                 //Dejar identificación como grisado
-                DataTable pue_desde, pue_hasta;
-                pue_desde = PuertoFunc.ObtenerPuerto((int)recorrido.rec_pue_id_desde);
-                pue_hasta = PuertoFunc.ObtenerPuerto((int)recorrido.rec_pue_id_hasta);
-
-                dgv_tramos.Rows.RemoveAt(this.cantTramos);
-
-                numericTextBox1.Text = pue_desde.Rows[0]["pue_nombre"].ToString();
-                numericTextBox1.ReadOnly = true;
-                numericTextBox2.Text = pue_hasta.Rows[0]["pue_nombre"].ToString();
-                numericTextBox2.ReadOnly = true;
                 txt_id.ReadOnly = true;
             }
             else
-            {
-                txt_id.Text = "000000000";
-                numericTextBox1.ReadOnly = true;
-                numericTextBox2.ReadOnly = true;
-                txt_id.ReadOnly = true;
-                dgv_tramos.Rows.Add();
-                //Cargar Puerto Desde
-                CargarComboPuertoSalida();
-                //Cargar Puerto Hasta
-                CargarComboPuertoDestino();
-            }
+                txt_id.Text = "00000000";
         }
 
 

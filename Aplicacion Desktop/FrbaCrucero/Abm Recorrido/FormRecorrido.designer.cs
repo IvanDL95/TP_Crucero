@@ -86,7 +86,7 @@
             // 
             this.cmb_puertoSalida.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb_puertoSalida.FormattingEnabled = true;
-            this.cmb_puertoSalida.Location = new System.Drawing.Point(83, 64);
+            this.cmb_puertoSalida.Location = new System.Drawing.Point(322, 64);
             this.cmb_puertoSalida.Name = "cmb_puertoSalida";
             this.cmb_puertoSalida.Size = new System.Drawing.Size(121, 21);
             this.cmb_puertoSalida.TabIndex = 14;
@@ -96,7 +96,7 @@
             // 
             this.cmb_puertoDestino.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb_puertoDestino.FormattingEnabled = true;
-            this.cmb_puertoDestino.Location = new System.Drawing.Point(322, 64);
+            this.cmb_puertoDestino.Location = new System.Drawing.Point(84, 64);
             this.cmb_puertoDestino.Name = "cmb_puertoDestino";
             this.cmb_puertoDestino.Size = new System.Drawing.Size(121, 21);
             this.cmb_puertoDestino.TabIndex = 13;
@@ -125,7 +125,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(6, 30);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 13);
+            this.label1.Size = new System.Drawing.Size(68, 13);
             this.label1.TabIndex = 4;
             this.label1.Text = "Id_Recorrido:";
             // 
@@ -240,6 +240,7 @@
         #endregion
         public System.Windows.Forms.DataGridView dgv_listado;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TextBox txt_id;
         private NumericTextBox txt_modelo;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
@@ -255,6 +256,5 @@
         private System.Windows.Forms.ComboBox cmb_puertoSalida;
         private System.Windows.Forms.ComboBox cmb_puertoDestino;
         private System.Windows.Forms.Label label2;
-        private NumericTextBox txt_id;
     }
 }

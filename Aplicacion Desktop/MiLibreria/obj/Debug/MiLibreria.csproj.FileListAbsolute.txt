@@ -17,8 +17,3 @@ C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\MiLibreria\bin\Debug
 C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\MiLibreria\obj\Debug\MiLibreria.dll
 C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\MiLibreria\obj\Debug\MiLibreria.pdb
 C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\MiLibreria\obj\Debug\MiLibreria.csprojResolveAssemblyReference.cache
-C:\Users\Ivan\Documents\GitHub\trolls\Aplicacion Desktop\MiLibreria\bin\Debug\MiLibreria.dll
-C:\Users\Ivan\Documents\GitHub\trolls\Aplicacion Desktop\MiLibreria\bin\Debug\MiLibreria.pdb
-C:\Users\Ivan\Documents\GitHub\trolls\Aplicacion Desktop\MiLibreria\obj\Debug\MiLibreria.csprojResolveAssemblyReference.cache
-C:\Users\Ivan\Documents\GitHub\trolls\Aplicacion Desktop\MiLibreria\obj\Debug\MiLibreria.dll
-C:\Users\Ivan\Documents\GitHub\trolls\Aplicacion Desktop\MiLibreria\obj\Debug\MiLibreria.pdb

@@ -1,5 +1,4 @@
-﻿using FrbaCrucero.AbmRecorrido;
-using FrbaCrucero.ABMCrucero;
+﻿using FrbaCrucero.ABMCrucero;
 using FrbaCrucero.Compra_Reservar;
 using FrbaCrucero.Generar_viaje;
 using FrbaCrucero.Pago_Reserva;
@@ -23,7 +22,7 @@ namespace FrbaCrucero
             Application.SetCompatibleTextRenderingDefault(false);
 
             //Application.Run(new PantallaIncial(null, null));
-            Application.Run(new FormRecorrido());
+            Application.Run(new PagoReserva());
 
         }
         
