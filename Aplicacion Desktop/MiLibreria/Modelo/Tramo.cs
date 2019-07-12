@@ -9,10 +9,8 @@ namespace MiLibreria.Modelo
     public class Tramo
     {
         public Int32 id { get; set; }
-        public int salida_id { get; set; }
-        public String salida { get; set; }
-        public int destino_id { get; set; }
-        public String destino { get; set; }
-        public decimal precio { get; set; }
+        public Int32 salida { get; set; }
+        public Int32 destino { get; set; }
+        public float precio { get; set; }
     }
 }
