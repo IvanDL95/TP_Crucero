@@ -205,7 +205,7 @@ namespace MiLibreria
 
                 DataTable dt = ds.Tables[0];
 
-                MessageBox.Show(String.Format("cantidad de registros OBTENER_RECORRIDO_X_TRAMO {0}", dt.Rows.Count.ToString()));
+                //MessageBox.Show(String.Format("cantidad de registros OBTENER_RECORRIDO_X_TRAMO {0}", dt.Rows.Count.ToString()));
 
                 if (dt.Rows.Count != 0)
                 {

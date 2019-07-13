@@ -44,7 +44,6 @@ namespace FrbaCrucero.ABMRecorrido
 
                 recorrido = RecorridoFunc.ObtenerRecorridoDesdeUnReader(reader);
 
-
                 //Llenar textos
                 txt_id.Text = recorrido.rec_id.ToString();
                 //cmb_puertoDestino.SelectedIndex = cmb_puertoDestino.SelectedIndex.Equals(recorrido.rec_pue_desde);
@@ -68,25 +67,49 @@ namespace FrbaCrucero.ABMRecorrido
 
                 Queue<Tramo> tramosList = new Queue<Tramo>();
                 //Se agregan los datos en las filas
-                for (Int32 i = 0; i < this.cantTramos; i++)
+                Tramo tramo_inicial = new Tramo();
+                int cont;
+                for (cont = 0; true; cont++)
                 {
+                    tramo_inicial.salida = tramo.Rows[cont]["tra_desde"].ToString().Trim();
+                    tramo_inicial.salida_id = Convert.ToInt32(PuertoFunc.ObtenerPuerto(tramo_inicial.salida).Rows[0]["pue_id"]);
+                    if (tramo_inicial.salida_id == recorrido.rec_pue_id_desde)
+                    {
+                        tramo_inicial.id = Convert.ToInt32(tramo.Rows[cont]["tra_id"]);
+                        tramo_inicial.destino = tramo.Rows[cont]["tra_hasta"].ToString().Trim();
+                        tramo_inicial.precio = Convert.ToDecimal(tramo.Rows[cont]["tra_precio_base"]);
+                        tramosList.Enqueue(tramo_inicial);
+                        break;
+                    }
+                }
+
+
+                for (int i = 0; i < this.cantTramos; i++)
+                {
+                    if (i == cont)
+                        continue;
+
                     Tramo nuevo_tram = new Tramo();
                     //dgv_tramos.Rows[i].Cells[0].Text =  i.ToString();
                     nuevo_tram.id = Convert.ToInt32(tramo.Rows[i]["tra_id"]);
                     nuevo_tram.salida = tramo.Rows[i]["tra_desde"].ToString().Trim();
                     nuevo_tram.destino = tramo.Rows[i]["tra_hasta"].ToString().Trim();
                     nuevo_tram.precio = Convert.ToDecimal(tramo.Rows[i]["tra_precio_base"]);
-                    if (tramosList.Count != 0)
+
+                    if (tramosList.Count > 1)
                     {
                         Tramo tramo_anterior = tramosList.Peek();
-                        if (!String.Equals(tramo_anterior.destino, nuevo_tram.salida))
+                        if (!String.Equals(tramo_anterior.destino, nuevo_tram.salida) && tramo_inicial.id != tramo_anterior.id)
                         {
                             tramo_anterior = tramosList.Dequeue();
                             tramosList.Enqueue(nuevo_tram);
                             tramosList.Enqueue(tramo_anterior);
                         }
+                        else
+                            tramosList.Enqueue(nuevo_tram);
                     }
-                    tramosList.Enqueue(nuevo_tram);
+                    else
+                        tramosList.Enqueue(nuevo_tram);
                 }
 
                 //this.recorridoTramos = tramosList;
@@ -112,7 +135,7 @@ namespace FrbaCrucero.ABMRecorrido
                 this.recorridoModificado.rec_pue_id_hasta = recorrido.rec_pue_id_hasta;
                 this.recorridoModificado.rec_estado = recorrido.rec_estado;
 
-                MessageBox.Show(String.Format("Cantidad de tramos {0}", recorridoTramos.Count.ToString()));
+                //MessageBox.Show(String.Format("Cantidad de tramos {0}", recorridoTramos.Count.ToString()));
 
                 //Dejar identificación como grisado
                 DataTable pue_desde, pue_hasta;
@@ -233,7 +256,7 @@ namespace FrbaCrucero.ABMRecorrido
 
         private void Column3_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != ',')
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.')
             {
                 e.Handled = true;
             }
@@ -375,69 +398,73 @@ namespace FrbaCrucero.ABMRecorrido
             {
                 if (ValidarTramos())
                 {
-                    if ((String.Equals(txt_id.Text, "000000000")))
+                    if (chequearSalidaYDestino())
                     {
-                        //Crear recorrido
-                        Recorrido recorrido = new Recorrido();
-                        List<Tramo> tramosList = new List<Tramo>();
-                        int cantTramos = this.dgv_tramos.Rows.Count;
 
-                        for (int l = 0; l < cantTramos; l++)
+                        if ((String.Equals(txt_id.Text, "000000000")))
                         {
-                            Tramo tramo = obtenerTramo(l);
-                            int tra_id = TramoFunc.ValidarTramo(tramo);
-                            tramo.id = tra_id;
+                            //Crear recorrido
+                            Recorrido recorrido = new Recorrido();
+                            List<Tramo> tramosList = new List<Tramo>();
+                            int cantTramos = this.dgv_tramos.Rows.Count;
 
-                            if (l == 0)
-                                recorrido.rec_pue_id_desde = tramo.salida_id;
-                            if (l + 1 == cantTramos)
-                                recorrido.rec_pue_id_hasta = tramo.destino_id;
-                            tramosList.Add(tramo);
+                            for (int l = 0; l < cantTramos; l++)
+                            {
+                                Tramo tramo = obtenerTramo(l);
+                                int tra_id = TramoFunc.ValidarTramo(tramo);
+                                tramo.id = tra_id;
+
+                                if (l == 0)
+                                    recorrido.rec_pue_id_desde = tramo.salida_id;
+                                if (l + 1 == cantTramos)
+                                    recorrido.rec_pue_id_hasta = tramo.destino_id;
+                                tramosList.Add(tramo);
+                            }
+
+                            MessageBox.Show(String.Format("rec_desde {0}, rec_hasta {1}", recorrido.rec_pue_id_desde.ToString(), recorrido.rec_pue_id_hasta.ToString()));
+
+                            recorrido.rec_id = RecorridoFunc.CrearRecorrido(recorrido);
+                            RecorridoFunc.InsertarRecorridoTramo(recorrido.rec_id, tramosList);
+
+                            MessageBox.Show("Recorrido creado");
+                            this.Close();
                         }
-
-                        MessageBox.Show(String.Format("rec_desde {0}, rec_hasta {1}", recorrido.rec_pue_id_desde.ToString(), recorrido.rec_pue_id_hasta.ToString()));
-
-                        recorrido.rec_id = RecorridoFunc.CrearRecorrido(recorrido);
-                        RecorridoFunc.InsertarRecorridoTramo(recorrido.rec_id, tramosList);
-
-                        MessageBox.Show("Recorrido creado");
-                        this.Close();
-                    }
-                    else
-                    {
-                        //Modificar recorrido
-                        List<Tramo> tramosList = new List<Tramo>();
-                        //Tramos del Recorrido
-
-                        int cantTramos = this.dgv_tramos.Rows.Count;
-
-                        for (int l = 0; l < cantTramos; l++)
+                        else
                         {
-                            Tramo tramo = obtenerTramo(l);
-                            int tra_id = TramoFunc.ValidarTramo(tramo);
-                            tramo.id = tra_id;
-                            tramosList.Add(tramo);
+                            //Modificar recorrido
+                            List<Tramo> tramosList = new List<Tramo>();
+                            //Tramos del Recorrido
 
-                            if (l == 0)
-                                this.recorridoModificado.rec_pue_id_desde = tramo.salida_id;
-                            if (l + 1 == cantTramos)
-                                this.recorridoModificado.rec_pue_id_hasta = tramo.destino_id;
+                            int cantTramos = this.dgv_tramos.Rows.Count;
+
+                            for (int l = 0; l < cantTramos; l++)
+                            {
+                                Tramo tramo = obtenerTramo(l);
+                                int tra_id = TramoFunc.ValidarTramo(tramo);
+                                tramo.id = tra_id;
+                                tramosList.Add(tramo);
+
+                                if (l == 0)
+                                    this.recorridoModificado.rec_pue_id_desde = tramo.salida_id;
+                                if (l + 1 == cantTramos)
+                                    this.recorridoModificado.rec_pue_id_hasta = tramo.destino_id;
+                            }
+                            /*for (int l2 = this.cantTramos; l2 < this.dgv_tramos.Rows.Count; l2++)
+                            {
+                                Tramo tramo = obtenerTramo(l2);
+                                int tra_id = TramoFunc.ValidarTramo(tramo);
+                                tramo.id = tra_id;
+                                tramosList.Add(tramo);
+
+                                if (l2 + 1 == cantTramos)
+                                    this.recorridoModificado.rec_pue_id_hasta = tramo.destino_id;
+                            }*/
+                            RecorridoFunc.BorrarRecorridoTramo(this.recorridoModificado.rec_id, this.recorridoTramos);
+                            RecorridoFunc.ModificarRecorrido(this.recorridoModificado);
+                            RecorridoFunc.ModificarRecorridoTramo(this.recorridoModificado.rec_id, tramosList);
+                            MessageBox.Show("Recorrido modificado");
+                            this.Close();
                         }
-                        /*for (int l2 = this.cantTramos; l2 < this.dgv_tramos.Rows.Count; l2++)
-                        {
-                            Tramo tramo = obtenerTramo(l2);
-                            int tra_id = TramoFunc.ValidarTramo(tramo);
-                            tramo.id = tra_id;
-                            tramosList.Add(tramo);
-
-                            if (l2 + 1 == cantTramos)
-                                this.recorridoModificado.rec_pue_id_hasta = tramo.destino_id;
-                        }*/
-                        RecorridoFunc.BorrarRecorridoTramo(this.recorridoModificado.rec_id, this.recorridoTramos);
-                        RecorridoFunc.ModificarRecorrido(this.recorridoModificado);
-                        RecorridoFunc.ModificarRecorridoTramo(this.recorridoModificado.rec_id, tramosList);
-                        MessageBox.Show("Recorrido modificado");
-                        this.Close();
                     }
                 }
             }
@@ -506,20 +533,20 @@ namespace FrbaCrucero.ABMRecorrido
 
         //Busca Ciudad Origen repetida
 
-        private bool chequearSalidaYDestino(String puertoSalida, String puertoDestino)
+        private bool chequearSalidaYDestino(/*String puertoSalida, String puertoDestino*/)
         {
             String ciudadOrigen = Convert.ToString(dgv_tramos.Rows[0].Cells["colPuertoSalida"].Value);
-            for (int j = 0; j < this.dgv_tramos.Rows.Count; j++)
+            for (int j = 1; j < this.dgv_tramos.Rows.Count - 1; j++)
             {
                     String otraCiudad;
                     otraCiudad = Convert.ToString(dgv_tramos.Rows[j].Cells["colPuertoDestino"].Value);
                     if (String.Equals(ciudadOrigen, otraCiudad))
                     {
-                        if(j+1 != this.dgv_tramos.Rows.Count)
-                            return true;
+                        MessageBox.Show(String.Format("El recorrido debe finalizar en el tramo {0} \n ya que vuelve a la ciudad de origen", j.ToString()));
+                        return false;
                     }
             }
-            return false;
+            return true;
         }
 
         private void FormAmRecorrido_Load(object sender, EventArgs e)
