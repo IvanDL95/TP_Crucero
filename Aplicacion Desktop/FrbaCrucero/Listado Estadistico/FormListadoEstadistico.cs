@@ -39,10 +39,10 @@ namespace FrbaCrucero.Listados
                 ds = ListadoFunc.Listado(Convert.ToInt32(txt_anio.Text), cmbTrimestre.SelectedIndex+1, cmbListado.SelectedIndex+1);
                 dgv_listado.DataSource = ds.Tables[0];
 
-                if((cmbListado.SelectedIndex+1)==3){
+                /*if((cmbListado.SelectedIndex+1)==3){
                     dgv_listado.Columns["cli_id"].Visible = false;
                     dgv_listado.Columns["cli_usu_id"].Visible = false;
-                }
+                }*/
 
             }
         }

@@ -24,14 +24,6 @@ namespace MiLibreria
             parametro.Value = anio;
             parametros.Add(parametro);
 
-            if (listado == 2)
-            {
-                DateTime fechaSistema = DataBase.ObtenerFechaSistema();
-                parametro = new SqlParameter("@fechasistema", SqlDbType.DateTime);
-                parametro.Value = fechaSistema;
-                parametros.Add(parametro);
-            }
-
             
             DataSet ds = DataBase.ObtenerUnDataSet("TROLLS.sp_listado_estadistico_"+ listado.ToString(), DataBase.Tipos.StoredProcedure, parametros);
 
