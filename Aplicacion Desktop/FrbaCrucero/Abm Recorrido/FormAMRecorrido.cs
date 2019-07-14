@@ -435,7 +435,7 @@ namespace FrbaCrucero.ABMRecorrido
                                 tramosList.Add(tramo);
                             }
 
-                            recorrido.rec_id = RecorridoFunc.CrearRecorrido(recorrido);
+                            recorrido.rec_id = RecorridoFunc.CrearRecorrido(recorrido); 
                             RecorridoFunc.InsertarRecorridoTramo(recorrido.rec_id, tramosList);
 
                             MessageBox.Show("Recorrido creado");
