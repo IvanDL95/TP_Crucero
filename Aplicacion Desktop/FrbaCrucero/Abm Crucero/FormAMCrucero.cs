@@ -1,4 +1,4 @@
-﻿using FrbaCrucero.ABMCrucero;
+using FrbaCrucero.ABMCrucero;
 using MiLibreria;
 using MiLibreria.Modelo;
 using System;
@@ -69,7 +69,7 @@ namespace FrbaCrucero.ABMCrucero
                 for (Int32 i = 0; i < cabinacrucero.Rows.Count; i++)
                 {
                     dgv_cabinas.Rows[i].Cells[0].Value = cabinacrucero.Rows[i]["cc_piso"].ToString();
-                    dgv_cabinas.Rows[i].Cells[1].Value = cabinacrucero.Rows[i]["cc_nro"].ToString().Trim();
+                    dgv_cabinas.Rows[i].Cells[1].Value = cabinacrucero.Rows[i]["cc_cantidad"].ToString().Trim();
                     SqlDataReader readerTipo = Cabina_crucerofunc.ObtenerDescTipo(Convert.ToInt32(cabinacrucero.Rows[i]["cc_tcab_id"]));
                     if (readerTipo.HasRows)
                     {
