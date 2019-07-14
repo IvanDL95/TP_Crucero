@@ -83,7 +83,6 @@ namespace FrbaCrucero.ABMRecorrido
                     }
                 }
 
-
                 for (int i = 0; i < this.cantTramos; i++)
                 {
                     if (i == cont)
@@ -95,7 +94,9 @@ namespace FrbaCrucero.ABMRecorrido
                     nuevo_tram.salida = tramo.Rows[i]["tra_desde"].ToString().Trim();
                     nuevo_tram.destino = tramo.Rows[i]["tra_hasta"].ToString().Trim();
                     nuevo_tram.precio = Convert.ToDecimal(tramo.Rows[i]["tra_precio_base"]);
+                    tramosList.Enqueue(nuevo_tram);
 
+                    /*
                     if (tramosList.Count > 1)
                     {
                         Tramo tramo_anterior = tramosList.Peek();
@@ -110,17 +111,30 @@ namespace FrbaCrucero.ABMRecorrido
                     }
                     else
                         tramosList.Enqueue(nuevo_tram);
+                    */
                 }
 
                 //this.recorridoTramos = tramosList;
 
-                for (int j = 0; j < this.cantTramos; j++)
+                Tramo primer_tramo = tramosList.Dequeue();
+                dgv_tramos.Rows[0].Cells["colId"].Value = primer_tramo.id.ToString();
+                dgv_tramos.Rows[0].Cells[0].Value = primer_tramo.salida.ToString().Trim();
+                dgv_tramos.Rows[0].Cells[1].Value = primer_tramo.destino.ToString().Trim();
+                dgv_tramos.Rows[0].Cells[2].Value = primer_tramo.precio.ToString();
+
+                for (int j = 1; j < this.cantTramos; )
                 {
                     Tramo nue_tramo = tramosList.Dequeue();
-                    dgv_tramos.Rows[j].Cells["colId"].Value = nue_tramo.id.ToString();
-                    dgv_tramos.Rows[j].Cells[0].Value = nue_tramo.salida.ToString().Trim();
-                    dgv_tramos.Rows[j].Cells[1].Value = nue_tramo.destino.ToString().Trim();
-                    dgv_tramos.Rows[j].Cells[2].Value = nue_tramo.precio.ToString();
+                    if (String.Equals(Convert.ToString(dgv_tramos.Rows[j-1].Cells[1].Value), nue_tramo.salida))
+                    {
+                        dgv_tramos.Rows[j].Cells["colId"].Value = nue_tramo.id.ToString();
+                        dgv_tramos.Rows[j].Cells[0].Value = nue_tramo.salida.ToString().Trim();
+                        dgv_tramos.Rows[j].Cells[1].Value = nue_tramo.destino.ToString().Trim();
+                        dgv_tramos.Rows[j].Cells[2].Value = nue_tramo.precio.ToString();
+                        j++;
+                    }
+                    else
+                        tramosList.Enqueue(nue_tramo);
                 }
 
                 for (int j = 0; j < this.cantTramos; j++)
@@ -256,7 +270,7 @@ namespace FrbaCrucero.ABMRecorrido
 
         private void Column3_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != ',')
             {
                 e.Handled = true;
             }
@@ -544,6 +558,17 @@ namespace FrbaCrucero.ABMRecorrido
                     {
                         MessageBox.Show(String.Format("El recorrido debe finalizar en el tramo {0} \n ya que vuelve a la ciudad de origen", j.ToString()));
                         return false;
+                    }
+                    for (int i = 0; i < this.dgv_tramos.Rows.Count; i++)
+                    {
+                        if (String.Equals(Convert.ToString(dgv_tramos.Rows[i].Cells["colPuertoDestino"].Value), Convert.ToString(dgv_tramos.Rows[j].Cells["colPuertoDestino"].Value))
+                            && String.Equals(Convert.ToString(dgv_tramos.Rows[i].Cells["colPuertoSalida"].Value), Convert.ToString(dgv_tramos.Rows[j].Cells["colPuertoSalida"].Value))
+                            && i != j)
+                        {
+                            MessageBox.Show(String.Format("Tramos {0} y {1} repetidos", (j+1).ToString(), (i+1).ToString()));
+                            return false;
+                        }
+                             
                     }
             }
             return true;

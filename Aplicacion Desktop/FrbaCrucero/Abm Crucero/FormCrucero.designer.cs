@@ -65,7 +65,7 @@
             this.dgv_listado.ReadOnly = true;
             this.dgv_listado.RowHeadersVisible = false;
             this.dgv_listado.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_listado.Size = new System.Drawing.Size(548, 249);
+            this.dgv_listado.Size = new System.Drawing.Size(858, 249);
             this.dgv_listado.TabIndex = 25;
             // 
             // groupBox1
@@ -80,7 +80,7 @@
             this.groupBox1.Controls.Add(this.txt_modelo);
             this.groupBox1.Location = new System.Drawing.Point(59, 40);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(548, 107);
+            this.groupBox1.Size = new System.Drawing.Size(858, 107);
             this.groupBox1.TabIndex = 26;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtros de búsqueda";
@@ -89,9 +89,9 @@
             // 
             this.cmb_fabricante.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb_fabricante.FormattingEnabled = true;
-            this.cmb_fabricante.Location = new System.Drawing.Point(282, 64);
+            this.cmb_fabricante.Location = new System.Drawing.Point(632, 64);
             this.cmb_fabricante.Name = "cmb_fabricante";
-            this.cmb_fabricante.Size = new System.Drawing.Size(121, 21);
+            this.cmb_fabricante.Size = new System.Drawing.Size(149, 21);
             this.cmb_fabricante.TabIndex = 14;
             // 
             // cmb_servicio
@@ -100,7 +100,7 @@
             this.cmb_servicio.FormattingEnabled = true;
             this.cmb_servicio.Location = new System.Drawing.Point(84, 64);
             this.cmb_servicio.Name = "cmb_servicio";
-            this.cmb_servicio.Size = new System.Drawing.Size(121, 21);
+            this.cmb_servicio.Size = new System.Drawing.Size(153, 21);
             this.cmb_servicio.TabIndex = 13;
             // 
             // label2
@@ -115,7 +115,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(266, 30);
+            this.label5.Location = new System.Drawing.Point(581, 30);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(45, 13);
             this.label5.TabIndex = 9;
@@ -124,7 +124,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(236, 67);
+            this.label3.Location = new System.Drawing.Point(586, 67);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(40, 13);
             this.label3.TabIndex = 6;
@@ -148,7 +148,7 @@
             // 
             // txt_modelo
             // 
-            this.txt_modelo.Location = new System.Drawing.Point(317, 27);
+            this.txt_modelo.Location = new System.Drawing.Point(632, 27);
             this.txt_modelo.Name = "txt_modelo";
             this.txt_modelo.Size = new System.Drawing.Size(149, 20);
             this.txt_modelo.TabIndex = 1;
@@ -159,7 +159,7 @@
             // 
             // btn_limpiar
             // 
-            this.btn_limpiar.Location = new System.Drawing.Point(59, 171);
+            this.btn_limpiar.Location = new System.Drawing.Point(124, 171);
             this.btn_limpiar.Name = "btn_limpiar";
             this.btn_limpiar.Size = new System.Drawing.Size(75, 23);
             this.btn_limpiar.TabIndex = 27;
@@ -169,7 +169,7 @@
             // 
             // btn_buscar
             // 
-            this.btn_buscar.Location = new System.Drawing.Point(532, 171);
+            this.btn_buscar.Location = new System.Drawing.Point(768, 171);
             this.btn_buscar.Name = "btn_buscar";
             this.btn_buscar.Size = new System.Drawing.Size(75, 23);
             this.btn_buscar.TabIndex = 28;
@@ -179,7 +179,7 @@
             // 
             // btBajaServicio
             // 
-            this.btBajaServicio.Location = new System.Drawing.Point(332, 485);
+            this.btBajaServicio.Location = new System.Drawing.Point(566, 485);
             this.btBajaServicio.Name = "btBajaServicio";
             this.btBajaServicio.Size = new System.Drawing.Size(75, 41);
             this.btBajaServicio.TabIndex = 35;
@@ -189,7 +189,7 @@
             // 
             // btModificar
             // 
-            this.btModificar.Location = new System.Drawing.Point(226, 485);
+            this.btModificar.Location = new System.Drawing.Point(345, 485);
             this.btModificar.Name = "btModificar";
             this.btModificar.Size = new System.Drawing.Size(75, 41);
             this.btModificar.TabIndex = 34;
@@ -211,7 +211,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(233, 6);
+            this.label4.Location = new System.Drawing.Point(420, 6);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(187, 31);
             this.label4.TabIndex = 123;
@@ -219,7 +219,7 @@
             // 
             // btBajaDefinitiva
             // 
-            this.btBajaDefinitiva.Location = new System.Drawing.Point(438, 485);
+            this.btBajaDefinitiva.Location = new System.Drawing.Point(768, 485);
             this.btBajaDefinitiva.Name = "btBajaDefinitiva";
             this.btBajaDefinitiva.Size = new System.Drawing.Size(75, 41);
             this.btBajaDefinitiva.TabIndex = 124;
@@ -231,7 +231,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(665, 538);
+            this.ClientSize = new System.Drawing.Size(1054, 538);
             this.Controls.Add(this.btBajaDefinitiva);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btBajaServicio);
@@ -258,7 +258,6 @@
         public System.Windows.Forms.DataGridView dgv_listado;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox txt_id;
-        private System.Windows.Forms.TextBox txt_modelo;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
@@ -273,5 +272,6 @@
         private System.Windows.Forms.ComboBox cmb_servicio;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btBajaDefinitiva;
+        private NumericTextBox txt_modelo;
     }
 }

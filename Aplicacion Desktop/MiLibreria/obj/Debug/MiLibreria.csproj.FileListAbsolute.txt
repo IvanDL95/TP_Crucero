@@ -1,19 +1,5 @@
-C:\Users\Gustavo\Documents\GitHub\select\src\MiLibreria\bin\Debug\MiLibreria.dll
-C:\Users\Gustavo\Documents\GitHub\select\src\MiLibreria\bin\Debug\MiLibreria.pdb
-C:\Users\Gustavo\Documents\GitHub\select\src\MiLibreria\obj\Debug\MiLibreria.dll
-C:\Users\Gustavo\Documents\GitHub\select\src\MiLibreria\obj\Debug\MiLibreria.pdb
-C:\Users\Lucas\Documents\GitHub\select\select\src\MiLibreria\bin\Debug\MiLibreria.dll
-C:\Users\Lucas\Documents\GitHub\select\select\src\MiLibreria\bin\Debug\MiLibreria.pdb
-C:\Users\Lucas\Documents\GitHub\select\select\src\MiLibreria\obj\Debug\MiLibreria.csprojResolveAssemblyReference.cache
-C:\Users\Lucas\Documents\GitHub\select\select\src\MiLibreria\obj\Debug\MiLibreria.dll
-C:\Users\Lucas\Documents\GitHub\select\select\src\MiLibreria\obj\Debug\MiLibreria.pdb
-C:\Users\Gustavo\Documents\GitHub\rjt\Aplicacion Desktop\MiLibreria\bin\Debug\MiLibreria.dll
-C:\Users\Gustavo\Documents\GitHub\rjt\Aplicacion Desktop\MiLibreria\bin\Debug\MiLibreria.pdb
-C:\Users\Gustavo\Documents\GitHub\rjt\Aplicacion Desktop\MiLibreria\obj\Debug\MiLibreria.dll
-C:\Users\Gustavo\Documents\GitHub\rjt\Aplicacion Desktop\MiLibreria\obj\Debug\MiLibreria.pdb
-C:\Users\Gustavo\Documents\GitHub\rjt\Aplicacion Desktop\MiLibreria\obj\Debug\MiLibreria.csprojResolveAssemblyReference.cache
-C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\MiLibreria\bin\Debug\MiLibreria.dll
-C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\MiLibreria\bin\Debug\MiLibreria.pdb
-C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\MiLibreria\obj\Debug\MiLibreria.dll
-C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\MiLibreria\obj\Debug\MiLibreria.pdb
-C:\Users\Gustavo\Documents\GitHub\trolls\Aplicacion Desktop\MiLibreria\obj\Debug\MiLibreria.csprojResolveAssemblyReference.cache
+C:\Users\Ivan\Documents\GitHub\trollsWindows\Aplicacion Desktop\MiLibreria\bin\Debug\MiLibreria.dll
+C:\Users\Ivan\Documents\GitHub\trollsWindows\Aplicacion Desktop\MiLibreria\bin\Debug\MiLibreria.pdb
+C:\Users\Ivan\Documents\GitHub\trollsWindows\Aplicacion Desktop\MiLibreria\obj\Debug\MiLibreria.csprojResolveAssemblyReference.cache
+C:\Users\Ivan\Documents\GitHub\trollsWindows\Aplicacion Desktop\MiLibreria\obj\Debug\MiLibreria.dll
+C:\Users\Ivan\Documents\GitHub\trollsWindows\Aplicacion Desktop\MiLibreria\obj\Debug\MiLibreria.pdb
