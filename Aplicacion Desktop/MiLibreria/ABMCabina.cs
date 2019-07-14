@@ -91,12 +91,12 @@ namespace MiLibreria
             parametro = new SqlParameter("@PUE_ID_HASTA", SqlDbType.Int, 100);
             parametro.Value = pue_id_hasta;
             parametros.Add(parametro);
-            SqlDataReader reader = DataBase.ObtenerUnDataReader("TROLLS.OBTENERPRECIORECORRIDO", DataBase.Tipos.StoredProcedure, parametros);
+            SqlDataReader reader = DataBase.ObtenerUnDataReader("TROLLS.LISTAR_RECORRIDOS", DataBase.Tipos.StoredProcedure, parametros);
 
             decimal precio=0;
             if (reader.Read())
             {
-                precio = reader.GetDecimal(0);
+                precio = reader.GetDecimal(3);
             }
 
             return precio;

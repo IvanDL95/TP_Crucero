@@ -279,5 +279,20 @@ namespace MiLibreria
             }
         }
 
+        public static int MaxRecorrido()
+        {
+           List<SqlParameter> parametros = new List<SqlParameter>();
+           SqlDataReader reader = DataBase.ObtenerUnDataReader("TROLLS.MAXIMO_RECORRIDO", DataBase.Tipos.StoredProcedure, parametros);
+
+           int max_rec = 0;
+           if (reader.HasRows)
+           {
+               reader.Read();
+               max_rec = Convert.ToInt32(reader.GetDecimal(0));
+           }
+
+           return max_rec;
+        }
+
     }
 }

@@ -166,7 +166,7 @@ namespace FrbaCrucero.ABMRecorrido
             }
             else
             {
-                txt_id.Text = "000000000";
+                txt_id.Text = (RecorridoFunc.MaxRecorrido() + 1).ToString();
                 numericTextBox1.ReadOnly = true;
                 numericTextBox2.ReadOnly = true;
                 txt_id.ReadOnly = true;
@@ -415,7 +415,7 @@ namespace FrbaCrucero.ABMRecorrido
                     if (chequearSalidaYDestino())
                     {
 
-                        if ((String.Equals(txt_id.Text, "000000000")))
+                        if (String.Compare(txt_id.Text, RecorridoFunc.MaxRecorrido().ToString()) > 0)
                         {
                             //Crear recorrido
                             Recorrido recorrido = new Recorrido();
@@ -434,8 +434,6 @@ namespace FrbaCrucero.ABMRecorrido
                                     recorrido.rec_pue_id_hasta = tramo.destino_id;
                                 tramosList.Add(tramo);
                             }
-
-                            MessageBox.Show(String.Format("rec_desde {0}, rec_hasta {1}", recorrido.rec_pue_id_desde.ToString(), recorrido.rec_pue_id_hasta.ToString()));
 
                             recorrido.rec_id = RecorridoFunc.CrearRecorrido(recorrido);
                             RecorridoFunc.InsertarRecorridoTramo(recorrido.rec_id, tramosList);

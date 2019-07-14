@@ -153,7 +153,7 @@ namespace FrbaCrucero.Compra_Reservar
                         dgv_cabina.Rows[i].Cells[1].Value = cabinas.Rows[i]["cab_piso"].ToString();
                         dgv_cabina.Rows[i].Cells[2].Value = cabinas.Rows[i]["cab_nro"].ToString();  //.Replace(",", ".").Replace(".", ".");
                         //Precio = (Suma precio de tramos * Porc)/100 + Suma precio de tramos
-                        dgv_cabina.Rows[i].Cells[3].Value = Math.Round((ABMCabina.ObtenerPorc(Convert.ToInt32(cabinas.Rows[i]["cab_tcab_id"])) * ABMCabina.ObtenerPrecioRecorrido(this.idRecorrido,this.puertoDesde,this.puertoHasta)/100) +ABMCabina.ObtenerPrecioRecorrido(this.idRecorrido,this.puertoDesde,this.puertoHasta),2);
+                        dgv_cabina.Rows[i].Cells[3].Value = Math.Round((ABMCabina.ObtenerPorc(Convert.ToInt32(cabinas.Rows[i]["cab_tcab_id"])) * ABMCabina.ObtenerPrecioRecorrido(this.idRecorrido, this.puertoDesde, this.puertoHasta)), 2);
                         dgv_cabina.Rows[i].Cells[4].Value = cabinas.Rows[i]["cab_via_id"].ToString();
                     }                    
 
