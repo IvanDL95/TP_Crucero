@@ -1,4 +1,4 @@
-﻿using MiLibreria;
+using MiLibreria;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -47,9 +47,9 @@ namespace FrbaCrucero.Compra_Reservar
                 if (txt_nro_doc.Text.Trim().Length >= 7 )
                 {
                     Int32 tipoDoc=0;
-                    if (String.Equals(cmb_tipo.SelectedItem.ToString(), "DNI"))
+                    if (String.Compare(cmb_tipo.Text, "DNI") == 0)
                         tipoDoc = 1;
-                    if (String.Equals(cmb_tipo.SelectedItem.ToString(), "DU"))
+                    if (String.Compare(cmb_tipo.Text, "DU") == 0)
                         tipoDoc = 2;
                     this.tipoDoc = tipoDoc;
 
@@ -81,9 +81,9 @@ namespace FrbaCrucero.Compra_Reservar
                                 fechaNac.Enabled = true;
 
                                 Int32 IDCliente = Convert.ToInt32(txt_nro_doc.Text.Trim());
-                                if (String.Equals(cmb_tipo.SelectedItem.ToString(), "DNI"))
+                                if (String.Compare(cmb_tipo.Text,"DNI")==0)
                                     tipoDoc = 1;
-                                if (String.Equals(cmb_tipo.SelectedItem.ToString(), "DU"))
+                                if (String.Compare(cmb_tipo.Text,"DU")==0)
                                     tipoDoc = 2;
                                 this.tipoDoc = tipoDoc;
                                 this.IDCliente = IDCliente;
