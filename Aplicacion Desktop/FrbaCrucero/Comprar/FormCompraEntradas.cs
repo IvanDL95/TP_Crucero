@@ -110,6 +110,9 @@ namespace FrbaCrucero.Compra_Reservar
                 fechaHasta = ChangeTime(fechaHasta, 23, 59, 59, 0);
 
                 dgv_viaje.DataSource = ViajeFunc.ListarViaje(puertoDesde.id, puertoHasta.id, fechaDesde, fechaHasta).Tables[0];
+
+                dgv_viaje.Columns[0].Visible = false;
+                dgv_viaje.Columns[4].Visible = false;
             }
         }     
 
