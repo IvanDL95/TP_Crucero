@@ -124,6 +124,7 @@ namespace FrbaCrucero.Compra_Reservar
                         else
                         {
                             MessageBox.Show("Un cliente no puede viajar a más de un destino a la vez");
+                            this.fr.idCliente = 0;
                             this.Close();
                         }
 
@@ -173,6 +174,16 @@ namespace FrbaCrucero.Compra_Reservar
             return false;
         }
 
+        private bool ValidarMail()
+        {
+            RegexUtilities util = new RegexUtilities();
+            if (!string.IsNullOrEmpty(txt_mail.Text))
+                if (!util.IsValidEmail(txt_mail.Text))
+                    return true;
+            return false;
+        }
+
+
         private void btAceptar_Click_1(object sender, EventArgs e)
         {
             //Validar
@@ -182,73 +193,70 @@ namespace FrbaCrucero.Compra_Reservar
                 MessageBox.Show("Debe completar todos los campos");
             //Validar mail   
             else
-                if (!string.IsNullOrEmpty(txt_mail.Text))
-                {
-                    if (!util.IsValidEmail(txt_mail.Text))
-                        MessageBox.Show("El Email ingresado no es válido");
-                }
+                if (ValidarMail())
+                        MessageBox.Show("El Email ingresado no es válido");               
                 else
-                {
-                    if (esModificacion)
                     {
-
-                        //Modificar
-
-
-                        this.clienteModificado.Apellido = txt_apellido.Text;
-                        this.clienteModificado.Nombre = txt_nombre.Text;
-                        this.clienteModificado.FechaNac = fechaNac.Value;
-
-                        Client.ModificarCliente(this.clienteModificado);
-
-                        this.direccionModificado.Calle = txt_calle.Text;
-                        this.direccionModificado.Mail = txt_mail.Text;
-                        this.direccionModificado.Numero = txt_numero.Text;
-                        this.direccionModificado.Telefono = txt_tel.Text;
-
-                        Adress.ModificarDireccion(this.direccionModificado);
-                        MessageBox.Show("Cliente modificado");
-                        this.fr.idCliente = this.clienteModificado.NroDoc;
-                        this.fr.tipoDoc = this.tipoDoc;
-                        this.Close();
-                    }
-
-
-                    else
-                    {
-
-                        //Crear Direccion
-                        int idDireccion;
-                        if (!string.IsNullOrEmpty(txt_mail.Text))
-                            idDireccion = Adress.ObtenerIDDireccion(txt_calle.Text, txt_numero.Text, txt_tel.Text, txt_mail.Text);
-                        else
-                            idDireccion = Adress.ObtenerIDDireccion(txt_calle.Text, txt_numero.Text, txt_tel.Text);
-
-                        if (idDireccion == 0)
+                        if (esModificacion)
                         {
-                            Direccion direccion = new Direccion(txt_calle.Text, txt_numero.Text, txt_tel.Text, txt_mail.Text);
-                            Adress.CrearDireccion(direccion);
+
+                            //Modificar
+
+
+                            this.clienteModificado.Apellido = txt_apellido.Text;
+                            this.clienteModificado.Nombre = txt_nombre.Text;
+                            this.clienteModificado.FechaNac = fechaNac.Value;
+
+                            Client.ModificarCliente(this.clienteModificado);
+
+                            this.direccionModificado.Calle = txt_calle.Text;
+                            this.direccionModificado.Mail = txt_mail.Text;
+                            this.direccionModificado.Numero = txt_numero.Text;
+                            this.direccionModificado.Telefono = txt_tel.Text;
+
+                            Adress.ModificarDireccion(this.direccionModificado);
+                            MessageBox.Show("Cliente modificado");
+                            this.fr.idCliente = this.clienteModificado.NroDoc;
+                            this.fr.tipoDoc = this.tipoDoc;
+                            this.Close();
+                        }
+
+
+                        else
+                        {
+
+                            //Crear Direccion
+                            int idDireccion;
                             if (!string.IsNullOrEmpty(txt_mail.Text))
                                 idDireccion = Adress.ObtenerIDDireccion(txt_calle.Text, txt_numero.Text, txt_tel.Text, txt_mail.Text);
                             else
                                 idDireccion = Adress.ObtenerIDDireccion(txt_calle.Text, txt_numero.Text, txt_tel.Text);
-                        }
 
-                        //Crear Cliente
-                        Cliente cliente = new Cliente();
-                        cliente.Apellido = txt_apellido.Text;
-                        cliente.Nombre = txt_nombre.Text;
-                        cliente.NroDoc = Convert.ToInt32(txt_nro_doc.Text.Trim());
-                        cliente.TipoDoc = this.tipoDoc;
-                        cliente.FechaNac = fechaNac.Value;
-                        cliente.IdDireccion = idDireccion;
-                        Client.CrearCliente(cliente);
-                        MessageBox.Show("Cliente creado");
-                        this.fr.idCliente = Convert.ToInt32(txt_nro_doc.Text.Trim());
-                        this.fr.tipoDoc = this.tipoDoc;
-                        this.Close();
+                            if (idDireccion == 0)
+                            {
+                                Direccion direccion = new Direccion(txt_calle.Text, txt_numero.Text, txt_tel.Text, txt_mail.Text);
+                                Adress.CrearDireccion(direccion);
+                                if (!string.IsNullOrEmpty(txt_mail.Text))
+                                    idDireccion = Adress.ObtenerIDDireccion(txt_calle.Text, txt_numero.Text, txt_tel.Text, txt_mail.Text);
+                                else
+                                    idDireccion = Adress.ObtenerIDDireccion(txt_calle.Text, txt_numero.Text, txt_tel.Text);
+                            }
+
+                            //Crear Cliente
+                            Cliente cliente = new Cliente();
+                            cliente.Apellido = txt_apellido.Text;
+                            cliente.Nombre = txt_nombre.Text;
+                            cliente.NroDoc = Convert.ToInt32(txt_nro_doc.Text.Trim());
+                            cliente.TipoDoc = this.tipoDoc;
+                            cliente.FechaNac = fechaNac.Value;
+                            cliente.IdDireccion = idDireccion;
+                            Client.CrearCliente(cliente);
+                            MessageBox.Show("Cliente creado");
+                            this.fr.idCliente = Convert.ToInt32(txt_nro_doc.Text.Trim());
+                            this.fr.tipoDoc = this.tipoDoc;
+                            this.Close();
+                        }
                     }
-                }
         }
 
         private void btCancelar_Click_1(object sender, EventArgs e)

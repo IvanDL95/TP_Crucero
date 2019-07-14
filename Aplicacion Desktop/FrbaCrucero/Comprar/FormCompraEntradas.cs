@@ -122,8 +122,13 @@ namespace FrbaCrucero.Compra_Reservar
                 MessageBox.Show("No se encuentran viajes disponibles");
             else
             {
-                this.FechaDesde = dtpDe.Value;
-                this.FechaHasta = dtpHasta.Value;               
+                int selectedrowindex3 = dgv_viaje.SelectedCells[1].RowIndex;
+                DataGridViewRow selectedRow3 = dgv_viaje.Rows[selectedrowindex3];
+                int selectedrowindex4 = dgv_viaje.SelectedCells[2].RowIndex;
+                DataGridViewRow selectedRow4 = dgv_viaje.Rows[selectedrowindex4];
+
+                this.FechaDesde = Convert.ToDateTime(selectedRow3.Cells[1].Value);
+                this.FechaHasta = Convert.ToDateTime(selectedRow4.Cells[2].Value);               
                 
                 DateTime fechaSistema = DataBase.ObtenerFechaSistema();
                 Compra compra = new Compra();
@@ -175,16 +180,6 @@ namespace FrbaCrucero.Compra_Reservar
             
         }       
 
-        /*private bool ValidaFechaEspectaculoPublicacion()
-        {
-            String fechaEspectaculostr = Convert.ToString(dgv_publicacion.CurrentRow.Cells["FechaEspectaculo"].Value);
-            String fechaPublicacionstr = Convert.ToString(dgv_publicacion.CurrentRow.Cells["FechaPublicacion"].Value);
-            if (comparaFechaHoraSistema(fechaEspectaculostr, fechaPublicacionstr))
-                return true;
-            
-            return false;
-        }
-      */
 
         private void dtpDe_ValueChanged(object sender, EventArgs e)
         {
