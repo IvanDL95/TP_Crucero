@@ -210,6 +210,10 @@ namespace MiLibreria
             parametro.Value = cru_id_original;
             parametros.Add(parametro);
 
+            parametro = new SqlParameter("@cru_id_reemplazo", SqlDbType.VarChar, 30);
+            parametro.Value = cru_id_reemplazo;
+            parametros.Add(parametro);
+
             parametro = new SqlParameter("@cru_fecha_baja_definitiva", SqlDbType.DateTime);
             parametro.Value = fechabaja;
             parametros.Add(parametro);

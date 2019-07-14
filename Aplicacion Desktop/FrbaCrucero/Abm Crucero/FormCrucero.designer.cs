@@ -258,7 +258,7 @@
         public System.Windows.Forms.DataGridView dgv_listado;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox txt_id;
-        private NumericTextBox txt_modelo;
+        private System.Windows.Forms.TextBox txt_modelo;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;

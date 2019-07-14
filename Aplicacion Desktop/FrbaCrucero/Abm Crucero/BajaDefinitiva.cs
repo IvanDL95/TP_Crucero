@@ -45,7 +45,8 @@ namespace FrbaCrucero.ABMCrucero
                     CruceroFunc.CancelarViajesBajaDefinitiva(this.id, this.fechaSistema, "Baja definitiva de crucero " + this.id.ToString());
                 else
                     MessageBox.Show("No existen viajes pendientes para cancelar.");
-                MessageBox.Show("El crucero ha sido dado de baja de definitiva correctamente.");              
+                MessageBox.Show("El crucero ha sido dado de baja de definitiva correctamente.");
+                this.Close();
             }
             else if (rbBuscarReemplazo.Checked)
             {
@@ -54,14 +55,16 @@ namespace FrbaCrucero.ABMCrucero
                     //Buscar reemplazo
                     BajaDefinitivaBuscarCrucero form = new BajaDefinitivaBuscarCrucero(this.id);
                     this.Hide();
+                    if (!form.IsDisposed)
                     form.ShowDialog();
-                    this.Show();
+                    this.Close();
                 }
                 else
                 {
                     CruceroFunc.CruceroBajaDefinitiva(this.id, this.fechaSistema);                    
                     MessageBox.Show("No existen viajes pendientes para reemplazar por otro crucero.");
                     MessageBox.Show("El crucero ha sido dado de baja de definitiva correctamente.");
+                    this.Close();
                 }
             }
             else
@@ -88,7 +91,8 @@ namespace FrbaCrucero.ABMCrucero
                         MessageBox.Show("El crucero ha sido dado de baja de definitiva correctamente.");
                     }
                     else
-                        MessageBox.Show("No existen viajes pendientes para reemplazar por otro crucero.");                                      
+                        MessageBox.Show("No existen viajes pendientes para reemplazar por otro crucero.");
+                    this.Close();                
                 }
             }
             

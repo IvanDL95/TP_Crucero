@@ -47,24 +47,30 @@ namespace FrbaCrucero.Generar_viaje
             }else if (validarFechaSalida())
                 if (validarFechaLlegada())
                 {
-                    DateTime fechaHoraSalida = DateTime.Now;
-                    DateTime fechaHoraLlegada = DateTime.Now;
-                    String fechaHoraLlegadastr = String.Concat(txt_flleg.Text, " ", txt_hlleg.Text);
-                    String fechaHoraSalidastr = String.Concat(txt_fsal.Text, " ", txt_hsal.Text);
-                    String format = "G";
-                    CultureInfo provider = new CultureInfo("fr-FR");                    
-                    fechaHoraSalida = DateTime.ParseExact(fechaHoraSalidastr, format, provider);
-                    fechaHoraLlegada = DateTime.ParseExact(fechaHoraLlegadastr, format, provider);
+                    if (dgv_listado.Rows.Count == 0)
+                        MessageBox.Show("No se encuentran cruceros disponibles");
+                    else
+                    {
+                        DateTime fechaHoraSalida = DateTime.Now;
+                        DateTime fechaHoraLlegada = DateTime.Now;
+                        String fechaHoraLlegadastr = String.Concat(txt_flleg.Text, " ", txt_hlleg.Text);
+                        String fechaHoraSalidastr = String.Concat(txt_fsal.Text, " ", txt_hsal.Text);
+                        String format = "G";
+                        CultureInfo provider = new CultureInfo("fr-FR");
+                        fechaHoraSalida = DateTime.ParseExact(fechaHoraSalidastr, format, provider);
+                        fechaHoraLlegada = DateTime.ParseExact(fechaHoraLlegadastr, format, provider);
 
-                    Viaje viaje = new Viaje();
-                    viaje.cru_id=Convert.ToString(dgv_listado.CurrentRow.Cells[0].Value);
-                    viaje.rec_id = Convert.ToInt32(dgv_listado2.CurrentRow.Cells[0].Value);
-                    viaje.fecha_salida = fechaHoraSalida;
-                    viaje.fecha_llegada = fechaHoraLlegada;
-                    ViajeFunc.CrearViaje(viaje);
-                    int via_id = ViajeFunc.ObtenerIDViaje(viaje);
-                    ViajeFunc.CrearCabinasViaje(via_id, viaje.cru_id);
-                    MessageBox.Show("Viaje creado");
+                        Viaje viaje = new Viaje();
+                        viaje.cru_id = Convert.ToString(dgv_listado.CurrentRow.Cells[0].Value);
+                        viaje.rec_id = Convert.ToInt32(dgv_listado2.CurrentRow.Cells[0].Value);
+                        viaje.fecha_salida = fechaHoraSalida;
+                        viaje.fecha_llegada = fechaHoraLlegada;
+                        ViajeFunc.CrearViaje(viaje);
+                        int via_id = ViajeFunc.ObtenerIDViaje(viaje);
+                        ViajeFunc.CrearCabinasViaje(via_id, viaje.cru_id);
+                        MessageBox.Show("Viaje creado");
+                        this.Close();
+                    }
                 }
         }
 

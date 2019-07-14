@@ -38,7 +38,7 @@ namespace FrbaCrucero.ABMCrucero
         {
             //Baja
             //Comparar con hora de sistema
-            if (dateTimePicker1.Value.CompareTo(this.fechaSistema) >= 0)
+            if (dateTimePicker1.Value.CompareTo(this.fechaSistema) > 0)
             {
                 if (rbCancelar.Checked)
                 {
@@ -50,24 +50,28 @@ namespace FrbaCrucero.ABMCrucero
                         MessageBox.Show("No existen viajes pendientes para cancelar.");
 
                     MessageBox.Show("El crucero ha sido dado de baja de servicio correctamente.");
+                    this.Close();
                 }
                 else
                 {
                     //Posponer
                     //Fecha elegida - Fecha sistema <= Cantidad dias
-                    if(dateTimePicker1.Value.CompareTo(this.fechaSistema) >= Convert.ToInt32(textBox1.Text.Trim())){
+                    System.TimeSpan diff = dateTimePicker1.Value - this.fechaSistema;
+                    if (diff.Days < Convert.ToInt32(textBox1.Text.Trim()))
+                    {
                         CruceroFunc.CruceroBajaServicio(this.id, this.fechaSistema, dateTimePicker1.Value);
                         if (CruceroFunc.ValidarViajesPendientes(this.id, this.fechaSistema))
                             CruceroFunc.ReprogramarViajes(this.id, this.fechaSistema, Convert.ToInt32(textBox1.Text.Trim()), dateTimePicker1.Value);
                         else
                             MessageBox.Show("No existen viajes pendientes para reprogramar.");
                         MessageBox.Show("El crucero ha sido dado de baja de servicio correctamente.");
+                        this.Close();
                     }else
                         MessageBox.Show("La cantidad de dias elegida para posponer los viajes debe ser mayor o igual a la diferencia entre la fecha elegida y la fecha del sistema");
                 }
                 
             }else
-                MessageBox.Show("La fecha elegida debe ser mayor o igual a la fecha del sistema");
+                MessageBox.Show("La fecha elegida debe ser mayor a la fecha del sistema");
         }
 
         private void button2_Click(object sender, EventArgs e)

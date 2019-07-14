@@ -46,6 +46,7 @@ namespace FrbaCrucero.ABMCrucero
             CruceroFunc.ActualizarViajeReemplazo(this.id, id, this.fechaSistema);
             CruceroFunc.CruceroBajaDefinitiva(this.id, this.fechaSistema);
             MessageBox.Show("El crucero ha sido dado de baja de definitiva correctamente.");
+            this.Close();
         }
 
         private void button2_Click(object sender, EventArgs e)

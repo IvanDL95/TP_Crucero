@@ -130,8 +130,14 @@ namespace FrbaCrucero.Compra_Reservar
                 compra.com_fecha = fechaSistema;
                 compra.com_cli = this.idCliente;
 
-                Int32 idViaje = Convert.ToInt32(dgv_viaje.CurrentRow.Cells["via_id"].Value);
-                Int32 idRecorrido = Convert.ToInt32(dgv_viaje.CurrentRow.Cells["via_rec_id"].Value);
+
+                int selectedrowindex = dgv_viaje.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRow = dgv_viaje.Rows[selectedrowindex];
+                int selectedrowindex2 = dgv_viaje.SelectedCells[4].RowIndex;
+                DataGridViewRow selectedRow2 = dgv_viaje.Rows[selectedrowindex2];
+
+                Int32 idViaje = Convert.ToInt32(selectedRow.Cells[0].Value);
+                Int32 idRecorrido = Convert.ToInt32(selectedRow.Cells[4].Value);
 
                 ComboboxItem item = new ComboboxItem();
                 Puerto puertoDesde = new Puerto();
