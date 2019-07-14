@@ -103,7 +103,7 @@ namespace FrbaCrucero.AbmRecorrido
         private void btn_buscar_Click(object sender, EventArgs e)
         {
             RegexUtilities util = new RegexUtilities();
-            //Tipo_Servicio tipo = new Tipo_Servicio();
+            
             Puerto pue_desde = new Puerto();
             Puerto pue_hasta = new Puerto();
             ComboboxItem item = new ComboboxItem();
@@ -118,13 +118,7 @@ namespace FrbaCrucero.AbmRecorrido
                 pue_desde = (Puerto)item.Value;
             }
 
-            int idd;
-            if (!String.IsNullOrEmpty(txt_id.Text))
-                idd = Int32.Parse(txt_id.Text);
-            else
-                idd = 0;
-
-            dgv_listado.DataSource = RecorridoFunc.ListarRecorridosExistentes(idd
+            dgv_listado.DataSource = RecorridoFunc.ListarRecorridosExistentes(txt_id.Text.Trim()
                                                                                 , pue_desde.id
                                                                                 , pue_hasta.id).Tables[0];
         }
@@ -141,9 +135,8 @@ namespace FrbaCrucero.AbmRecorrido
                 MessageBox.Show("El recorrido ya está habilitado");
             else
             {
-                Int32 IDRecorrido = Convert.ToInt32(dgv_listado.CurrentRow.Cells[0].Value);
-                DataBase.EscribirEnLaBase("UPDATE TROLLS.RECORRIDO SET REC_ESTADO = 1 WHERE REC_ID = " + IDRecorrido.ToString());
-                //DataBase.EscribirEnLaBase("UPDATE TROLLS.USUARIO SET USU_ESTADO = 1 WHERE USU_ID = (select emp_usu_id from TROLLS.EMPRESA where EMP_ID = " + IDEmpresa.ToString() + ")");
+                String IDRecorrido = dgv_listado.CurrentRow.Cells[0].Value.ToString();
+                DataBase.EscribirEnLaBase("UPDATE TROLLS.RECORRIDO SET REC_ESTADO = 1 WHERE REC_ID = '" + IDRecorrido + "'");
                 dgv_listado.CurrentRow.Cells[4].Value = true;
                 MessageBox.Show("El Recorrido ha sido habilitado correctamente.");
                 IniciarFormulario();
@@ -152,7 +145,7 @@ namespace FrbaCrucero.AbmRecorrido
 
         private void btNuevo_Click(object sender, EventArgs e)
         {
-            FormAmRecorrido form = new FormAmRecorrido(0,this);
+            FormAmRecorrido form = new FormAmRecorrido("",this);
             this.Hide();
             form.ShowDialog();
             this.Show();
@@ -161,7 +154,7 @@ namespace FrbaCrucero.AbmRecorrido
 
         private void btModificar_Click(object sender, EventArgs e)
         {
-            Int32 id = Convert.ToInt32(dgv_listado.CurrentRow.Cells[0].Value);
+            String id = dgv_listado.CurrentRow.Cells[0].Value.ToString();
 
             FormAmRecorrido form = new FormAmRecorrido(id, this);
             this.Hide();
@@ -179,10 +172,8 @@ namespace FrbaCrucero.AbmRecorrido
             {
                 if (ConfirmarBaja())
                 {
-                    Int32 IDRecorrido = Convert.ToInt32(dgv_listado.CurrentRow.Cells[0].Value);
+                    String IDRecorrido = dgv_listado.CurrentRow.Cells[0].Value.ToString();
                     RecorridoFunc.DarDeBajaUnRecorrido(IDRecorrido);
-                    //DataBase.EscribirEnLaBase("UPDATE TROLLS.EMPRESA SET REC_ESTADO = 0 WHERE REC_ID = " + IDRecorrido.ToString());
-                    //DataBase.EscribirEnLaBase("UPDATE TROLLS.USUARIO SET USU_ESTADO = 0 WHERE USU_ID = (select emp_usu_id from TROLLS.EMPRESA where EMP_ID = " + IDEmpresa.ToString() + ")");
                     dgv_listado.CurrentRow.Cells[4].Value = false;
                     MessageBox.Show("El Recorrido ha sido dado de baja correctamente.");
                     IniciarFormulario();

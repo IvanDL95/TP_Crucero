@@ -12,11 +12,11 @@ namespace MiLibreria
 {
     public class TramoFunc
     {
-        public static DataTable ObtenerTramos(int? rec_id)
+        public static DataTable ObtenerTramos(String rec_id)
         {
             List<SqlParameter> parametros = new List<SqlParameter>();
 
-            SqlParameter parametro = new SqlParameter("@rec_id", SqlDbType.Int, 30);
+            SqlParameter parametro = new SqlParameter("@rec_id", SqlDbType.VarChar, 30);
             parametro.Value = rec_id;
             parametros.Add(parametro);
 
@@ -103,7 +103,6 @@ namespace MiLibreria
             parametro.Value = tramo.precio;
             parametros.Add(parametro);
 
-            // AKTUALISAR Z  ACTUALIZAR
             DataBase.EscribirEnLaBase("TROLLS.ACTUALIZAR_TRAMO", DataBase.Tipos.StoredProcedure, parametros);
         }
     }

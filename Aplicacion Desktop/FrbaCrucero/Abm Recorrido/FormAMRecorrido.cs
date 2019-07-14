@@ -18,11 +18,12 @@ namespace FrbaCrucero.ABMRecorrido
 {
     public partial class FormAmRecorrido : Form
     {
-        int IDRecorrido;
+        String IDRecorrido;
+        bool esModificar;
         Recorrido recorridoModificado = new Recorrido();
         Queue<Tramo> recorridoTramos = new Queue<Tramo>();
         int cantTramos = 0;
-        public FormAmRecorrido(int IDRecorrido, FormRecorrido fr)
+        public FormAmRecorrido(String IDRecorrido, FormRecorrido fr)
         {
             InitializeComponent();
             this.IDRecorrido = IDRecorrido;
@@ -34,8 +35,9 @@ namespace FrbaCrucero.ABMRecorrido
             txt_id.ReadOnly = true;
             dgv_tramos.Columns["colId"].Visible = false;
 
-            if (IDRecorrido != 0)
+            if (!String.IsNullOrEmpty(IDRecorrido))
             {
+                this.esModificar = true;
                 //Modificar
                 Recorrido recorrido = new Recorrido();
 
@@ -166,10 +168,11 @@ namespace FrbaCrucero.ABMRecorrido
             }
             else
             {
-                txt_id.Text = "000000000";
+                this.esModificar = false;
+                txt_id.Text = "";
+                txt_id.ReadOnly = false;
                 numericTextBox1.ReadOnly = true;
-                numericTextBox2.ReadOnly = true;
-                txt_id.ReadOnly = true;
+                numericTextBox2.ReadOnly = true;               
                 dgv_tramos.Rows.Add();
                 //Cargar Puerto Desde
                 CargarComboPuertoSalida();
@@ -306,30 +309,6 @@ namespace FrbaCrucero.ABMRecorrido
             this.dgv_tramos.Rows[e.RowIndex].ErrorText = string.Empty;
         }
 
-        /*private void dgv_fecha_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
-        {
-            e.Control.KeyPress -= new KeyPressEventHandler(dgv_fecha_Column1_KeyPress);
-            e.Control.KeyPress -= new KeyPressEventHandler(dgv_fecha_Column2_KeyPress);
-            if (dgv_fecha.CurrentCell.ColumnIndex == 0)
-            {
-                TextBox tb = e.Control as TextBox;
-                if (tb != null)
-                {
-                    tb.MaxLength = 10;
-                    tb.KeyPress += new KeyPressEventHandler(dgv_fecha_Column1_KeyPress);
-                }
-            }
-            if (dgv_fecha.CurrentCell.ColumnIndex == 1)
-            {
-                TextBox tb = e.Control as TextBox;
-                if (tb != null)
-                {
-                    tb.MaxLength = 5;
-                    tb.KeyPress += new KeyPressEventHandler(dgv_fecha_Column2_KeyPress);
-                }
-            }
-        }*/
-
         private void dgv_fecha_Column1_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar))
@@ -346,64 +325,6 @@ namespace FrbaCrucero.ABMRecorrido
             }
         }
 
-        /*private void dgv_fecha_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
-        {
-            string columnName = this.dgv_fecha.Columns[e.ColumnIndex].Name;
-
-
-            if (columnName.Equals("colFecha"))
-            {
-                // Check if the input is empty
-                if (string.IsNullOrEmpty(e.FormattedValue.ToString()))
-                {
-                    this.dgv_fecha.Rows[e.RowIndex].ErrorText = "La columna Fecha está vacía";
-                    e.Cancel = true;
-                }
-                else
-                {
-                    // Check if the input format is correct
-                    Regex datePattern = new Regex("^[0-9]{2}([/][0-9]{2}([/][0-9]{4}))?$");
-                    if (!datePattern.IsMatch(e.FormattedValue.ToString()))
-                    {
-                        this.dgv_fecha.Rows[e.RowIndex].ErrorText = "Formato incorrecto: \"DD/MM/AAAA\"";
-                        e.Cancel = true;
-                    }
-                }
-            }
-
-            // Check for the column to validate
-            if (columnName.Equals("colHora"))
-            {
-                // Check if the input is empty
-                if (string.IsNullOrEmpty(e.FormattedValue.ToString()))
-                {
-                    this.dgv_fecha.Rows[e.RowIndex].ErrorText = "La columna Hora está vacía";
-                    e.Cancel = true;
-                }
-                else
-                {
-                    // Check if the input format is correct
-                    Regex datePattern = new Regex("^[0-9]{2}([:][0-9]{2})?$");
-                    if (!datePattern.IsMatch(e.FormattedValue.ToString()))
-                    {
-                        this.dgv_fecha.Rows[e.RowIndex].ErrorText = "Formato incorrecto: \"HH:MM\"";
-                        e.Cancel = true;
-                    }
-                }
-            }
-        }*/
-
-        /*private void dgv_fecha_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        {
-            this.dgv_fecha.Rows[e.RowIndex].ErrorText = string.Empty;
-        }*/
-
-
-        /*private void dgv_ubicacion_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            
-        }*/
-
 
         private void ejecutar()
         {
@@ -415,8 +336,14 @@ namespace FrbaCrucero.ABMRecorrido
                     if (chequearSalidaYDestino())
                     {
 
-                        if ((String.Equals(txt_id.Text, "000000000")))
+                        if (!this.esModificar)
                         {
+                            if(String.IsNullOrEmpty(txt_id.Text.Trim()))
+                                MessageBox.Show("Completar codigo recorrido");
+                            else if(!RecorridoFunc.EsValidoIdRecorrido(txt_id.Text.Trim()))
+                                MessageBox.Show("El codigo recorrido ya existe");
+                            else{
+
                             //Crear recorrido
                             Recorrido recorrido = new Recorrido();
                             List<Tramo> tramosList = new List<Tramo>();
@@ -435,13 +362,14 @@ namespace FrbaCrucero.ABMRecorrido
                                 tramosList.Add(tramo);
                             }
 
-                            MessageBox.Show(String.Format("rec_desde {0}, rec_hasta {1}", recorrido.rec_pue_id_desde.ToString(), recorrido.rec_pue_id_hasta.ToString()));
+                            recorrido.rec_id = txt_id.Text.Trim();
 
-                            recorrido.rec_id = RecorridoFunc.CrearRecorrido(recorrido);
+                            RecorridoFunc.CrearRecorrido(recorrido);
                             RecorridoFunc.InsertarRecorridoTramo(recorrido.rec_id, tramosList);
 
                             MessageBox.Show("Recorrido creado");
                             this.Close();
+                            }
                         }
                         else
                         {

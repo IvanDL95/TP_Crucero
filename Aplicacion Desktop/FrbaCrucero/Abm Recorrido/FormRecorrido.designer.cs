@@ -36,7 +36,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.txt_id = new FrbaCrucero.NumericTextBox();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.btn_limpiar = new System.Windows.Forms.Button();
             this.btn_buscar = new System.Windows.Forms.Button();
@@ -45,6 +44,7 @@
             this.btModificar = new System.Windows.Forms.Button();
             this.btNuevo = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
+            this.txt_id = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_listado)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
@@ -68,12 +68,12 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txt_id);
             this.groupBox1.Controls.Add(this.cmb_puertoSalida);
             this.groupBox1.Controls.Add(this.cmb_puertoDestino);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.txt_id);
             this.groupBox1.Location = new System.Drawing.Point(59, 40);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(705, 107);
@@ -123,18 +123,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(206, 30);
+            this.label1.Location = new System.Drawing.Point(185, 30);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 13);
+            this.label1.Size = new System.Drawing.Size(92, 13);
             this.label1.TabIndex = 4;
-            this.label1.Text = "Id_Recorrido:";
-            // 
-            // txt_id
-            // 
-            this.txt_id.Location = new System.Drawing.Point(283, 27);
-            this.txt_id.Name = "txt_id";
-            this.txt_id.Size = new System.Drawing.Size(161, 20);
-            this.txt_id.TabIndex = 10;
+            this.label1.Text = "Codigo Recorrido:";
             // 
             // errorProvider
             // 
@@ -210,6 +203,13 @@
             this.label4.TabIndex = 123;
             this.label4.Text = "ABM Recorrido";
             // 
+            // txt_id
+            // 
+            this.txt_id.Location = new System.Drawing.Point(283, 23);
+            this.txt_id.Name = "txt_id";
+            this.txt_id.Size = new System.Drawing.Size(177, 20);
+            this.txt_id.TabIndex = 15;
+            // 
             // FormRecorrido
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -255,6 +255,6 @@
         private System.Windows.Forms.ComboBox cmb_puertoSalida;
         private System.Windows.Forms.ComboBox cmb_puertoDestino;
         private System.Windows.Forms.Label label2;
-        private NumericTextBox txt_id;
+        private System.Windows.Forms.TextBox txt_id;
     }
 }

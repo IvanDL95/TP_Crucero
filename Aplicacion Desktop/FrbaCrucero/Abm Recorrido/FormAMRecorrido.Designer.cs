@@ -46,7 +46,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.numericTextBox2 = new FrbaCrucero.NumericTextBox();
             this.numericTextBox1 = new FrbaCrucero.NumericTextBox();
-            this.txt_id = new FrbaCrucero.NumericTextBox();
+            this.txt_id = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_tramos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -147,9 +147,9 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(61, 48);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(68, 13);
+            this.label7.Size = new System.Drawing.Size(92, 13);
             this.label7.TabIndex = 133;
-            this.label7.Text = "Id Recorrido:";
+            this.label7.Text = "Codigo Recorrido:";
             // 
             // label14
             // 
@@ -214,14 +214,15 @@
             // 
             this.txt_id.Location = new System.Drawing.Point(64, 65);
             this.txt_id.Name = "txt_id";
-            this.txt_id.Size = new System.Drawing.Size(243, 20);
-            this.txt_id.TabIndex = 132;
+            this.txt_id.Size = new System.Drawing.Size(257, 20);
+            this.txt_id.TabIndex = 140;
             // 
             // FormAmRecorrido
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1004, 450);
+            this.Controls.Add(this.txt_id);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
@@ -231,7 +232,6 @@
             this.Controls.Add(this.btAceptar);
             this.Controls.Add(this.btCancelar);
             this.Controls.Add(this.btEliminar);
-            this.Controls.Add(this.txt_id);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.dgv_tramos);
@@ -253,7 +253,6 @@
         private System.Windows.Forms.Button btEliminar;
         private System.Windows.Forms.Button btCancelar;
         private System.Windows.Forms.Label label7;
-        private NumericTextBox txt_id;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Button Agregar;
         private NumericTextBox numericTextBox1;
@@ -265,5 +264,6 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn colPuertoDestino;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPrecioBase;
         private System.Windows.Forms.DataGridViewTextBoxColumn colId;
+        private System.Windows.Forms.TextBox txt_id;
     }
 }

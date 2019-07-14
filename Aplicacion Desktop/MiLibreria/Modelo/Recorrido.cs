@@ -8,7 +8,7 @@ namespace MiLibreria.Modelo
 {
     public class Recorrido
     {
-        public Int32 rec_id;
+        public String rec_id;
         public Int32 rec_pue_id_desde;
         public string rec_pue_desde;
         public Int32 rec_pue_id_hasta;
