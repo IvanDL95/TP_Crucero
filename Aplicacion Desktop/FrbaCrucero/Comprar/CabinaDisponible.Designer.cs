@@ -31,12 +31,6 @@
             this.cmb_tipo = new System.Windows.Forms.ComboBox();
             this.lb_tipo = new System.Windows.Forms.Label();
             this.dgv_cabina = new System.Windows.Forms.DataGridView();
-            this.cab_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTipoCabina = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPiso = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colNumero = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cab_via_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btComprarReservar = new System.Windows.Forms.Button();
             this.btAgregarCabina = new System.Windows.Forms.Button();
             this.lb_cab_disp = new System.Windows.Forms.Label();
@@ -48,6 +42,11 @@
             this.cmb_cuota = new System.Windows.Forms.ComboBox();
             this.lb_selec = new System.Windows.Forms.Label();
             this.bt_cuota = new System.Windows.Forms.Button();
+            this.colTipoCabina = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPiso = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colNumero = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cab_via_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_cabina)).BeginInit();
             this.SuspendLayout();
             // 
@@ -77,7 +76,6 @@
             this.dgv_cabina.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgv_cabina.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_cabina.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.cab_id,
             this.colTipoCabina,
             this.colPiso,
             this.colNumero,
@@ -90,47 +88,6 @@
             this.dgv_cabina.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv_cabina.Size = new System.Drawing.Size(523, 336);
             this.dgv_cabina.TabIndex = 123;
-            // 
-            // cab_id
-            // 
-            this.cab_id.HeaderText = "id";
-            this.cab_id.Name = "cab_id";
-            this.cab_id.ReadOnly = true;
-            this.cab_id.Visible = false;
-            // 
-            // colTipoCabina
-            // 
-            this.colTipoCabina.HeaderText = "TipoCabina";
-            this.colTipoCabina.Name = "colTipoCabina";
-            this.colTipoCabina.ReadOnly = true;
-            this.colTipoCabina.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.colTipoCabina.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colTipoCabina.Visible = false;
-            // 
-            // colPiso
-            // 
-            this.colPiso.HeaderText = "Piso";
-            this.colPiso.Name = "colPiso";
-            this.colPiso.ReadOnly = true;
-            // 
-            // colNumero
-            // 
-            this.colNumero.HeaderText = "Numero";
-            this.colNumero.Name = "colNumero";
-            this.colNumero.ReadOnly = true;
-            // 
-            // colPrecio
-            // 
-            this.colPrecio.HeaderText = "Precio";
-            this.colPrecio.Name = "colPrecio";
-            this.colPrecio.ReadOnly = true;
-            // 
-            // cab_via_id
-            // 
-            this.cab_via_id.HeaderText = "cab_via_id";
-            this.cab_via_id.Name = "cab_via_id";
-            this.cab_via_id.ReadOnly = true;
-            this.cab_via_id.Visible = false;
             // 
             // btComprarReservar
             // 
@@ -248,6 +205,40 @@
             this.bt_cuota.Visible = false;
             this.bt_cuota.Click += new System.EventHandler(this.bt_cuota_Click);
             // 
+            // colTipoCabina
+            // 
+            this.colTipoCabina.HeaderText = "TipoCabina";
+            this.colTipoCabina.Name = "colTipoCabina";
+            this.colTipoCabina.ReadOnly = true;
+            this.colTipoCabina.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.colTipoCabina.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colTipoCabina.Visible = false;
+            // 
+            // colPiso
+            // 
+            this.colPiso.HeaderText = "Piso";
+            this.colPiso.Name = "colPiso";
+            this.colPiso.ReadOnly = true;
+            // 
+            // colNumero
+            // 
+            this.colNumero.HeaderText = "Numero";
+            this.colNumero.Name = "colNumero";
+            this.colNumero.ReadOnly = true;
+            // 
+            // colPrecio
+            // 
+            this.colPrecio.HeaderText = "Precio";
+            this.colPrecio.Name = "colPrecio";
+            this.colPrecio.ReadOnly = true;
+            // 
+            // cab_via_id
+            // 
+            this.cab_via_id.HeaderText = "cab_via_id";
+            this.cab_via_id.Name = "cab_via_id";
+            this.cab_via_id.ReadOnly = true;
+            this.cab_via_id.Visible = false;
+            // 
             // CabinaDisponible
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -284,12 +275,6 @@
         private System.Windows.Forms.Button btAgregarCabina;
         private System.Windows.Forms.Label lb_cab_disp;
         private System.Windows.Forms.Button btCabDisponibles;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cab_id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colTipoCabina;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colPiso;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colNumero;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colPrecio;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cab_via_id;
         private System.Windows.Forms.Button bt_mp;
         private System.Windows.Forms.ComboBox cmb_mp;
         private System.Windows.Forms.Label lb_mp;
@@ -297,5 +282,10 @@
         private System.Windows.Forms.ComboBox cmb_cuota;
         private System.Windows.Forms.Label lb_selec;
         private System.Windows.Forms.Button bt_cuota;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colTipoCabina;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colPiso;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colNumero;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colPrecio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cab_via_id;
     }
 }

@@ -13,7 +13,7 @@ namespace MiLibreria
     public class CompraFunc
     {
 
-        public static bool ValidarClienteViaje(DateTime desde, DateTime hasta, Int32 idCliente, Int32 pue_id_desde, Int32 pue_id_hasta)
+        public static bool ValidarClienteViaje(DateTime desde, DateTime hasta, Int32 idCliente, Int32 tipoDoc, Int32 pue_id_desde, Int32 pue_id_hasta)
         {
             List<SqlParameter> parametros = new List<SqlParameter>();
             SqlParameter parametro;
@@ -31,6 +31,10 @@ namespace MiLibreria
             parametros.Add(parametro);
             parametro = new SqlParameter("@cli_id", SqlDbType.Int, 100);
             parametro.Value = idCliente;
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@cli_tdoc_id", SqlDbType.Int, 100);
+            parametro.Value = tipoDoc;
             parametros.Add(parametro);
 
             SqlDataReader reader = DataBase.ObtenerUnDataReader("TROLLS.VALIDARCLIENTEVIAJE", DataBase.Tipos.StoredProcedure, parametros);
@@ -153,6 +157,10 @@ namespace MiLibreria
             parametro.Value = reserva.res_cli;
             parametros.Add(parametro);
 
+            parametro = new SqlParameter("@cli_tdoc_id", SqlDbType.Int, 100);
+            parametro.Value = reserva.res_tipoDoc;
+            parametros.Add(parametro);
+
             parametro = new SqlParameter("@cabinas", SqlDbType.Structured);
             parametro.Value = reserva.cabinas;
             parametros.Add(parametro);
@@ -209,6 +217,10 @@ namespace MiLibreria
             parametro.Value = compra.com_cli;
             parametros.Add(parametro);
 
+            parametro = new SqlParameter("@cli_tdoc_id", SqlDbType.Int, 100);
+            parametro.Value = compra.com_tipoDoc;
+            parametros.Add(parametro);
+
             parametro = new SqlParameter("@com_fecha", SqlDbType.DateTime);
             parametro.Value = compra.com_fecha;
             parametros.Add(parametro);
@@ -240,6 +252,10 @@ namespace MiLibreria
 
             parametro = new SqlParameter("@cli_id", SqlDbType.Int, 100);
             parametro.Value = reserva.res_cli;
+            parametros.Add(parametro);
+
+            parametro = new SqlParameter("@cli_tdoc_id", SqlDbType.Int, 100);
+            parametro.Value = reserva.res_tipoDoc;
             parametros.Add(parametro);
 
             parametro = new SqlParameter("@res_fecha", SqlDbType.DateTime);

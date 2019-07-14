@@ -12,6 +12,7 @@ namespace MiLibreria.Modelo
         public Int32 com_id;
         public DateTime com_fecha;
         public Int32 com_cli;
+        public Int32 com_tipoDoc;
         public Int32 com_mp;
         public Int32 com_cant;
         public String com_detalle;

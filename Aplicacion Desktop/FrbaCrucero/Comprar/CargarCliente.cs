@@ -17,6 +17,7 @@ namespace FrbaCrucero.Compra_Reservar
     public partial class CargarCliente : Form
     {
         Int32 IDCliente;
+        Int32 tipoDoc;
         Cliente clienteModificado = new Cliente();
         Direccion direccionModificado = new Direccion();
         Cliente clienteBase = new Cliente();
@@ -37,20 +38,26 @@ namespace FrbaCrucero.Compra_Reservar
 
         private void btAceptar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txt_nro_doc.Text))
+            if (string.IsNullOrEmpty(txt_nro_doc.Text) || string.IsNullOrEmpty(cmb_tipo.Text))
             {
-                MessageBox.Show("Complete el número de documento");
+                MessageBox.Show("Complete el tipo y número de documento");
             }
             else
             {
                 if (txt_nro_doc.Text.Trim().Length >= 7 )
-                {                            
+                {
+                    Int32 tipoDoc=0;
+                    if (String.Compare(cmb_tipo.Text, "DNI") == 0)
+                        tipoDoc = 1;
+                    if (String.Compare(cmb_tipo.Text, "DU") == 0)
+                        tipoDoc = 2;
+                    this.tipoDoc = tipoDoc;
 
-                    if (Client.ExisteDoc(Convert.ToInt32(txt_nro_doc.Text.Trim()))>0)
+                    if (Client.ExisteDoc(Convert.ToInt32(txt_nro_doc.Text.Trim()), tipoDoc) > 0)
                     //Traer cliente
                     {
                         //Validar si tiene un viaje 
-                        if(CompraFunc.ValidarClienteViaje(this.fr.FechaDesde, this.fr.FechaHasta, Convert.ToInt32(txt_nro_doc.Text.Trim()), this.fr.puertoDesde, this.fr.puertoHasta))
+                        if (CompraFunc.ValidarClienteViaje(this.fr.FechaDesde, this.fr.FechaHasta, Convert.ToInt32(txt_nro_doc.Text.Trim()), this.tipoDoc, this.fr.puertoDesde, this.fr.puertoHasta))
                         {
 
                             this.esModificacion = true;
@@ -74,12 +81,17 @@ namespace FrbaCrucero.Compra_Reservar
                                 fechaNac.Enabled = true;
 
                                 Int32 IDCliente = Convert.ToInt32(txt_nro_doc.Text.Trim());
+                                if (String.Compare(cmb_tipo.Text,"DNI")==0)
+                                    tipoDoc = 1;
+                                if (String.Compare(cmb_tipo.Text,"DU")==0)
+                                    tipoDoc = 2;
+                                this.tipoDoc = tipoDoc;
                                 this.IDCliente = IDCliente;
                                 //Modificar
                                 Cliente cliente = new Cliente();
 
                                 //Obtener Cliente
-                                SqlDataReader reader = Client.ObtenerCliente(IDCliente);
+                                SqlDataReader reader = Client.ObtenerCliente(IDCliente,tipoDoc);
 
                                 cliente = Client.ObtenerClienteDesdeUnReader(reader);
 
@@ -91,6 +103,7 @@ namespace FrbaCrucero.Compra_Reservar
                                 txt_apellido.Text = cliente.Apellido.Trim();
                                 fechaNac.Value = cliente.FechaNac;
                                 this.clienteModificado.NroDoc = this.IDCliente;
+                                this.clienteModificado.TipoDoc = this.tipoDoc;
                                 this.direccionModificado.Id = IDDireccion;
                                 this.clienteBase = cliente;
                                 txt_calle.Text = direccion.Calle.Trim();
@@ -103,6 +116,7 @@ namespace FrbaCrucero.Compra_Reservar
                             else
                             {
                                 this.fr.idCliente = Convert.ToInt32(txt_nro_doc.Text.Trim());
+                                this.fr.tipoDoc = this.tipoDoc;
                                 MessageBox.Show("Se continua con la operación sin modificar los datos");
                                 this.Close();
                             }
@@ -121,6 +135,7 @@ namespace FrbaCrucero.Compra_Reservar
                         btCancelarBuscar.Visible = false;
                         label3.Visible = true;
                         txt_nro_doc.Enabled = false;
+                        cmb_tipo.Enabled = false;
                         txt_apellido.Enabled = true;
                         txt_calle.Enabled = true;
                         txt_mail.Enabled = true;
@@ -166,14 +181,18 @@ namespace FrbaCrucero.Compra_Reservar
             if (ValidarCamposVacios())
                 MessageBox.Show("Debe completar todos los campos");
             //Validar mail   
-            else 
-                if (!string.IsNullOrEmpty(txt_mail.Text)){
+            else
+                if (!string.IsNullOrEmpty(txt_mail.Text))
+                {
                     if (!util.IsValidEmail(txt_mail.Text))
-                      MessageBox.Show("El Email ingresado no es válido");
+                        MessageBox.Show("El Email ingresado no es válido");
                 }
-            if(esModificacion){
+                else
+                {
+                    if (esModificacion)
+                    {
 
-                    //Modificar
+                        //Modificar
 
 
                         this.clienteModificado.Apellido = txt_apellido.Text;
@@ -190,23 +209,14 @@ namespace FrbaCrucero.Compra_Reservar
                         Adress.ModificarDireccion(this.direccionModificado);
                         MessageBox.Show("Cliente modificado");
                         this.fr.idCliente = this.clienteModificado.NroDoc;
+                        this.fr.tipoDoc = this.tipoDoc;
                         this.Close();
-            }
-                    
-            
-                else
-                {
-                        //Crear Usuario automatico
-                        String usuarioAlternativo = "";
-                        Usuario usuario;
-                        int idUser;
-                        usuarioAlternativo = txt_nro_doc.Text.Trim();
-                        usuario = new Usuario(usuarioAlternativo, usuarioAlternativo, true, 0);
-                        User.CrearUsuario(usuario);
-                        idUser = User.ObtenerIDUsuario(usuarioAlternativo);                        
+                    }
 
-                        //RolxUsuario Cliente
-                        Role.CrearRolxUsuario(2, idUser);
+
+                    else
+                    {
+
                         //Crear Direccion
                         int idDireccion;
                         if (!string.IsNullOrEmpty(txt_mail.Text))
@@ -223,21 +233,23 @@ namespace FrbaCrucero.Compra_Reservar
                             else
                                 idDireccion = Adress.ObtenerIDDireccion(txt_calle.Text, txt_numero.Text, txt_tel.Text);
                         }
-                        
+
                         //Crear Cliente
                         Cliente cliente = new Cliente();
                         cliente.Apellido = txt_apellido.Text;
                         cliente.Nombre = txt_nombre.Text;
                         cliente.NroDoc = Convert.ToInt32(txt_nro_doc.Text.Trim());
+                        cliente.TipoDoc = this.tipoDoc;
                         cliente.FechaNac = fechaNac.Value;
-                        cliente.IdUsuario = idUser;
                         cliente.IdDireccion = idDireccion;
                         Client.CrearCliente(cliente);
                         MessageBox.Show("Cliente creado");
                         this.fr.idCliente = Convert.ToInt32(txt_nro_doc.Text.Trim());
+                        this.fr.tipoDoc = this.tipoDoc;
                         this.Close();
                     }
                 }
+        }
 
         private void btCancelar_Click_1(object sender, EventArgs e)
         {

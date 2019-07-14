@@ -25,15 +25,23 @@ namespace FrbaCrucero.Pago_Reserva
             CargarComboMp();
             //Crea tabla ubicacionesCompradas
             this.cabinasCompradas = new DataTable("cabinasCompradas");
-            DataColumn workCol = this.cabinasCompradas.Columns.Add("cab_id", typeof(Int32));
+            DataColumn workCol = this.cabinasCompradas.Columns.Add("cab_via_id", typeof(Int32));
             workCol.AllowDBNull = false;
-            workCol.Unique = true;
-            this.cabinasCompradas.Columns.Add("cab_via_id", typeof(Int32));
             this.cabinasCompradas.Columns.Add("cab_precio", typeof(Decimal));
-            this.cabinasCompradas.Columns.Add("cab_nro", typeof(Int32));
-            this.cabinasCompradas.Columns.Add("cab_piso", typeof(Int32));
-            this.cabinasCompradas.Columns.Add("cab_tcab_id", typeof(Int32));
+            DataColumn workCol2 = this.cabinasCompradas.Columns.Add("cab_nro", typeof(Int32));
+            workCol2.AllowDBNull = false;
+            DataColumn workCol3 = this.cabinasCompradas.Columns.Add("cab_piso", typeof(Int32));
+            workCol3.AllowDBNull = false;
+            DataColumn workCol4 = this.cabinasCompradas.Columns.Add("cab_tcab_id", typeof(Int32));
+            workCol4.AllowDBNull = false;
             this.cabinasCompradas.Columns.Add("pue_id_hasta", typeof(Int32));
+
+            Constraint constraint = new UniqueConstraint("constraint1",
+            new DataColumn[] {this.cabinasCompradas.Columns["cab_via_id"],
+            this.cabinasCompradas.Columns["cab_nro"],
+            this.cabinasCompradas.Columns["cab_piso"],
+            this.cabinasCompradas.Columns["cab_tcab_id"]}, false);
+            this.cabinasCompradas.Constraints.Add(constraint);
 
             
             
@@ -87,11 +95,6 @@ namespace FrbaCrucero.Pago_Reserva
                 int idViaje = ABMCabina.ObtenerIDViaje(Convert.ToInt32(txt_reserva.Text.Trim()));
                 int idTipo = ABMCabina.ObtenerIDTipo(dataRow.Cells["TipoCabina"].Value.ToString());
 
-                row["cab_id"] = ABMCabina.ObtenerIdCabina(
-                    Convert.ToInt32(dataRow.Cells["Piso"].Value.ToString()),
-                    Convert.ToInt32(dataRow.Cells["Numero"].Value.ToString()),
-                    idTipo,
-                    idViaje);
                 row["cab_via_id"] = idViaje;
                 row["cab_precio"] = dataRow.Cells["Precio"].Value.ToString();
                 row["cab_nro"] = dataRow.Cells["Numero"].Value.ToString();
@@ -140,6 +143,7 @@ namespace FrbaCrucero.Pago_Reserva
                     compra.com_fecha = fechaSistema;
                     DataGridViewRow dataRow = dgv_cabina.Rows[(dgv_cabina.CurrentRow.Index)];
                     compra.com_cli = Convert.ToInt32(dataRow.Cells["Documento"].Value.ToString());
+                    compra.com_tipoDoc = Convert.ToInt32(Client.ObtenerIDTipoDoc(dataRow.Cells["TipoDoc"].Value.ToString()));
                     compra.cabinas = this.cabinasCompradas;
                     compra.com_mp = CompraFunc.ObtenerIDMp(cmb_mp.Text);
                     SqlDataReader reader = CompraFunc.CrearCompra(compra);
@@ -177,6 +181,7 @@ namespace FrbaCrucero.Pago_Reserva
                 compra.com_fecha = fechaSistema;
                 DataGridViewRow dataRow = dgv_cabina.Rows[(dgv_cabina.CurrentRow.Index)];
                 compra.com_cli = Convert.ToInt32(dataRow.Cells["Documento"].Value.ToString());
+                compra.com_tipoDoc = Convert.ToInt32(Client.ObtenerIDTipoDoc(dataRow.Cells["TipoDoc"].Value.ToString()));
                 compra.cabinas = this.cabinasCompradas;
                 compra.com_mp = CompraFunc.ObtenerIDMp(cmb_mp.Text);
                 compra.com_detalle = String.Concat("N° Cuotas: ", cmb_cuota.Text);

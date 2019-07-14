@@ -21,6 +21,7 @@ namespace FrbaCrucero.Compra_Reservar
     public partial class FormCompraReservar : Form
     {
         public int idCliente;
+        public int tipoDoc;
         public DateTime FechaDesde;
         public DateTime FechaHasta;
         public int puertoDesde;
@@ -155,7 +156,7 @@ namespace FrbaCrucero.Compra_Reservar
                 {
 
                     //Seleccion Cabinas
-                    CabinaDisponible frCabinaDisponible = new CabinaDisponible(compra, idViaje, this.idCliente, idRecorrido, puertoDesde.id, puertoHasta.id,rb_compra.Checked);
+                    CabinaDisponible frCabinaDisponible = new CabinaDisponible(compra, idViaje, this.idCliente,this.tipoDoc, idRecorrido, puertoDesde.id, puertoHasta.id,rb_compra.Checked);
                     this.Hide();
                     frCabinaDisponible.ShowDialog();
                     this.Show();

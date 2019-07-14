@@ -11,7 +11,7 @@ namespace MiLibreria.Modelo
     {
         public DateTime res_fecha;
         public Int32 res_cli;
-        public Int32 res_mp;
+        public Int32 res_tipoDoc;
         public DataTable cabinas;
     }
 }

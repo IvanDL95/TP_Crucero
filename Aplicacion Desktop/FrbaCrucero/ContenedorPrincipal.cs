@@ -14,6 +14,7 @@ using FrbaCrucero.Listados;
 using FrbaCrucero.ABMCrucero;
 using FrbaCrucero.Generar_viaje;
 using FrbaCrucero.AbmRecorrido;
+using FrbaCrucero.ABMPuerto;
 
 namespace FrbaCrucero
 {
@@ -180,6 +181,7 @@ namespace FrbaCrucero
         {
             AbmRol.FormRol fr = new AbmRol.FormRol();
             this.Hide();
+            if (!fr.IsDisposed)
             fr.ShowDialog();
             this.Show();
         }
@@ -230,9 +232,10 @@ namespace FrbaCrucero
 
         private void aBMPuertoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ABMPuerto.ABMPuertoForm fr = new ABMPuerto.ABMPuertoForm();
+            ABMPuertoForm fr = new ABMPuertoForm();
             this.Hide();
-            fr.ShowDialog();
+            if (!fr.IsDisposed)
+                fr.ShowDialog();
             this.Show();
         }
 
@@ -240,6 +243,7 @@ namespace FrbaCrucero
         {
             FormRecorrido fr = new FormRecorrido();
             this.Hide();
+            if (!fr.IsDisposed)
             fr.ShowDialog();
             this.Show();
         }
@@ -248,6 +252,7 @@ namespace FrbaCrucero
         {
             FormCrucero fr = new FormCrucero();
             this.Hide();
+            if (!fr.IsDisposed)
             fr.ShowDialog();
             this.Show();
         }
@@ -266,6 +271,7 @@ namespace FrbaCrucero
         {
             PantallaIncial fr = new PantallaIncial(null,null);
             this.Hide();
+            if (!fr.IsDisposed)
             fr.ShowDialog();
             this.Close();
         }

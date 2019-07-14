@@ -130,7 +130,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
             this.Name = "ABMPuertoForm";
-            this.Text = "Editar Publicación";
+            this.Text = "ABM Puerto";
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -49,6 +49,7 @@
             this.txt_tel = new FrbaCrucero.NumericTextBox();
             this.txt_numero = new FrbaCrucero.NumericTextBox();
             this.txt_nro_doc = new FrbaCrucero.NumericTextBox();
+            this.cmb_tipo = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // btBuscar
@@ -66,9 +67,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(42, 21);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(151, 13);
+            this.label1.Size = new System.Drawing.Size(179, 13);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Ingrese número de documento";
+            this.label1.Text = "Ingrese tipo y número de documento";
             // 
             // btCancelar
             // 
@@ -235,16 +236,29 @@
             // 
             // txt_nro_doc
             // 
-            this.txt_nro_doc.Location = new System.Drawing.Point(45, 48);
+            this.txt_nro_doc.Location = new System.Drawing.Point(113, 49);
             this.txt_nro_doc.Name = "txt_nro_doc";
-            this.txt_nro_doc.Size = new System.Drawing.Size(225, 20);
+            this.txt_nro_doc.Size = new System.Drawing.Size(170, 20);
             this.txt_nro_doc.TabIndex = 49;
+            // 
+            // cmb_tipo
+            // 
+            this.cmb_tipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb_tipo.FormattingEnabled = true;
+            this.cmb_tipo.Items.AddRange(new object[] {
+            "DNI",
+            "DU"});
+            this.cmb_tipo.Location = new System.Drawing.Point(45, 49);
+            this.cmb_tipo.Name = "cmb_tipo";
+            this.cmb_tipo.Size = new System.Drawing.Size(62, 21);
+            this.cmb_tipo.TabIndex = 142;
             // 
             // CargarCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(346, 396);
+            this.Controls.Add(this.cmb_tipo);
             this.Controls.Add(this.btCancelarBuscar);
             this.Controls.Add(this.txt_mail);
             this.Controls.Add(this.txt_tel);
@@ -296,5 +310,6 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Button btCancelarBuscar;
+        private System.Windows.Forms.ComboBox cmb_tipo;
     }
 }

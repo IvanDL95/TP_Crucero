@@ -75,7 +75,6 @@ namespace MiLibreria
         {
             List<SqlParameter> parametros = PrepararParametros(cab_cru);
             DataBase.EscribirEnLaBase("TROLLS.CREAR_CABINA_CRUCERO", DataBase.Tipos.StoredProcedure, parametros);
-
         }
 
         public static void ModificarCabinaCrucero(Cabinas_Crucero cab_cru)
@@ -99,7 +98,7 @@ namespace MiLibreria
             parametro.Value = cab_cru.piso;
             parametros.Add(parametro);
 
-            parametro = new SqlParameter("@cc_cantidad", SqlDbType.Decimal);
+            parametro = new SqlParameter("@cc_nro", SqlDbType.Decimal);
             parametro.Value = cab_cru.numero;
             parametros.Add(parametro);
 
@@ -125,7 +124,7 @@ namespace MiLibreria
             parametro.Value = cab_cru.piso;
             parametros.Add(parametro);
 
-            parametro = new SqlParameter("@cc_cantidad", SqlDbType.Decimal);
+            parametro = new SqlParameter("@cc_nro", SqlDbType.Decimal);
             parametro.Value = cab_cru.numero;
             parametros.Add(parametro);
 

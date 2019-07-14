@@ -65,12 +65,12 @@
             this.dgv_cabina.Name = "dgv_cabina";
             this.dgv_cabina.ReadOnly = true;
             this.dgv_cabina.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_cabina.Size = new System.Drawing.Size(523, 336);
+            this.dgv_cabina.Size = new System.Drawing.Size(867, 336);
             this.dgv_cabina.TabIndex = 123;
             // 
             // btComprarReservar
             // 
-            this.btComprarReservar.Location = new System.Drawing.Point(193, 511);
+            this.btComprarReservar.Location = new System.Drawing.Point(379, 508);
             this.btComprarReservar.Name = "btComprarReservar";
             this.btComprarReservar.Size = new System.Drawing.Size(162, 23);
             this.btComprarReservar.TabIndex = 122;
@@ -90,7 +90,7 @@
             // 
             // bt_mp
             // 
-            this.bt_mp.Location = new System.Drawing.Point(368, 574);
+            this.bt_mp.Location = new System.Drawing.Point(554, 571);
             this.bt_mp.Name = "bt_mp";
             this.bt_mp.Size = new System.Drawing.Size(75, 23);
             this.bt_mp.TabIndex = 129;
@@ -103,7 +103,7 @@
             // 
             this.cmb_mp.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb_mp.FormattingEnabled = true;
-            this.cmb_mp.Location = new System.Drawing.Point(147, 576);
+            this.cmb_mp.Location = new System.Drawing.Point(333, 573);
             this.cmb_mp.Name = "cmb_mp";
             this.cmb_mp.Size = new System.Drawing.Size(133, 21);
             this.cmb_mp.TabIndex = 128;
@@ -112,7 +112,7 @@
             // lb_mp
             // 
             this.lb_mp.AutoSize = true;
-            this.lb_mp.Location = new System.Drawing.Point(49, 579);
+            this.lb_mp.Location = new System.Drawing.Point(235, 576);
             this.lb_mp.Name = "lb_mp";
             this.lb_mp.Size = new System.Drawing.Size(81, 13);
             this.lb_mp.TabIndex = 127;
@@ -122,7 +122,7 @@
             // lb_cuota
             // 
             this.lb_cuota.AutoSize = true;
-            this.lb_cuota.Location = new System.Drawing.Point(49, 607);
+            this.lb_cuota.Location = new System.Drawing.Point(235, 604);
             this.lb_cuota.Name = "lb_cuota";
             this.lb_cuota.Size = new System.Drawing.Size(43, 13);
             this.lb_cuota.TabIndex = 130;
@@ -138,7 +138,7 @@
             "3",
             "6",
             "12"});
-            this.cmb_cuota.Location = new System.Drawing.Point(147, 604);
+            this.cmb_cuota.Location = new System.Drawing.Point(333, 601);
             this.cmb_cuota.Name = "cmb_cuota";
             this.cmb_cuota.Size = new System.Drawing.Size(133, 21);
             this.cmb_cuota.TabIndex = 131;
@@ -147,7 +147,7 @@
             // lb_selec
             // 
             this.lb_selec.AutoSize = true;
-            this.lb_selec.Location = new System.Drawing.Point(49, 548);
+            this.lb_selec.Location = new System.Drawing.Point(235, 545);
             this.lb_selec.Name = "lb_selec";
             this.lb_selec.Size = new System.Drawing.Size(136, 13);
             this.lb_selec.TabIndex = 132;
@@ -156,7 +156,7 @@
             // 
             // bt_cuota
             // 
-            this.bt_cuota.Location = new System.Drawing.Point(368, 602);
+            this.bt_cuota.Location = new System.Drawing.Point(554, 599);
             this.bt_cuota.Name = "bt_cuota";
             this.bt_cuota.Size = new System.Drawing.Size(75, 23);
             this.bt_cuota.TabIndex = 133;
@@ -176,7 +176,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(569, 638);
+            this.ClientSize = new System.Drawing.Size(912, 638);
             this.Controls.Add(this.txt_reserva);
             this.Controls.Add(this.bt_cuota);
             this.Controls.Add(this.lb_selec);
