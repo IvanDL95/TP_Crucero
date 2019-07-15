@@ -85,18 +85,18 @@ namespace MiLibreria
             parametro = new SqlParameter("@REC_ID", SqlDbType.Int, 100);
             parametro.Value = rec_id;
             parametros.Add(parametro);
-            parametro = new SqlParameter("@PUE_ID_DESDE", SqlDbType.Int, 100);
+            parametro = new SqlParameter("@rec_pue_desde", SqlDbType.Int, 100);
             parametro.Value = pue_id_desde;
             parametros.Add(parametro);
-            parametro = new SqlParameter("@PUE_ID_HASTA", SqlDbType.Int, 100);
+            parametro = new SqlParameter("@rec_pue_HASTA", SqlDbType.Int, 100);
             parametro.Value = pue_id_hasta;
             parametros.Add(parametro);
-            SqlDataReader reader = DataBase.ObtenerUnDataReader("TROLLS.OBTENERPRECIORECORRIDO", DataBase.Tipos.StoredProcedure, parametros);
+            SqlDataReader reader = DataBase.ObtenerUnDataReader("TROLLS.LISTAR_RECORRIDOS", DataBase.Tipos.StoredProcedure, parametros);
 
             decimal precio=0;
             if (reader.Read())
             {
-                precio = reader.GetDecimal(0);
+                precio = reader.GetDecimal(3);
             }
 
             return precio;
